@@ -36,12 +36,14 @@ A running log of issues encountered during development and their solutions.
 
 ### 8. In-memory session storage
 **Issue:** MVP uses in-memory dicts for session storage — data lost on server restart.
-**Fix:** Accepted for MVP. Sessions are ephemeral — user uploads, categorizes, and views report in one flow. Will upgrade to SQLite if persistence is needed.
+**Fix:** Migrated to SQLite with aiosqlite for async persistence. All data (sessions, transactions, categorizations, reports) now survives server restarts.
+
+### 9. No user authentication
+**Issue:** MVP had no authentication — all endpoints were open.
+**Fix:** Added JWT authentication with bcrypt password hashing. All data endpoints are user-scoped. Registration and login endpoints added.
 
 ---
 
 ## Known Limitations (MVP)
-- No user authentication
-- No persistent storage (in-memory sessions)
-- No real-time progress during categorization (batch calls happen synchronously)
-- Transaction amounts in the table show "—" until full integration with original data is wired through
+- No real-time progress during categorization (batch calls happen synchronously in the background worker)
+- Single-user mode per token; no role-based access control

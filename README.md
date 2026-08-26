@@ -54,15 +54,23 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/health` | Health check |
-| POST | `/upload` | Upload CSV file |
-| GET | `/upload/{session_id}/transactions` | Get raw transactions |
-| POST | `/categorize/{session_id}` | Run LLM categorization |
-| GET | `/categorize/{session_id}/results` | Get categorized results |
-| POST | `/reports/generate/{session_id}` | Generate P&L report |
-| GET | `/reports/{session_id}` | Retrieve report |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/health` | No | Health check |
+| POST | `/auth/register` | No | Register a new user account |
+| POST | `/auth/login` | No | Login and get JWT token |
+| GET | `/auth/me` | Yes | Get current user info |
+| POST | `/upload` | Yes | Upload CSV file |
+| GET | `/upload/{session_id}/transactions` | Yes | Get raw transactions |
+| POST | `/categorize/{session_id}` | Yes | Start LLM categorization (returns 202, background job) |
+| GET | `/jobs/{job_id}` | Yes | Poll job status and results |
+| GET | `/categorize/{session_id}/results` | Yes | Get categorized results |
+| POST | `/reports/generate/{session_id}` | Yes | Generate P&L report |
+| GET | `/reports/{session_id}` | Yes | Retrieve report |
+| GET | `/sessions` | Yes | List all upload sessions |
+| DELETE | `/sessions/{session_id}` | Yes | Delete a session and all related data |
+
+**Auth:** Endpoints marked "Yes" require `Authorization: Bearer <jwt_token>` header.
 
 ## CSV Format
 
@@ -103,10 +111,13 @@ Frontend (Next.js)  →  Backend (FastAPI)  →  Groq API (Llama 3.3 70B)
      :3000                  :8000
 ```
 
-- **In-memory session storage** — uploaded data and categorized results stored in Python dicts (MVP)
+- **SQLite persistence** — sessions, transactions, categorizations, reports, and jobs stored in SQLite via aiosqlite
+- **JWT authentication** — bcrypt password hashing, HS256 tokens, user-scoped data isolation
+- **Background jobs** — categorization runs as a background task with status polling via `GET /jobs/{job_id}`
 - **Batch processing** — 15 transactions per LLM call to balance cost and latency
 - **Deterministic anomaly detection** — rule/statistics-based, not LLM-based, for auditability
 - **Graceful degradation** — if a batch fails, those transactions are marked `needs_review: true` instead of failing the entire job
+- **LLM retry logic** — exponential backoff on Groq API failures via tenacity
 
 ## Tech Stack
 

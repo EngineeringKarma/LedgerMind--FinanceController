@@ -1,18 +1,24 @@
 import csv
 import io
 import uuid
+import logging
 from datetime import date
 
-from fastapi import APIRouter, File, UploadFile, HTTPException
+from fastapi import APIRouter, Depends, File, UploadFile
+import aiosqlite
 
+from app.auth import get_current_user
+from app.config import settings
 from app.models.schemas import (
     Transaction,
     TransactionType,
     TransactionStatus,
     UploadResponse,
 )
-from app.store import sessions
+from app.database import get_db, create_session, insert_transactions, get_transactions, session_exists
+from app.errors import CSVParseError, SessionNotFoundError
 
+logger = logging.getLogger(__name__)
 router = APIRouter(tags=["upload"])
 
 
@@ -21,7 +27,7 @@ def parse_csv(content: bytes) -> list[dict]:
     text = content.decode("utf-8")
     lines = text.splitlines()
     if not lines:
-        raise ValueError("Empty CSV")
+        raise CSVParseError("Empty CSV file")
 
     # Standardize headers (lower, strip whitespace)
     reader = csv.reader(io.StringIO(lines[0]))
@@ -62,40 +68,64 @@ def parse_csv(content: bytes) -> list[dict]:
                 counterparty=txn_party,
                 status=txn_status
             )
-            transactions.append(txn.model_dump())
+            transactions.append(txn.model_dump(mode="json"))
         except Exception as e:
             errors.append(f"Row {i}: {str(e)}")
 
     if errors and not transactions:
-        raise ValueError(f"All rows failed validation: {'; '.join(errors[:5])}")
+        raise CSVParseError(f"All rows failed validation: {'; '.join(errors[:5])}")
 
     return transactions
 
 
 @router.post("/upload", response_model=UploadResponse)
-async def upload_csv(file: UploadFile = File(...)):
+async def upload_csv(
+    file: UploadFile = File(...),
+    db: aiosqlite.Connection = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
     """Upload a CSV file of transactions. Returns a session ID for subsequent categorization."""
     if not file.filename.endswith(".csv"):
-        raise HTTPException(status_code=400, detail="File must be a CSV")
+        raise CSVParseError("File must be a CSV")
 
     content = await file.read()
-    if len(content) > 10 * 1024 * 1024:  # 10MB limit
-        raise HTTPException(status_code=400, detail="File too large (max 10MB)")
+    max_size = settings.upload_max_size_mb * 1024 * 1024
+    if len(content) > max_size:
+        raise CSVParseError(f"File too large (max {settings.upload_max_size_mb}MB)")
 
     try:
         transactions = parse_csv(content)
-    except ValueError as e:
-        raise HTTPException(status_code=422, detail=str(e))
+    except CSVParseError:
+        raise
+    except Exception as e:
+        raise CSVParseError(f"Failed to parse CSV: {str(e)}")
 
     session_id = str(uuid.uuid4())[:8]
-    sessions[session_id] = transactions
+    user_id = current_user["id"]
 
+    # Store in SQLite within a transaction
+    await db.execute("BEGIN")
+    try:
+        await create_session(db, session_id, user_id, file.filename, len(transactions))
+        await insert_transactions(db, session_id, transactions)
+        await db.commit()
+    except Exception:
+        await db.execute("ROLLBACK")
+        raise
+
+    logger.info(f"User {user_id} uploaded {file.filename} ({len(transactions)} txns) -> session {session_id}")
     return UploadResponse(session_id=session_id, transaction_count=len(transactions))
 
 
 @router.get("/upload/{session_id}/transactions")
-def get_session_transactions(session_id: str):
+async def get_session_transactions(
+    session_id: str,
+    db: aiosqlite.Connection = Depends(get_db),
+    current_user: dict = Depends(get_current_user),
+):
     """Retrieve stored transactions for a session."""
-    if session_id not in sessions:
-        raise HTTPException(status_code=404, detail="Session not found")
-    return {"session_id": session_id, "transactions": sessions[session_id]}
+    if not await session_exists(db, session_id, current_user["id"]):
+        raise SessionNotFoundError(session_id)
+
+    transactions = await get_transactions(db, session_id)
+    return {"session_id": session_id, "transactions": transactions}
