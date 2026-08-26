@@ -1,0 +1,201 @@
+transaction_id,date,type,amount,description,counterparty,status
+txn_vGXWVQCc,2026-01-02,fee,-223.74,Transaction fee - 2% of amount,HDFC Bank Ltd,settled
+txn_xNLPuvqI,2026-01-03,payout,-156269.49,Payout to merchant bank account,Paytm Payments Bank,settled
+txn_qZ0eFBvS,2026-01-03,refund,-17739.79,Refund to original payment method #7290,CC Avenue Payment Gateway,settled
+txn_YDX9Qwca,2026-01-04,tax,-2453.92,GST collected on platform fees,Kotak Mahindra Bank,settled
+txn_rH1e2jdb,2026-01-04,fee,-779.49,Transaction fee - 2% of amount,Zomato Ltd,settled
+txn_vtUChyKw,2026-01-05,payment,33022.4,Customer payment - Invoice #6649,MakeMyTrip India Pvt Ltd,settled
+txn_PkgYTVUK,2026-01-06,tax,-486.24,GST collected on platform fees,ICICI Bank Limited,pending
+txn_XB50oxIR,2026-01-07,refund,-8328.65,Reversal for duplicate charge #9224,ICICI Bank Limited,failed
+txn_Gn2br4Cx,2026-01-10,payout,-150619.44,Instant payout to HDFC Bank ****4521,MakeMyTrip India Pvt Ltd,settled
+txn_J51i4taT,2026-01-12,chargeback,-11899.76,Chargeback received - Case #5006,Zomato Ltd,settled
+txn_1DfRytTl,2026-01-13,payment,10660.12,Payment received for order #7590,State Bank of India,settled
+txn_JXud0Srx,2026-01-13,tax,-1627.74,TDS certificate generated - Form 16A,Stripe India Pvt Ltd,settled
+txn_nQtiaAE2,2026-01-14,payment,309.02,EMI payment received - Ref #5533,Zomato Ltd,pending
+txn_OH3PkmZk,2026-01-15,tax,-2995.42,TDS deducted at source - 2%,Swiggy Instamart,settled
+txn_UEbXhzDX,2026-01-15,payout,-80741.71,Bulk payout processed - Ref #9683,Ola Cabs Private Limited,settled
+txn_EOpNI6jd,2026-01-19,fee,-724.53,MDR charges for UPI transaction,Swiggy Instamart,pending
+txn_WJzrl9oA,2026-01-19,payout,-176768.51,Weekly settlement - Ref #3170,ICICI Bank Limited,pending
+txn_HzikvIf1,2026-01-19,payment,21042.62,Payment for subscription renewal #2215,State Bank of India,settled
+txn_lTst18IW,2026-01-19,fee,-388.43,Transaction fee - 2% of amount,Kotak Mahindra Bank,settled
+txn_C9lvc2js,2026-01-24,fee,-645.64,Settlement fee applied,MakeMyTrip India Pvt Ltd,settled
+txn_I4UZMw2W,2026-01-25,chargeback,-1027.44,Chargeback received - Case #6061,State Bank of India,settled
+txn_Q6olKtKX,2026-01-26,payment,16752.62,Wallet payment processed - Ref #6977,Urban Company India Pvt Ltd,settled
+txn_IRFillwq,2026-01-26,payment,43351.7,Customer payment - Invoice #7291,ICICI Bank Limited,settled
+txn_aWfV0yG7,2026-01-27,fee,-626.54,Gateway convenience fee #2983,PayU India Pvt Ltd,settled
+txn_XSYF348j,2026-01-27,payment,26972.26,Payment for subscription renewal #2524,RazorpayX Banking Partner,settled
+txn_c2Ey1Goh,2026-01-28,payment,6437.18,Credit card payment processed - Ref #9786,State Bank of India,settled
+txn_XjPrA5hs,2026-01-28,payout,-123210.73,Payout to ICICI Bank ****7832,Kotak Mahindra Bank,settled
+txn_DX9g81As,2026-01-29,payment,35674.76,Credit note issued - #4421,Swiggy Instamart,settled
+txn_dc9Xr4ux,2026-01-31,payout,-48065.6,Weekly settlement - Ref #7021,RazorpayX Banking Partner,failed
+txn_2WLEov91,2026-02-01,tax,-1501.23,TDS u/s 194J - Professional fees,CC Avenue Payment Gateway,settled
+txn_3lsfzh3u,2026-02-01,refund,-20881.29,Goodwill credit issued #9702,CC Avenue Payment Gateway,failed
+txn_kBfPIamO,2026-02-01,payment,5121.98,EMI payment received - Ref #8489,Swiggy Instamart,failed
+txn_V630PniH,2026-02-01,refund,-11360.86,Customer dispute resolved - refund issued #3697,Urban Company India Pvt Ltd,settled
+txn_8SrejPXy,2026-02-04,payment,14241.12,International payment processed - Ref #4290,Razorpay Software Private Ltd,failed
+txn_KVNu5mbN,2026-02-04,payout,-114841.79,T+1 settlement processed,Stripe India Pvt Ltd,settled
+txn_xG1IWwkA,2026-02-07,fee,-790.05,MDR charges for UPI transaction,Ola Cabs Private Limited,settled
+txn_BTJqZw52,2026-02-07,fee,-758.67,Settlement fee applied,PayU India Pvt Ltd,settled
+txn_3x13NPGw,2026-02-08,payout,-29851.88,Payout to ICICI Bank ****7832,Kotak Mahindra Bank,settled
+txn_DzYv6B2j,2026-02-09,fee,-266.04,Platform fee - Monthly billing,Kotak Mahindra Bank,settled
+txn_001XTsv2,2026-02-09,payment,31217.8,Netbanking transfer - Ref #6546,RazorpayX Banking Partner,settled
+txn_CUvIXKzv,2026-02-09,payment,37605.12,Customer payment - Invoice #9317,CC Avenue Payment Gateway,pending
+txn_6bvGFaif,2026-02-09,payment,16327.41,Online payment via UPI - Ref #7383,HDFC Bank Ltd,settled
+txn_LoYt2baA,2026-02-10,payment,35929.35,EMI payment received - Ref #8570,MakeMyTrip India Pvt Ltd,settled
+txn_Tp7YsEqm,2026-02-12,payout,-26079.26,Settlement transfer - Batch #3683,Paytm Payments Bank,settled
+txn_DaaeEPPm,2026-02-13,fee,-242.3,Transaction fee - 2% of amount,PhonePe Private Limited,settled
+txn_2RCSl5Uc,2026-02-15,tax,-972.24,TDS deducted at source - 2%,Razorpay Software Private Ltd,settled
+txn_ABSphgzP,2026-02-15,tax,-3652.9,TDS u/s 194J - Professional fees,Ola Cabs Private Limited,settled
+txn_2R6azduD,2026-02-16,payment,20543.26,EMI payment received - Ref #6363,BookMyShow Events Pvt Ltd,settled
+txn_EnDJiS9H,2026-02-17,tax,-4119.47,TCS on international transactions,Amazon Seller Services,settled
+txn_aa9LSGUS,2026-02-17,refund,-9408.55,Goodwill credit issued #7018,Stripe India Pvt Ltd,settled
+txn_fZKMl2Dd,2026-02-19,payment,34659.32,International payment processed - Ref #8218,State Bank of India,pending
+txn_UdclfUmK,2026-02-20,payout,-13834.15,Bulk payout processed - Ref #9193,Zomato Ltd,settled
+txn_Fjhs64K2,2026-02-21,fee,-517.43,Gateway convenience fee #6262,Paytm Payments Bank,failed
+txn_zqErt0DF,2026-02-22,tax,-1984.12,GST collected on platform fees,HDFC Bank Ltd,settled
+txn_SrlN1Js8,2026-02-23,refund,-3255.69,Goodwill credit issued #5341,Amazon Seller Services,pending
+txn_bgHNUkON,2026-02-24,chargeback,-24879.7,Chargeback won - Funds reversed #6107,Axis Bank Limited,settled
+txn_AbkSOrrc,2026-02-24,payment,7945.54,Customer payment - Invoice #3573,MakeMyTrip India Pvt Ltd,settled
+txn_cQ1gnllk,2026-02-24,payment,8535.15,Customer payment - Invoice #2667,CC Avenue Payment Gateway,settled
+txn_4oAgZBsh,2026-02-25,refund,-22356.73,Adjustment - Ref #1990,RazorpayX Banking Partner,failed
+txn_V9iVcTOs,2026-02-26,refund,-12978.81,Refund to original payment method #6016,PayU India Pvt Ltd,settled
+txn_Py7neKxK,2026-02-28,payment,29509.17,Credit card payment processed - Ref #9180,CC Avenue Payment Gateway,settled
+txn_roHCC9HO,2026-03-01,refund,-22275.6,Adjustment - Ref #4626,Swiggy Instamart,settled
+txn_lXB0LNxV,2026-03-04,fee,-196.6,Platform fee - Monthly billing,State Bank of India,settled
+txn_vFXiDAKe,2026-03-04,tax,-3285.99,GST collected on platform fees,Swiggy Instamart,pending
+txn_QZcn2FfR,2026-03-05,payment,22102.22,Payment for subscription renewal #5055,Axis Bank Limited,settled
+txn_uaFFNEkg,2026-03-06,payment,28208.35,Online payment via UPI - Ref #1848,Axis Bank Limited,settled
+txn_hD39dRLI,2026-03-07,fee,-340.11,Settlement fee applied,Zomato Ltd,settled
+txn_wfGf6Cw1,2026-03-09,payment,33593.09,EMI payment received - Ref #9619,Amazon Seller Services,settled
+txn_eH0c3bFq,2026-03-09,fee,-229.89,Refund processing fee,RazorpayX Banking Partner,failed
+txn_vaYnhJFE,2026-03-09,payment,12998.98,Payment received for order #7520,Stripe India Pvt Ltd,settled
+txn_efjQh9hu,2026-03-12,payment,25519.42,Netbanking transfer - Ref #3755,State Bank of India,pending
+txn_IQWZCDiW,2026-03-14,refund,-385.39,Goodwill credit issued #5681,CC Avenue Payment Gateway,settled
+txn_d0ViHROa,2026-03-15,payout,-103945.45,Payout to ICICI Bank ****7832,PayU India Pvt Ltd,settled
+txn_qH8YxV6u,2026-03-15,payment,12695.47,Payment received via QR code - #8378,CC Avenue Payment Gateway,failed
+txn_OmPVxE7c,2026-03-15,payment,41324.49,EMI payment received - Ref #3937,Amazon Seller Services,settled
+txn_iX5f21Rw,2026-03-16,refund,-34310.54,Customer dispute resolved - refund issued #7807,Razorpay Software Private Ltd,settled
+txn_xKE1mO4I,2026-03-17,payment,23972.81,EMI payment received - Ref #3385,MakeMyTrip India Pvt Ltd,settled
+txn_Km3U5C1F,2026-03-19,payout,-120402.65,Settlement transfer - Batch #9234,Urban Company India Pvt Ltd,settled
+txn_8hHo6Kgl,2026-03-20,payment,32976.06,Credit card payment processed - Ref #2290,Swiggy Instamart,pending
+txn_9sF53grX,2026-03-20,payment,22217.5,Payment received via QR code - #4902,Kotak Mahindra Bank,settled
+txn_fBT6VvL9,2026-03-21,payout,-23223.33,Payout to ICICI Bank ****7832,Stripe India Pvt Ltd,settled
+txn_s8gRGMOL,2026-03-22,payment,9854.85,Payment received via QR code - #4033,BookMyShow Events Pvt Ltd,settled
+txn_s5nxfHMI,2026-03-23,payout,-178809.68,Settlement transfer - Batch #9882,Paytm Payments Bank,pending
+txn_8h6H8L7Q,2026-03-26,payment,28920.46,Customer payment - Invoice #5573,ICICI Bank Limited,settled
+txn_DHTZf3rT,2026-03-26,payment,29467.7,International payment processed - Ref #1187,PhonePe Private Limited,settled
+txn_GOElmk8U,2026-03-26,payment,33583.73,Online payment via UPI - Ref #2284,Stripe India Pvt Ltd,settled
+txn_8h4kpFa1,2026-03-28,chargeback,-21044.54,Ref #8844 - Status updated,Swiggy Instamart,failed
+txn_5rImkPpg,2026-03-30,chargeback,-5211.29,Chargeback lost - Debit note raised #8849,BookMyShow Events Pvt Ltd,settled
+txn_v2AMGClr,2026-03-30,payment,36455.1,Credit card payment processed - Ref #2848,Zomato Ltd,settled
+txn_BJHpiNrv,2026-03-31,payment,42740.09,Customer payment - Invoice #1659,Flipkart Online Services Pvt Ltd,settled
+txn_R6yicTU8,2026-03-31,refund,-11610.15,Adjustment - Ref #2713,Urban Company India Pvt Ltd,settled
+txn_pTOHXIYk,2026-03-31,payment,41352.91,Wallet payment processed - Ref #3826,Paytm Payments Bank,settled
+txn_Rn8FkXj7,2026-04-01,refund,-1412.49,Customer dispute resolved - refund issued #8565,State Bank of India,settled
+txn_bHOoW6CJ,2026-04-04,refund,-29718.56,Partial refund for item return #1510,Ola Cabs Private Limited,settled
+txn_ttcpWDhN,2026-04-05,refund,-186.31,Goodwill credit issued #6362,PayU India Pvt Ltd,pending
+txn_Q4Jb6NbV,2026-04-06,payout,-60587.29,Settlement transfer - Batch #9452,Amazon Seller Services,pending
+txn_2wNxrci4,2026-04-09,refund,-31253.83,Refund to original payment method #3417,Flipkart Online Services Pvt Ltd,pending
+txn_vBt6MxzE,2026-04-11,payment,44877.33,International payment processed - Ref #4273,PayU India Pvt Ltd,settled
+txn_hcppky6G,2026-04-12,tax,-3963.88,GST remittance for billing period,Swiggy Instamart,settled
+txn_cuPcxIAz,2026-04-12,refund,-1184.77,Customer dispute resolved - refund issued #5262,Urban Company India Pvt Ltd,settled
+txn_VWswjFDJ,2026-04-13,payment,9798.71,Payment received for order #2503,Stripe India Pvt Ltd,settled
+txn_WumvMi5b,2026-04-14,chargeback,-10448.54,Chargeback received - Case #9889,State Bank of India,settled
+txn_y2BtU5x1,2026-04-15,tax,-4329.8,TDS certificate generated - Form 16A,MakeMyTrip India Pvt Ltd,failed
+txn_k9eJhVih,2026-04-17,payment,12835.33,Payment received via QR code - #5377,Flipkart Online Services Pvt Ltd,settled
+txn_f9iYdn8P,2026-04-17,payment,3185.42,Customer payment - Invoice #9576,ICICI Bank Limited,settled
+txn_pDNfCY21,2026-04-17,chargeback,-14374.09,Adjustment - Ref #5444,Swiggy Instamart,settled
+txn_GXWSrBzY,2026-04-19,fee,-799.5,Refund processing fee,BookMyShow Events Pvt Ltd,pending
+txn_jjeVqDGw,2026-04-20,fee,-663.02,Refund processing fee,HDFC Bank Ltd,settled
+txn_ipZ26a4D,2026-04-21,payment,2840.15,Payment for subscription renewal #3131,CC Avenue Payment Gateway,failed
+txn_3qjQ5qRh,2026-04-22,payout,-184234.68,Payout to ICICI Bank ****7832,Stripe India Pvt Ltd,settled
+txn_poKAIAeV,2026-04-22,refund,-21469.16,Transaction reversal #1199,MakeMyTrip India Pvt Ltd,settled
+txn_ECaTPF7z,2026-04-23,payment,22596.18,Netbanking transfer - Ref #7594,PhonePe Private Limited,settled
+txn_qh8WYLH0,2026-04-24,chargeback,-21415.16,Settlement correction - Ref #5567,Amazon Seller Services,settled
+txn_OFxGWSXy,2026-04-24,payment,31277.29,Payment for subscription renewal #2975,Kotak Mahindra Bank,settled
+txn_1V9R86En,2026-04-25,payout,-73551.66,Bulk payout processed - Ref #3730,State Bank of India,settled
+txn_TTP7qdFF,2026-04-26,chargeback,-10088.51,Unauthorized transaction dispute #6553,State Bank of India,settled
+txn_YoPHteXi,2026-04-26,tax,-2890.91,TCS on international transactions,Swiggy Instamart,settled
+txn_X1ZTd4X9,2026-04-27,refund,-34329.03,Adjustment applied - Inv #7712,Amazon Seller Services,settled
+txn_HjEvMN1U,2026-04-27,payment,35437.74,Credit card payment processed - Ref #1349,Zomato Ltd,settled
+txn_MqIoJ5Qo,2026-04-28,payment,180.32,Online payment via UPI - Ref #8230,State Bank of India,failed
+txn_x3qJbVkn,2026-04-29,refund,-9010.9,Ref #2233 - Disputed amount,MakeMyTrip India Pvt Ltd,settled
+txn_cSCMC5f9,2026-04-29,tax,-362.35,TDS u/s 194J - Professional fees,Ola Cabs Private Limited,pending
+txn_BNJ6lawO,2026-05-01,fee,-493.05,Transaction fee - 2% of amount,State Bank of India,failed
+txn_bsOU3EJX,2026-05-02,refund,-17012.44,Refund to original payment method #5543,Stripe India Pvt Ltd,settled
+txn_H0opK9PK,2026-05-02,payment,13616.84,Wallet payment processed - Ref #6225,Swiggy Instamart,pending
+txn_ZuhlNNbB,2026-05-03,payment,38427.14,Payment for subscription renewal #5892,Axis Bank Limited,failed
+txn_1xdEuNpp,2026-05-09,chargeback,-24191.13,Representment filed - Case #5210,Razorpay Software Private Ltd,settled
+txn_yOJMlvoK,2026-05-11,payout,-146838.93,Instant payout to HDFC Bank ****4521,ICICI Bank Limited,pending
+txn_2tH3UagQ,2026-05-13,refund,-13078.24,Debit adjustment #9912,Swiggy Instamart,settled
+txn_pSTuEc99,2026-05-14,payment,10855.06,Netbanking transfer - Ref #4346,HDFC Bank Ltd,settled
+txn_Gsb3TJHm,2026-05-14,payment,38151.34,Payment received for order #1996,Razorpay Software Private Ltd,settled
+txn_DIZiipTB,2026-05-14,refund,-31471.24,Refund to original payment method #9008,Swiggy Instamart,settled
+txn_jWqv7vBE,2026-05-16,chargeback,-3473.18,Chargeback received - Case #6916,HDFC Bank Ltd,pending
+txn_B51jjrZH,2026-05-17,fee,-689.69,Processing fee for international txn,Axis Bank Limited,settled
+txn_JZGeZ6CW,2026-05-18,payment,18947.83,Wallet payment processed - Ref #7078,CC Avenue Payment Gateway,settled
+txn_1UHW3u3X,2026-05-20,refund,-12558.4,Refund initiated for order #4131,Paytm Payments Bank,pending
+txn_kIV7rYk6,2026-05-23,fee,-698.88,Gateway convenience fee #5128,RazorpayX Banking Partner,settled
+txn_QLrTVA1j,2026-05-24,tax,-4648.97,GST remittance for billing period,RazorpayX Banking Partner,pending
+txn_GRXmP1JU,2026-05-24,payment,12146.1,Credit card payment processed - Ref #8642,Amazon Seller Services,settled
+txn_X8y7xSRs,2026-05-24,tax,-653.28,TDS certificate generated - Form 16A,Paytm Payments Bank,settled
+txn_do4LkneF,2026-05-28,payout,-12845.18,Payout to merchant bank account,PayU India Pvt Ltd,pending
+txn_2eFYcOkD,2026-05-28,fee,-796.78,Settlement fee applied,Razorpay Software Private Ltd,settled
+txn_9ieITbDW,2026-05-28,payment,31250.47,Online payment via UPI - Ref #8973,CC Avenue Payment Gateway,settled
+txn_jWPGjsOf,2026-05-28,payout,-75224.16,Express payout to Axis Bank ****1298,Stripe India Pvt Ltd,settled
+txn_lGr0ovsN,2026-05-30,payout,-108458.58,Payout to ICICI Bank ****7832,RazorpayX Banking Partner,settled
+txn_sevqoexF,2026-06-02,fee,-758.55,Gateway convenience fee #1166,Stripe India Pvt Ltd,settled
+txn_UmxUUy18,2026-06-02,payout,-64408.31,Express payout to Axis Bank ****1298,Ola Cabs Private Limited,failed
+txn_d1U7A67H,2026-06-04,payout,-146239.52,Settlement transfer - Batch #4082,PayU India Pvt Ltd,settled
+txn_fx7toRpm,2026-06-05,refund,-15518.33,Reversal - Batch #887,MakeMyTrip India Pvt Ltd,settled
+txn_NuiqNXcq,2026-06-06,payment,4901.61,EMI payment received - Ref #6432,Kotak Mahindra Bank,settled
+txn_rSyWp8kx,2026-06-07,fee,-662.97,Gateway convenience fee #6511,Stripe India Pvt Ltd,settled
+txn_bQuHaRqe,2026-06-08,payment,29837.95,Customer payment - Invoice #5458,State Bank of India,settled
+txn_om5wczkT,2026-06-12,chargeback,-4568.2,Cardholder dispute resolved #3506,Kotak Mahindra Bank,settled
+txn_aqoFmxsF,2026-06-12,payment,16108.13,Wallet payment processed - Ref #9038,MakeMyTrip India Pvt Ltd,failed
+txn_TQN62ToY,2026-06-13,fee,-184.78,Settlement fee applied,Zomato Ltd,settled
+txn_wgAUB52z,2026-06-13,refund,-26711.63,Refund to original payment method #3504,ICICI Bank Limited,settled
+txn_vAi5Z52d,2026-06-13,payment,32323.51,Customer payment - Invoice #7771,HDFC Bank Ltd,settled
+txn_uakW9Ieu,2026-06-14,refund,-26100.12,Customer dispute resolved - refund issued #3287,MakeMyTrip India Pvt Ltd,settled
+txn_emR7dxqS,2026-06-14,fee,-334.44,Gateway convenience fee #4453,PayU India Pvt Ltd,settled
+txn_GKcPLtxj,2026-06-14,payout,-96264.05,Express payout to Axis Bank ****1298,Stripe India Pvt Ltd,settled
+txn_14XqphoV,2026-06-14,tax,-4964.64,TDS certificate generated - Form 16A,ICICI Bank Limited,settled
+txn_sYEKOzY3,2026-06-18,payment,26478.57,Payment for subscription renewal #1256,BookMyShow Events Pvt Ltd,pending
+txn_SD37eGek,2026-06-18,chargeback,-12836.16,Chargeback won - Funds reversed #9482,RazorpayX Banking Partner,settled
+txn_6vvRHeaI,2026-06-20,payment,2606.97,Credit card payment processed - Ref #7475,RazorpayX Banking Partner,settled
+txn_ZRiktKqi,2026-06-22,fee,-788.59,Settlement fee applied,Ola Cabs Private Limited,settled
+txn_fBMohNky,2026-06-23,fee,-25.78,Platform fee - Monthly billing,Zomato Ltd,settled
+txn_Ass8vfGm,2026-06-24,chargeback,-7478.8,Chargeback lost - Debit note raised #6573,Amazon Seller Services,settled
+txn_S68vrqed,2026-06-24,payout,-191680.79,Weekly settlement - Ref #8932,BookMyShow Events Pvt Ltd,settled
+txn_JQIDxkz5,2026-06-25,payment,5297.72,Netbanking transfer - Ref #4241,Kotak Mahindra Bank,settled
+txn_7H6ITcMd,2026-06-26,refund,-3748.77,Adjustment - Ref #1402,Razorpay Software Private Ltd,settled
+txn_ryk4GPpK,2026-06-27,chargeback,-1111.78,Adjustment - Ref #3391,PhonePe Private Limited,failed
+txn_uKjZzSNw,2026-06-28,payment,29972.09,Online payment via UPI - Ref #4143,Kotak Mahindra Bank,settled
+txn_ZN0H6oJ5,2026-06-28,refund,-10945.18,Refund initiated for order #4920,Urban Company India Pvt Ltd,settled
+txn_F7w491H1,2026-06-30,payment,44349.15,International payment processed - Ref #5380,Stripe India Pvt Ltd,settled
+txn_4YwqDnUU,2026-07-01,refund,-21382.21,Goodwill credit issued #9586,Stripe India Pvt Ltd,settled
+txn_1tBiksSM,2026-07-04,refund,-11020.98,Adjustment - Ref #4328,ICICI Bank Limited,settled
+txn_EyDAInEJ,2026-07-04,payout,-107169.16,T+1 settlement processed,Zomato Ltd,pending
+txn_wjskKmm0,2026-07-05,chargeback,-24183.35,Chargeback received - Case #8775,PhonePe Private Limited,pending
+txn_DtDTDd5g,2026-07-07,tax,-989.99,GST remittance for billing period,Ola Cabs Private Limited,settled
+txn_hnqAUvXt,2026-07-07,chargeback,-23323.46,Chargeback won - Funds reversed #3466,Flipkart Online Services Pvt Ltd,settled
+txn_dX7chhp1,2026-07-08,fee,-449.59,Transaction fee - 2% of amount,BookMyShow Events Pvt Ltd,failed
+txn_wkJKcZh7,2026-07-08,payment,3499.73,Wallet payment processed - Ref #5455,MakeMyTrip India Pvt Ltd,settled
+txn_5mpH3fpU,2026-07-09,payment,19493.69,Credit adjustment #6654,Urban Company India Pvt Ltd,failed
+txn_7byz8FoC,2026-07-09,chargeback,-15204.14,Cardholder dispute resolved #4084,HDFC Bank Ltd,settled
+txn_kDpIS05Y,2026-07-11,payment,28729.12,Customer payment - Invoice #9280,Ola Cabs Private Limited,settled
+txn_pLIUPQOu,2026-07-13,payment,23260.34,International payment processed - Ref #7643,Kotak Mahindra Bank,settled
+txn_wXhWQfeG,2026-07-13,refund,-32037.91,Refund to original payment method #4350,Axis Bank Limited,settled
+txn_P2BQ1F1H,2026-07-14,fee,-589.32,Settlement fee applied,Amazon Seller Services,settled
+txn_19Smlt6M,2026-07-15,refund,-15822.95,Refund to original payment method #9561,Axis Bank Limited,settled
+txn_U8Tbdnxk,2026-07-17,payout,-130383.41,Express payout to Axis Bank ****1298,PayU India Pvt Ltd,failed
+txn_SwtPW89w,2026-07-18,fee,-366.48,Processing fee for international txn,CC Avenue Payment Gateway,settled
+txn_actp9GYV,2026-07-20,refund,-3482.89,Reversal for duplicate charge #4119,Amazon Seller Services,settled
+txn_UG0G4AI1,2026-07-22,fee,-102.74,Transaction fee - 2% of amount,Zomato Ltd,failed
+txn_lFT9sgvz,2026-07-22,refund,-28147.79,Adjustment - Ref #7044,State Bank of India,settled
+txn_swE9dYf5,2026-07-23,fee,-195.13,Refund processing fee,Paytm Payments Bank,settled
+txn_NycSxOBL,2026-07-27,payment,39266.68,Online payment via UPI - Ref #2771,Axis Bank Limited,pending
+txn_8luwOO7w,2026-07-27,chargeback,-9234.63,Cardholder dispute resolved #1715,Kotak Mahindra Bank,settled
+txn_IMMDVRhU,2026-07-27,payment,28529.76,International payment processed - Ref #6744,RazorpayX Banking Partner,settled
+txn_iQlsMnQe,2026-07-29,payout,-27508.59,Settlement transfer - Batch #3200,PhonePe Private Limited,settled
+txn_EiDhfjJU,2026-07-31,payment,20186.65,Credit card payment processed - Ref #2341,Stripe India Pvt Ltd,settled
