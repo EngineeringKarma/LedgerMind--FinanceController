@@ -1,0 +1,403 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ─── Razorpay-Inspired Design Tokens ─── */
+  --color-bg-base: #0F1B2D;
+  --color-bg-surface: #16273D;
+  --color-bg-surface-hover: #1D3350;
+  --color-bg-elevated: #1E3A56;
+
+  --color-text-primary: #EDEEF0;
+  --color-text-muted: #8B98A8;
+  --color-text-dim: #5A6A7D;
+
+  --color-accent-stamp: #072654;
+  --color-accent-stamp-hover: #3395FF;
+  --color-state-verified: #1BA672;
+  --color-state-anomaly: #C1553D;
+  --color-state-pending: #D4A843;
+
+  --color-border: #2A3F58;
+  --color-border-subtle: #1F3248;
+
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", monospace;
+}
+
+/* ─── Light Theme Overrides ─── */
+:root.light {
+  --color-bg-base: #FFFFFF;
+  --color-bg-surface: #F5F7FA;
+  --color-bg-surface-hover: #E8EDF2;
+  --color-bg-elevated: #FFFFFF;
+
+  --color-text-primary: #1A1A2E;
+  --color-text-muted: #5A6A7D;
+  --color-text-dim: #8B98A8;
+
+  --color-accent-stamp: #072654;
+  --color-accent-stamp-hover: #3395FF;
+  --color-state-verified: #1BA672;
+  --color-state-anomaly: #C1553D;
+  --color-state-pending: #D4A843;
+
+  --color-border: #E8EDF2;
+  --color-border-subtle: #F0F2F5;
+}
+
+/* ─── Global Styles ─── */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Tabular Figures for Ledger Alignment ─── */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ─── Stamp Reveal Animation ─── */
+@keyframes stamp-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.4) rotate(-8deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.95) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.stamp-reveal {
+  animation: stamp-reveal 0.35s ease-out forwards;
+}
+
+/* ─── Stamp Badge Styles ─── */
+.stamp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.stamp-verified {
+  background-color: rgba(27, 166, 114, 0.15);
+  color: var(--color-state-verified);
+  border: 1px solid rgba(27, 166, 114, 0.3);
+}
+
+.stamp-review {
+  background-color: rgba(212, 168, 67, 0.12);
+  color: var(--color-state-pending);
+  border: 1px dashed rgba(212, 168, 67, 0.4);
+}
+
+.stamp-anomaly {
+  background-color: rgba(193, 85, 61, 0.15);
+  color: var(--color-state-anomaly);
+  border: 1px solid rgba(193, 85, 61, 0.3);
+}
+
+/* ─── Table Styles ─── */
+.ledger-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.ledger-table th {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ledger-table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: background-color 0.15s ease;
+}
+
+.ledger-table tr:hover td {
+  background-color: var(--color-bg-surface-hover);
+}
+
+.ledger-table .text-right {
+  text-align: right;
+}
+
+.ledger-table .mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Utility Classes ─── */
+.glass-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.upload-zone {
+  border: 2px dashed var(--color-border);
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-active {
+  border-color: var(--color-accent-stamp-hover);
+  background-color: rgba(51, 149, 255, 0.05);
+}
+
+/* ─── Chart of Accounts Sidebar ─── */
+.chart-of-accounts {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.chart-of-accounts .account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.15s ease;
+}
+
+.chart-of-accounts .account-row:hover {
+  background-color: var(--color-bg-surface-hover);
+}
+
+/* ─── Sidebar Styles ─── */
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background-color: var(--color-bg-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: all 0.15s ease;
+}
+
+.sidebar-nav-item:hover {
+  background-color: var(--color-bg-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.sidebar-nav-item.active {
+  background-color: var(--color-accent-stamp);
+  color: #FFFFFF;
+}
+
+/* ─── OAuth Button Styles ─── */
+.oauth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  border: 1px solid var(--color-border);
+}
+
+.oauth-btn:hover {
+  background-color: var(--color-bg-surface-hover);
+}
+
+.oauth-google {
+  background-color: #FFFFFF;
+  color: #1A1A2E;
+  border-color: #E8EDF2;
+}
+
+.oauth-google:hover {
+  background-color: #F5F7FA;
+}
+
+.oauth-github {
+  background-color: #24292E;
+  color: #FFFFFF;
+  border-color: #24292E;
+}
+
+.oauth-github:hover {
+  background-color: #2F363D;
+}
+
+.oauth-yahoo {
+  background-color: #6001D2;
+  color: #FFFFFF;
+  border-color: #6001D2;
+}
+
+.oauth-yahoo:hover {
+  background-color: #7B01FF;
+}
+
+/* ─── Card Hover Effect ─── */
+.card-hover {
+  transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* ─── Gradient Text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent-stamp) 0%, var(--color-accent-stamp-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Feature Card ─── */
+.feature-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.feature-card:hover {
+  border-color: var(--color-accent-stamp-hover);
+  box-shadow: 0 4px 15px -3px rgba(51, 149, 255, 0.1);
+}
+
+/* ─── KPI Card ─── */
+.kpi-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: all 0.15s ease;
+}
+
+.kpi-card:hover {
+  border-color: var(--color-accent-stamp-hover);
+}
+
+/* ─── Settings Section ─── */
+.settings-section {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.settings-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+/* ─── Toggle Switch ─── */
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: var(--color-bg-elevated);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-switch.active {
+  background-color: var(--color-accent-stamp);
+}
+
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch.active::after {
+  transform: translateX(20px);
+}
+
+/* ─── Navbar ─── */
+.navbar {
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* ─── Hero Section ─── */
+.hero-gradient {
+  background: linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-base) 100%);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 64px;
+  }
+
+  .sidebar-nav-item span {
+    display: none;
+  }
+
+  .sidebar-nav-item {
+    justify-content: center;
+    padding: 0.625rem;
+  }
+}
