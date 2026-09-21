@@ -27,13 +27,13 @@ class Settings(BaseSettings):
     )
     jwt_algorithm: str = Field(default="HS256", description="JWT signing algorithm")
     jwt_access_token_expire_minutes: int = Field(
-        default=30, description="Access token expiry in minutes"
+        default=1440, description="Access token expiry in minutes (24 hours)"
     )
     # Retry
-    llm_max_retries: int = Field(default=5, description="Max retries for LLM calls")
-    llm_retry_min_wait: int = Field(default=2, description="Min wait between retries (seconds)")
-    llm_retry_max_wait: int = Field(default=60, description="Max wait between retries (seconds)")
-    llm_request_timeout: int = Field(default=60, description="LLM request timeout (seconds)")
+    llm_max_retries: int = Field(default=2, description="Max retries for LLM calls")
+    llm_retry_min_wait: int = Field(default=1, description="Min wait between retries (seconds)")
+    llm_retry_max_wait: int = Field(default=5, description="Max wait between retries (seconds)")
+    llm_request_timeout: int = Field(default=10, description="LLM request timeout (seconds)")
     # Upload
     upload_max_size_mb: int = Field(default=10, description="Max upload file size in MB")
 

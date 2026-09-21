@@ -32,7 +32,22 @@ async def run_categorization_job(job_id: str, session_id: str) -> None:
             logger.error(f"Job {job_id}: No transactions found for session {session_id}")
             return
 
-        results = await asyncio.to_thread(categorize_all, transactions)
+        loop = asyncio.get_running_loop()
+
+        def progress_callback(batch_num: int, total_batches: int, categorized: int, needs_rev: int):
+            asyncio.run_coroutine_threadsafe(
+                update_job_status(
+                    db,
+                    job_id,
+                    "in_progress",
+                    progress=batch_num,
+                    categorized_count=categorized,
+                    needs_review_count=needs_rev,
+                ),
+                loop,
+            )
+
+        results = await asyncio.to_thread(categorize_all, transactions, progress_callback)
 
         categorization_dicts = [r.model_dump() for r in results]
         await insert_categorizations(db, session_id, categorization_dicts)

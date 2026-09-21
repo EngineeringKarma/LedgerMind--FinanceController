@@ -1,0 +1,59 @@
+{
+  "seed": 42,
+  "fault_types_injected": [
+    "captured_not_settled",
+    "duplicate_payment_id",
+    "missing_bank_credit",
+    "refund_without_payment",
+    "short_paid",
+    "wrong_fee",
+    "wrong_gst"
+  ],
+  "settlement_count": 33,
+  "total_row_count": 202,
+  "total_settlement_paise": 166215123,
+  "faults": [
+    {
+      "type": "missing_bank_credit",
+      "settlement_id": "SETT0010",
+      "transaction_id": null,
+      "detail": "No bank credit row for settlement SETT0010 (UTR: UTR0000000010)"
+    },
+    {
+      "type": "duplicate_payment_id",
+      "settlement_id": "SETT0030",
+      "transaction_id": "txn_lNNbBUqZ",
+      "detail": "Payment txn_lNNbBUqZ appears in both SETT0009 and SETT0030"
+    },
+    {
+      "type": "refund_without_payment",
+      "settlement_id": "SETT0007",
+      "transaction_id": "txn_TIRFillw",
+      "detail": "Refund txn_TIRFillw has no matching original payment in any settlement"
+    },
+    {
+      "type": "short_paid",
+      "settlement_id": "SETT0002",
+      "transaction_id": null,
+      "detail": "Settlement SETT0002 bank credit short by 44149 paise (expected 7122008, received 7077859)"
+    },
+    {
+      "type": "captured_not_settled",
+      "settlement_id": "CAPT0034",
+      "transaction_id": "txn_gfuSD37e",
+      "detail": "Payment txn_gfuSD37e is marked settled but has no bank settlement credit"
+    },
+    {
+      "type": "wrong_fee",
+      "settlement_id": "SETT0006",
+      "transaction_id": "txn_w2ZmJ518",
+      "detail": "Fee txn_w2ZmJ518 adjusted from -300 to -402.00 (simulating wrong MDR rate)"
+    },
+    {
+      "type": "wrong_gst",
+      "settlement_id": "SETT0002",
+      "transaction_id": "txn_GYV1PLba",
+      "detail": "GST txn_GYV1PLba adjusted from -270.54 to -359.8182 (simulating wrong GST rate, should be 18% of fees)"
+    }
+  ]
+}

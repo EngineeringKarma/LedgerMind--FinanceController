@@ -1,0 +1,203 @@
+transaction_id,date,type,amount,description,counterparty,status,settlement_id,utr
+txn_ESm2WLEo,2026-01-08,fee,-300,Platform fee - Monthly billing,Ola Cabs Private Limited,settled,SETT0001,UTR0000000001
+txn_1XczKWpr,2026-01-08,fee,-227.28,Platform fee - Monthly billing,Ola Cabs Private Limited,settled,SETT0001,UTR0000000001
+txn_FOlisrab,2026-01-08,payment,33368.95,Payment received via QR code - #2424 [card],Ola Cabs Private Limited,settled,SETT0001,UTR0000000001
+txn_J7UFF0ly,2026-01-08,payment,12626.85,Payment received for order #3615 [netbanking],Ola Cabs Private Limited,settled,SETT0001,UTR0000000001
+txn_PcQ5qNUv,2026-01-08,refund,-23955.81,Full refund processed - Transaction #3803,Ola Cabs Private Limited,settled,SETT0001,UTR0000000001
+txn_yxYE4jsN,2026-01-08,tax,-94.91,GST collected on platform fees,Ola Cabs Private Limited,settled,SETT0001,UTR0000000001
+txn_riSSJrrK,2026-01-21,fee,-300,Processing fee for international txn,BookMyShow Events Pvt Ltd,settled,SETT0023,UTR0000000023
+txn_9xOeWjc8,2026-01-21,fee,-500,Settlement fee applied,BookMyShow Events Pvt Ltd,settled,SETT0023,UTR0000000023
+txn_T9sgvzE8,2026-01-21,fee,-3,Platform fee - Monthly billing,BookMyShow Events Pvt Ltd,settled,SETT0023,UTR0000000023
+txn_wWXjlq6X,2026-01-21,payment,42882.6,Online payment via UPI - Ref #8179 [upi],BookMyShow Events Pvt Ltd,settled,SETT0023,UTR0000000023
+txn_oPHteXiQ,2026-01-21,payment,34374.34,International payment processed - Ref #3255 [card],BookMyShow Events Pvt Ltd,settled,SETT0023,UTR0000000023
+txn_4eH0c3bF,2026-01-21,payment,11824.0,Wallet payment processed - Ref #4515 [international],BookMyShow Events Pvt Ltd,settled,SETT0023,UTR0000000023
+txn_PKoBAwOU,2026-01-25,fee,-3,Transaction fee - 2% of amount,Amazon Seller Services,settled,SETT0015,UTR0000000015
+txn_MN1UJ3A1,2026-01-25,payment,5797.69,International payment processed - Ref #4362 [upi],Amazon Seller Services,pending,SETT0015,UTR0000000015
+txn_DtgudwfG,2026-01-25,tax,-0.54,GST collected on platform fees,Amazon Seller Services,settled,SETT0015,UTR0000000015
+txn_a65mpH3f,2026-02-03,fee,-500,Settlement fee applied,Flipkart Online Services Pvt Ltd,settled,SETT0007,UTR0000000007
+txn_riLpXuKj,2026-02-03,fee,-75.18,Processing fee for international txn,Flipkart Online Services Pvt Ltd,settled,SETT0007,UTR0000000007
+txn_uRRDvoOt,2026-02-03,fee,-359.23,Refund processing fee,Ola Cabs Private Limited,settled,SETT0026,UTR0000000026
+txn_Zz5CzwLu,2026-02-03,fee,-92.36,MDR charges for UPI transaction,Ola Cabs Private Limited,settled,SETT0026,UTR0000000026
+txn_AjG8R9he,2026-02-03,fee,-500,Gateway convenience fee #1613,Ola Cabs Private Limited,settled,SETT0026,UTR0000000026
+txn_8h6H8L7Q,2026-02-03,payment,43514.98,Netbanking transfer - Ref #6753 [netbanking],Flipkart Online Services Pvt Ltd,settled,SETT0007,UTR0000000007
+txn_lfXjPrA5,2026-02-03,payment,5011.85,EMI payment received - Ref #6663 [netbanking],Flipkart Online Services Pvt Ltd,settled,SETT0007,UTR0000000007
+txn_h3YVvJC7,2026-02-03,payment,14369.28,Payment for subscription renewal #5480 [upi],Ola Cabs Private Limited,settled,SETT0026,UTR0000000026
+txn_zQiQGtOD,2026-02-03,payment,3694.47,Wallet payment processed - Ref #5201 [netbanking],Ola Cabs Private Limited,settled,SETT0026,UTR0000000026
+txn_sGvAi5Z5,2026-02-03,payment,40747.51,Credit card payment processed - Ref #4814 [upi],Ola Cabs Private Limited,settled,SETT0026,UTR0000000026
+txn_GKcPLtxj,2026-02-03,refund,-32855.76,Goodwill credit issued #5470,Ola Cabs Private Limited,settled,SETT0026,UTR0000000026
+txn_x4i8iIPM,2026-02-04,fee,-400,Gateway convenience fee #3365,Amazon Seller Services,settled,SETT0028,UTR0000000028
+txn_FsLQpl2L,2026-02-04,fee,-35,Refund processing fee,Amazon Seller Services,settled,SETT0028,UTR0000000028
+txn_M4S4NLtu,2026-02-04,fee,-400,Settlement fee applied,Amazon Seller Services,settled,SETT0028,UTR0000000028
+txn_YOTRcoTW,2026-02-04,fee,-347.58,Settlement fee applied,Amazon Seller Services,settled,SETT0028,UTR0000000028
+txn_v2AMGClr,2026-02-04,payment,39403.09,Customer payment - Invoice #1527 [wallet],Amazon Seller Services,settled,SETT0028,UTR0000000028
+txn_uwI9O4jj,2026-02-04,payment,2333.13,Payment received for order #7590 [card],Amazon Seller Services,settled,SETT0028,UTR0000000028
+txn_oNSD624m,2026-02-04,payment,34798.34,Payment for subscription renewal #4881 [upi],Amazon Seller Services,settled,SETT0028,UTR0000000028
+txn_pwTZJXud,2026-02-04,payment,19309.95,Wallet payment processed - Ref #1768 [international],Amazon Seller Services,failed,SETT0028,UTR0000000028
+txn_svTMTC1t,2026-02-04,refund,-30910.14,Goodwill credit issued #2615,Amazon Seller Services,pending,SETT0028,UTR0000000028
+txn_iksSMOjP,2026-02-04,tax,-212.86,GST collected on platform fees,Amazon Seller Services,settled,SETT0028,UTR0000000028
+txn_pTOHXIYk,2026-02-05,fee,-3,Gateway convenience fee #2388,BookMyShow Events Pvt Ltd,settled,SETT0032,UTR0000000032
+txn_eh45KKRL,2026-02-05,fee,-331.12,Chargeback processing fee #4043,BookMyShow Events Pvt Ltd,settled,SETT0032,UTR0000000032
+txn_ANRrxjxh,2026-02-05,payment,1459.27,International payment processed - Ref #4232 [card],BookMyShow Events Pvt Ltd,settled,SETT0032,UTR0000000032
+txn_e7TYYHVc,2026-02-05,payment,16555.82,Credit card payment processed - Ref #8496 [upi],BookMyShow Events Pvt Ltd,settled,SETT0032,UTR0000000032
+txn_rZHBUxmz,2026-02-10,fee,-3,Chargeback processing fee #7626,Paytm Payments Bank,settled,SETT0017,UTR0000000017
+txn_0PkgYTVU,2026-02-10,fee,-59.55,Platform fee - Monthly billing,Paytm Payments Bank,settled,SETT0017,UTR0000000017
+txn_f4VtyyOJ,2026-02-10,fee,-3,Platform fee - Monthly billing,Paytm Payments Bank,settled,SETT0017,UTR0000000017
+txn_Kveuvb5i,2026-02-10,fee,-3,Transaction fee - 2% of amount,Paytm Payments Bank,settled,SETT0017,UTR0000000017
+txn_JTU6k2Ju,2026-02-10,payment,1524.97,Payment received via QR code - #4524 [card],Paytm Payments Bank,settled,SETT0017,UTR0000000017
+txn_lZNfVGqk,2026-02-10,payment,2381.85,Customer payment - Invoice #5458 [card],Paytm Payments Bank,settled,SETT0017,UTR0000000017
+txn_DM6vvRHe,2026-02-10,payment,23782.99,Netbanking transfer - Ref #1744 [upi],Paytm Payments Bank,failed,SETT0017,UTR0000000017
+txn_ipVYubcE,2026-02-10,payment,19464.88,Online payment via UPI - Ref #7229 [card],Paytm Payments Bank,settled,SETT0017,UTR0000000017
+txn_EbSRDfTc,2026-02-10,refund,-22271.91,Adjustment - Ref #6179,Paytm Payments Bank,settled,SETT0017,UTR0000000017
+txn_0RvQ4Jb6,2026-02-13,fee,-329.78,Platform fee - Monthly billing,Swiggy Instamart,settled,SETT0020,UTR0000000020
+txn_5ZYXXFNT,2026-02-13,fee,-3,Refund processing fee,Swiggy Instamart,settled,SETT0020,UTR0000000020
+txn_wOO7w4Mq,2026-02-13,payment,16488.83,Credit card payment processed - Ref #8277 [netbanking],Swiggy Instamart,pending,SETT0020,UTR0000000020
+txn_fZKMl2Dd,2026-02-13,payment,25733.31,Wallet payment processed - Ref #8564 [wallet],Swiggy Instamart,pending,SETT0020,UTR0000000020
+txn_sUJC4dzv,2026-02-13,tax,-59.9,GST collected on platform fees,Swiggy Instamart,settled,SETT0020,UTR0000000020
+txn_qse3bDIZ,2026-02-18,fee,-500,Refund processing fee,Paytm Payments Bank,settled,SETT0027,UTR0000000027
+txn_sYyujCVD,2026-02-18,fee,-325.52,Refund processing fee,Paytm Payments Bank,settled,SETT0027,UTR0000000027
+txn_BZvv8oa9,2026-02-18,fee,-582.2,Platform fee - Monthly billing,Paytm Payments Bank,settled,SETT0027,UTR0000000027
+txn_E72I1H9Y,2026-02-18,fee,-500,Chargeback processing fee #7154,Paytm Payments Bank,settled,SETT0027,UTR0000000027
+txn_AXbQUkjQ,2026-02-18,payment,30166.13,Online payment via UPI - Ref #3303 [card],Paytm Payments Bank,failed,SETT0027,UTR0000000027
+txn_Jq53vqn6,2026-02-18,payment,16275.91,Credit card payment processed - Ref #2017 [netbanking],Paytm Payments Bank,settled,SETT0027,UTR0000000027
+txn_c9Xr4uxz,2026-02-18,payment,16634.34,Credit card payment processed - Ref #4590 [international],Paytm Payments Bank,settled,SETT0027,UTR0000000027
+txn_W4Gz3MhK,2026-02-18,payment,34319.4,International payment processed - Ref #2341 [card],Paytm Payments Bank,settled,SETT0027,UTR0000000027
+txn_8zu8csaX,2026-02-18,tax,-343.39,GST collected on platform fees,Paytm Payments Bank,settled,SETT0027,UTR0000000027
+txn_xAhcppky,2026-02-24,fee,-500,Processing fee for international txn,BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_dm6Ulonc,2026-02-24,fee,-324.65,Platform fee - Monthly billing,BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_I6SeG3Ic,2026-02-24,fee,-300,Chargeback processing fee #2911,BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_2ozm6RqN,2026-02-24,fee,-300,Chargeback processing fee #3531,BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_RjquDle4,2026-02-24,payment,25930.32,Netbanking transfer - Ref #1359 [international],BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_PuvqIGmC,2026-02-24,payment,12985.81,Credit card payment processed - Ref #6772 [upi],BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_SuKIh8g4,2026-02-24,payment,35519.18,Payment received for order #6977 [netbanking],BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_1xdEuNpp,2026-02-24,payment,37396.7,Netbanking transfer - Ref #8894 [international],BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_qh8WYLH0,2026-02-24,refund,-15619.89,Refund to original payment method #6942,BookMyShow Events Pvt Ltd,settled,SETT0014,UTR0000000014
+txn_inUHr694,2026-03-04,fee,-500,Platform fee - Monthly billing,Paytm Payments Bank,settled,SETT0019,UTR0000000019
+txn_42UkIV7r,2026-03-04,payment,30575.31,Netbanking transfer - Ref #5128 [netbanking],Paytm Payments Bank,settled,SETT0019,UTR0000000019
+txn_WLN6eOIE,2026-03-04,refund,-3361.51,Reversal for duplicate charge #9331,Paytm Payments Bank,settled,SETT0019,UTR0000000019
+txn_Gvz2CUvI,2026-03-04,tax,-90,GST collected on platform fees,Paytm Payments Bank,pending,SETT0019,UTR0000000019
+txn_001XTsv2,2026-03-05,fee,-3,Chargeback processing fee #2315,PhonePe Private Limited,settled,SETT0013,UTR0000000013
+txn_n59uaGn2,2026-03-05,fee,-3,Platform fee - Monthly billing,PhonePe Private Limited,settled,SETT0013,UTR0000000013
+txn_CxSXJgjx,2026-03-05,fee,-500,Gateway convenience fee #1474,PhonePe Private Limited,settled,SETT0013,UTR0000000013
+txn_UvX518OX,2026-03-05,payment,26474.16,Wallet payment processed - Ref #3434 [card],PhonePe Private Limited,settled,SETT0013,UTR0000000013
+txn_4X9xoJ7H,2026-03-05,payment,38542.18,EMI payment received - Ref #1715 [upi],PhonePe Private Limited,settled,SETT0013,UTR0000000013
+txn_gcsZoJd8,2026-03-05,payment,43446.11,Payment for subscription renewal #2644 [emi],PhonePe Private Limited,settled,SETT0013,UTR0000000013
+txn_O4IcPPAx,2026-03-05,refund,-6032.43,Full refund processed - Transaction #7267,PhonePe Private Limited,settled,SETT0013,UTR0000000013
+txn_qJbVknaP,2026-03-05,tax,-91.08,GST collected on platform fees,PhonePe Private Limited,pending,SETT0013,UTR0000000013
+txn_ZXdnrF0n,2026-03-11,fee,-3,MDR charges for UPI transaction,MakeMyTrip India Pvt Ltd,settled,SETT0029,UTR0000000029
+txn_4O3qjQ5q,2026-03-11,fee,-3,Platform fee - Monthly billing,MakeMyTrip India Pvt Ltd,settled,SETT0029,UTR0000000029
+txn_5T7kusYE,2026-03-11,fee,-3,MDR charges for UPI transaction,MakeMyTrip India Pvt Ltd,settled,SETT0029,UTR0000000029
+txn_phXtxqEu,2026-03-11,fee,-3,Settlement fee applied,MakeMyTrip India Pvt Ltd,settled,SETT0029,UTR0000000029
+txn_97g0EyDA,2026-03-11,payment,7741.57,Payment received via QR code - #9000 [upi],MakeMyTrip India Pvt Ltd,pending,SETT0029,UTR0000000029
+txn_fXmpmdeA,2026-03-11,payment,6316.5,Credit card payment processed - Ref #2113 [netbanking],MakeMyTrip India Pvt Ltd,settled,SETT0029,UTR0000000029
+txn_8Bypx4GF,2026-03-11,payment,24891.21,Payment received for order #1274 [card],MakeMyTrip India Pvt Ltd,settled,SETT0029,UTR0000000029
+txn_xE7cPrSz,2026-03-11,payment,6828.05,Credit card payment processed - Ref #9625 [upi],MakeMyTrip India Pvt Ltd,settled,SETT0029,UTR0000000029
+txn_Elmk8Unw,2026-03-11,refund,-12170.5,Full refund processed - Transaction #8161,MakeMyTrip India Pvt Ltd,settled,SETT0029,UTR0000000029
+txn_SAVjLpgW,2026-04-04,fee,-137.12,Settlement fee applied,Paytm Payments Bank,settled,SETT0021,UTR0000000021
+txn_OHOnmDze,2026-04-04,payment,6855.95,International payment processed - Ref #9647 [card],Paytm Payments Bank,pending,SETT0021,UTR0000000021
+txn_CXXuWEOo,2026-04-04,refund,-33373.79,Refund initiated for order #7397,Paytm Payments Bank,pending,SETT0021,UTR0000000021
+txn_kuIVUnzq,2026-04-04,tax,-24.68,GST collected on platform fees,Paytm Payments Bank,settled,SETT0021,UTR0000000021
+txn_a79isJS8,2026-04-08,fee,-3,Refund processing fee,Amazon Seller Services,settled,SETT0003,UTR0000000003
+txn_2jdbLD6d,2026-04-08,fee,-207.64,Refund processing fee,Paytm Payments Bank,settled,SETT0011,UTR0000000011
+txn_EnDJiS9H,2026-04-08,fee,-400,Chargeback processing fee #9056,Paytm Payments Bank,settled,SETT0011,UTR0000000011
+txn_X4SkajD7,2026-04-08,fee,-400,Settlement fee applied,Paytm Payments Bank,settled,SETT0011,UTR0000000011
+txn_QFOiJZqd,2026-04-08,fee,-3,Settlement fee applied,Paytm Payments Bank,settled,SETT0011,UTR0000000011
+txn_0KeNYDX9,2026-04-08,payment,4541.21,Payment received via QR code - #1241 [international],Amazon Seller Services,failed,SETT0003,UTR0000000003
+txn_2rRA6Fse,2026-04-08,payment,8305.52,Credit card payment processed - Ref #6813 [wallet],Paytm Payments Bank,settled,SETT0011,UTR0000000011
+txn_SZPpWiV9,2026-04-08,payment,34153.68,Wallet payment processed - Ref #9041 [card],Paytm Payments Bank,settled,SETT0011,UTR0000000011
+txn_HLHhvLNe,2026-04-08,payment,24834.92,Payment for subscription renewal #8434 [upi],Paytm Payments Bank,settled,SETT0011,UTR0000000011
+txn_SWSrHCDS,2026-04-08,payment,32647.64,Payment received via QR code - #5636 [international],Paytm Payments Bank,pending,SETT0011,UTR0000000011
+txn_cq5wmo5a,2026-04-08,refund,-1239.13,Customer dispute resolved - refund issued #5632,Paytm Payments Bank,settled,SETT0011,UTR0000000011
+txn_PbbgJXRZ,2026-04-12,fee,-300,Transaction fee - 2% of amount,Ola Cabs Private Limited,settled,SETT0018,UTR0000000018
+txn_oTdJDG3V,2026-04-12,payment,20902.62,Payment received via QR code - #1672 [card],Ola Cabs Private Limited,pending,SETT0018,UTR0000000018
+txn_cxp9k63l,2026-05-02,fee,-3,Settlement fee applied,Flipkart Online Services Pvt Ltd,settled,SETT0008,UTR0000000008
+txn_bJ1bu0Rw,2026-05-02,fee,-65.08,Chargeback processing fee #9976,Flipkart Online Services Pvt Ltd,settled,SETT0008,UTR0000000008
+txn_bsOU3EJX,2026-05-02,fee,-500,Settlement fee applied,Flipkart Online Services Pvt Ltd,settled,SETT0008,UTR0000000008
+txn_fx7toRpm,2026-05-02,payment,27358.77,Payment for subscription renewal #8618 [card],Flipkart Online Services Pvt Ltd,settled,SETT0008,UTR0000000008
+txn_BPd0EZnM,2026-05-02,payment,4338.42,Credit card payment processed - Ref #6085 [upi],Flipkart Online Services Pvt Ltd,settled,SETT0008,UTR0000000008
+txn_AuvGaK7g,2026-05-02,payment,31381.49,Wallet payment processed - Ref #7547 [upi],Flipkart Online Services Pvt Ltd,settled,SETT0008,UTR0000000008
+txn_UcDzYv6B,2026-05-02,refund,-5432.9,Refund to original payment method #2052,Flipkart Online Services Pvt Ltd,settled,SETT0008,UTR0000000008
+txn_7aAQfgjj,2026-05-09,fee,-247.81,Chargeback processing fee #6432,Amazon Seller Services,settled,SETT0031,UTR0000000031
+txn_vkfVBGZ7,2026-05-09,fee,-500,Chargeback processing fee #8586,Amazon Seller Services,settled,SETT0031,UTR0000000031
+txn_TcMddbrT,2026-05-09,fee,-3,Transaction fee - 2% of amount,Amazon Seller Services,settled,SETT0031,UTR0000000031
+txn_qi7crbSq,2026-05-09,payment,16520.95,International payment processed - Ref #4273 [card],Amazon Seller Services,settled,SETT0031,UTR0000000031
+txn_PJaXblkh,2026-05-09,payment,36880.61,EMI payment received - Ref #9180 [upi],Amazon Seller Services,settled,SETT0031,UTR0000000031
+txn_ryk4GPpK,2026-05-09,payment,41568.78,EMI payment received - Ref #9907 [upi],Amazon Seller Services,failed,SETT0031,UTR0000000031
+txn_opK9PKJi,2026-05-09,refund,-10579.22,Full refund processed - Transaction #1370,Amazon Seller Services,pending,SETT0031,UTR0000000031
+txn_u6MBJHpi,2026-05-12,fee,-3,Platform fee - Monthly billing,Flipkart Online Services Pvt Ltd,settled,SETT0009,UTR0000000009
+txn_KluHy7GB,2026-05-12,fee,-3,Gateway convenience fee #7043,Flipkart Online Services Pvt Ltd,settled,SETT0009,UTR0000000009
+txn_6MkzPrSq,2026-05-12,fee,-3,Chargeback processing fee #7498,Flipkart Online Services Pvt Ltd,settled,SETT0009,UTR0000000009
+txn_lNNbBUqZ,2026-05-12,payment,42911.35,EMI payment received - Ref #9818 [netbanking],Flipkart Online Services Pvt Ltd,settled,SETT0009,UTR0000000009
+txn_4kpFa1LQ,2026-05-12,payment,7552.26,Wallet payment processed - Ref #3091 [international],Flipkart Online Services Pvt Ltd,settled,SETT0009,UTR0000000009
+txn_R6azduD7,2026-05-12,payment,14831.77,Wallet payment processed - Ref #6355 [upi],Flipkart Online Services Pvt Ltd,pending,SETT0009,UTR0000000009
+txn_JKRSwW6s,2026-05-15,fee,-3,Gateway convenience fee #9079,Amazon Seller Services,settled,SETT0030,UTR0000000030
+txn_GS6UmxUU,2026-05-15,fee,-85.09,Settlement fee applied,Amazon Seller Services,settled,SETT0030,UTR0000000030
+txn_T6MT78Sr,2026-05-15,fee,-400,Transaction fee - 2% of amount,Amazon Seller Services,settled,SETT0030,UTR0000000030
+txn_PEQXwJYW,2026-05-15,payment,30634.31,EMI payment received - Ref #2404 [wallet],Amazon Seller Services,settled,SETT0030,UTR0000000030
+txn_ILbiZBVF,2026-05-15,payment,4254.69,Netbanking transfer - Ref #8286 [card],Amazon Seller Services,settled,SETT0030,UTR0000000030
+txn_wsi9PgqK,2026-05-15,payment,26972.26,Payment for subscription renewal #7311 [upi],Amazon Seller Services,settled,SETT0030,UTR0000000030
+txn_D26FeEvv,2026-05-17,fee,-400,Gateway convenience fee #4923,BookMyShow Events Pvt Ltd,settled,SETT0002,UTR0000000002
+txn_Q2aNhtMT,2026-05-17,fee,-3,Refund processing fee,BookMyShow Events Pvt Ltd,settled,SETT0002,UTR0000000002
+txn_3bPDBikA,2026-05-17,fee,-800,Processing fee for international txn,BookMyShow Events Pvt Ltd,settled,SETT0002,UTR0000000002
+txn_EBUfRehs,2026-05-17,fee,-300,MDR charges for UPI transaction,BookMyShow Events Pvt Ltd,settled,SETT0002,UTR0000000002
+txn_N9fFCGmx,2026-05-17,payment,25327.36,Netbanking transfer - Ref #8019 [emi],BookMyShow Events Pvt Ltd,settled,SETT0002,UTR0000000002
+txn_g81AsqhQ,2026-05-17,payment,19083.87,Customer payment - Invoice #7304 [card],BookMyShow Events Pvt Ltd,failed,SETT0002,UTR0000000002
+txn_72QfL41S,2026-05-17,payment,28897.14,Customer payment - Invoice #5808 [card],BookMyShow Events Pvt Ltd,settled,SETT0002,UTR0000000002
+txn_hwgAUB52,2026-05-17,payment,28806.88,International payment processed - Ref #4258 [upi],BookMyShow Events Pvt Ltd,pending,SETT0002,UTR0000000002
+txn_yLGaactp,2026-05-17,refund,-30895.17,Goodwill credit issued #4981,BookMyShow Events Pvt Ltd,settled,SETT0002,UTR0000000002
+txn_GYV1PLba,2026-05-17,tax,-359.8182,GST collected on platform fees,BookMyShow Events Pvt Ltd,pending,SETT0002,UTR0000000002
+txn_kKmm0JqB,2026-05-19,fee,-3,Settlement fee applied,MakeMyTrip India Pvt Ltd,settled,SETT0025,UTR0000000025
+txn_BTJqZw52,2026-05-19,fee,-500,Platform fee - Monthly billing,MakeMyTrip India Pvt Ltd,settled,SETT0025,UTR0000000025
+txn_gi9dX7ch,2026-05-19,fee,-300,MDR charges for UPI transaction,MakeMyTrip India Pvt Ltd,settled,SETT0025,UTR0000000025
+txn_6uMffCIU,2026-05-19,payment,43882.46,EMI payment received - Ref #7114 [wallet],MakeMyTrip India Pvt Ltd,settled,SETT0025,UTR0000000025
+txn_UmK9tSUz,2026-05-19,payment,21397.43,Wallet payment processed - Ref #3440 [netbanking],MakeMyTrip India Pvt Ltd,settled,SETT0025,UTR0000000025
+txn_UGZT32nl,2026-05-19,payment,24025.44,International payment processed - Ref #5911 [card],MakeMyTrip India Pvt Ltd,settled,SETT0025,UTR0000000025
+txn_p1qxQe7R,2026-05-19,tax,-144.54,GST collected on platform fees,MakeMyTrip India Pvt Ltd,settled,SETT0025,UTR0000000025
+txn_uXID7ipZ,2026-06-19,fee,-3,Chargeback processing fee #2582,Flipkart Online Services Pvt Ltd,settled,SETT0016,UTR0000000016
+txn_8lVjNoNG,2026-06-19,fee,-368.36,Chargeback processing fee #1842,Flipkart Online Services Pvt Ltd,settled,SETT0016,UTR0000000016
+txn_vjy08ymn,2026-06-19,fee,-400,Processing fee for international txn,Flipkart Online Services Pvt Ltd,settled,SETT0016,UTR0000000016
+txn_4EFlERnh,2026-06-19,payment,44936.62,EMI payment received - Ref #7984 [netbanking],Flipkart Online Services Pvt Ltd,settled,SETT0016,UTR0000000016
+txn_axHo2i1a,2026-06-19,payment,14734.57,International payment processed - Ref #9692 [upi],Flipkart Online Services Pvt Ltd,settled,SETT0016,UTR0000000016
+txn_tTTP7qdF,2026-06-19,payment,39980.88,EMI payment received - Ref #6553 [wallet],Flipkart Online Services Pvt Ltd,settled,SETT0016,UTR0000000016
+txn_5zQLrTVA,2026-06-19,tax,-138.84,GST collected on platform fees,Flipkart Online Services Pvt Ltd,settled,SETT0016,UTR0000000016
+txn_Ntq1lamw,2026-06-20,fee,-434.25,Platform fee - Monthly billing,Flipkart Online Services Pvt Ltd,settled,SETT0033,UTR0000000033
+txn_hlK8Sj7f,2026-06-20,fee,-184.22,MDR charges for UPI transaction,Flipkart Online Services Pvt Ltd,settled,SETT0033,UTR0000000033
+txn_7w491H1P,2026-06-20,fee,-500,Platform fee - Monthly billing,Flipkart Online Services Pvt Ltd,settled,SETT0033,UTR0000000033
+txn_esbKjxNC,2026-06-20,payment,17369.9,Payment received via QR code - #9281 [netbanking],Flipkart Online Services Pvt Ltd,settled,SETT0033,UTR0000000033
+txn_vefjQh9h,2026-06-20,payment,10234.23,Netbanking transfer - Ref #3755 [wallet],Flipkart Online Services Pvt Ltd,settled,SETT0033,UTR0000000033
+txn_toP2BQ1F,2026-06-20,payment,34091.86,Wallet payment processed - Ref #9951 [upi],Flipkart Online Services Pvt Ltd,settled,SETT0033,UTR0000000033
+txn_zvpejQZc,2026-06-20,tax,-201.32,GST collected on platform fees,Flipkart Online Services Pvt Ltd,settled,SETT0033,UTR0000000033
+txn_tElyhTEo,2026-06-23,fee,-32.56,Gateway convenience fee #2353,Swiggy Instamart,settled,SETT0022,UTR0000000022
+txn_qVC1V9R8,2026-06-23,fee,-3,Chargeback processing fee #3730,Swiggy Instamart,settled,SETT0022,UTR0000000022
+txn_TTYydCoR,2026-06-23,payment,1808.72,Credit card payment processed - Ref #1717 [wallet],Swiggy Instamart,pending,SETT0022,UTR0000000022
+txn_bYb7VLqW,2026-06-23,payment,38816.91,Payment received for order #6438 [upi],Swiggy Instamart,pending,SETT0022,UTR0000000022
+txn_1T9VYvfG,2026-06-26,fee,-3,Transaction fee - 2% of amount,Zomato Ltd,settled,SETT0024,UTR0000000024
+txn_bID61Z73,2026-06-26,fee,-3,Platform fee - Monthly billing,Zomato Ltd,settled,SETT0024,UTR0000000024
+txn_vefeTB6f,2026-06-26,fee,-127.18,Processing fee for international txn,Zomato Ltd,settled,SETT0024,UTR0000000024
+txn_DRl0pRAG,2026-06-26,fee,-800,Settlement fee applied,Zomato Ltd,settled,SETT0024,UTR0000000024
+txn_f1zgSK5N,2026-06-26,payment,39526.51,Payment received via QR code - #3981 [wallet],Zomato Ltd,settled,SETT0024,UTR0000000024
+txn_niHShfK6,2026-06-26,payment,42644.62,Payment received via QR code - #5653 [wallet],Zomato Ltd,settled,SETT0024,UTR0000000024
+txn_zBCnjovZ,2026-06-26,payment,7065.61,International payment processed - Ref #6531 [wallet],Zomato Ltd,settled,SETT0024,UTR0000000024
+txn_dxqSEDbe,2026-06-26,payment,28808.75,Wallet payment processed - Ref #9938 [upi],Zomato Ltd,failed,SETT0024,UTR0000000024
+txn_QWZCDiWR,2026-06-26,tax,-167.97,GST collected on platform fees,Zomato Ltd,settled,SETT0024,UTR0000000024
+txn_yicTU8Zf,2026-06-27,fee,-209.2,Gateway convenience fee #7561,Swiggy Instamart,settled,SETT0012,UTR0000000012
+txn_DgmebDQI,2026-06-27,fee,-800,Refund processing fee,Swiggy Instamart,settled,SETT0012,UTR0000000012
+txn_BnxsTAZN,2026-06-27,fee,-3,Refund processing fee,Swiggy Instamart,settled,SETT0012,UTR0000000012
+txn_SYQhbl3t,2026-06-27,payment,13946.39,International payment processed - Ref #5728 [card],Swiggy Instamart,settled,SETT0012,UTR0000000012
+txn_1kBvyjvK,2026-06-27,payment,27226.56,Payment received for order #2496 [upi],Swiggy Instamart,settled,SETT0012,UTR0000000012
+txn_neFVUp1U,2026-06-27,payment,23425.53,Wallet payment processed - Ref #5557 [upi],Swiggy Instamart,settled,SETT0012,UTR0000000012
+txn_oJ5SrZdd,2026-06-27,refund,-29465.06,Full refund processed - Transaction #8560,Swiggy Instamart,pending,SETT0012,UTR0000000012
+txn_ILluIEv0,2026-06-27,tax,-182.2,GST collected on platform fees,Swiggy Instamart,settled,SETT0012,UTR0000000012
+txn_btQ0zF2P,2026-07-09,fee,-3,Refund processing fee,Paytm Payments Bank,settled,SETT0010,UTR0000000010
+txn_G7nzrbt7,2026-07-09,payment,3242.71,Payment for subscription renewal #1207 [wallet],Paytm Payments Bank,pending,SETT0010,UTR0000000010
+txn_w2ZmJ518,2026-07-17,fee,-402.00,Platform fee - Monthly billing,Urban Company India Pvt Ltd,settled,SETT0006,UTR0000000006
+txn_L5wZptPJ,2026-07-17,fee,-93.02,Chargeback processing fee #1406,Urban Company India Pvt Ltd,settled,SETT0006,UTR0000000006
+txn_CUI8Kbri,2026-07-17,payment,40880.93,Payment received for order #2512 [netbanking],Urban Company India Pvt Ltd,pending,SETT0006,UTR0000000006
+txn_iaCW58CW,2026-07-17,payment,5167.54,Online payment via UPI - Ref #9938 [upi],Urban Company India Pvt Ltd,settled,SETT0006,UTR0000000006
+txn_XCdM4Vy2,2026-07-17,tax,-70.74,GST collected on platform fees,Urban Company India Pvt Ltd,settled,SETT0006,UTR0000000006
+txn_TQpTQIoc,2026-07-25,fee,-300,Chargeback processing fee #9565,Urban Company India Pvt Ltd,settled,SETT0004,UTR0000000004
+txn_LkpOH3Pk,2026-07-25,payment,38394.49,Online payment via UPI - Ref #1931 [international],Urban Company India Pvt Ltd,settled,SETT0004,UTR0000000004
+txn_5G2Q3uJR,2026-07-26,fee,-83.41,MDR charges for UPI transaction,Zomato Ltd,settled,SETT0005,UTR0000000005
+txn_VEPRbhS8,2026-07-26,payment,4634.16,Payment received via QR code - #4492 [card],Zomato Ltd,settled,SETT0005,UTR0000000005
+txn_lNNbBUqZ,2026-05-15,payment,4313.82,Duplicate of txn_lNNbBUqZ,Zomato Ltd,settled,SETT0030,UTR0000000030
+txn_TIRFillw,2026-02-03,refund,-15296.47,Reversal for duplicate charge #6759,Swiggy Instamart,failed,SETT0007,UTR0000000007
+txn_gfuSD37e,2026-02-24,payment,7818.59,Captured payment not yet settled,MakeMyTrip India Pvt Ltd,settled,CAPT0034,
