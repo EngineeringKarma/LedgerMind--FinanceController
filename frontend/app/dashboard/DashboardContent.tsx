@@ -18,11 +18,11 @@ import {
 import { authFetch } from "@/lib/auth";
 
 interface SessionInfo {
-  session_id: str;
-  filename: str;
+  session_id: string;
+  filename: string;
   row_count: number;
-  created_at: str;
-  categorization_status: str;
+  created_at: string;
+  categorization_status: string;
   progress: number;
   total_batches: number;
 }
@@ -164,15 +164,15 @@ export default function DashboardContent() {
                 <div
                   key={s.session_id}
                   onClick={() => router.push(`/dashboard?session=${s.session_id}`)}
-                  className="glass-card p-5 cursor-pointer hover:border-accent-stamp/50 transition-colors flex flex-col justify-between"
+                  className="glass-card p-5 cursor-pointer hover:border-accent/50 transition-colors flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-mono text-text-muted">ID: {s.session_id}</span>
                       <span
                         className={`text-[10px] font-medium px-2 py-0.5 rounded ${s.categorization_status === "completed"
-                            ? "bg-state-verified/15 text-state-verified"
-                            : "bg-accent-stamp/15 text-accent-stamp"
+                          ? "bg-state-verified/15 text-state-verified"
+                          : "bg-accent/15 text-accent"
                           }`}
                       >
                         {s.categorization_status}
@@ -185,7 +185,7 @@ export default function DashboardContent() {
                   </div>
 
                   <div className="flex items-center justify-between mt-4 pt-3 border-t border-border">
-                    <span className="text-xs text-accent-stamp font-medium hover:underline flex items-center gap-1">
+                    <span className="text-xs text-accent font-medium hover:underline flex items-center gap-1">
                       View Report &rarr;
                     </span>
                     <button
@@ -208,7 +208,7 @@ export default function DashboardContent() {
     return (
       <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-2 border-accent-stamp-hover border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-2 border-accent-hover border-t-transparent rounded-full animate-spin" />
           <p className="text-text-muted text-sm">
             {processing ? "Categorization in progress..." : "Loading dashboard..."}
           </p>
@@ -228,9 +228,9 @@ export default function DashboardContent() {
           </div>
           <h2 className="text-lg font-medium text-text-primary mb-2">Something went wrong</h2>
           <p className="text-text-muted text-sm mb-4">{error}</p>
-          <button
+<button
             onClick={() => router.push("/dashboard")}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-stamp text-white text-sm font-medium hover:bg-accent-stamp-hover transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
           >
             Upload New File
           </button>

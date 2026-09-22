@@ -8,7 +8,7 @@ interface PnLCardProps {
 
 const ITEMS: { key: keyof PnLSummary; label: string; color: string }[] = [
   { key: "revenue", label: "Revenue", color: "text-state-verified" },
-  { key: "fees", label: "Fees & Payouts", color: "text-accent-stamp" },
+  { key: "fees", label: "Fees & Payouts", color: "text-accent" },
   { key: "refunds", label: "Refunds", color: "text-state-anomaly" },
   { key: "tax", label: "Tax", color: "text-text-muted" },
   { key: "chargebacks", label: "Chargebacks", color: "text-state-anomaly" },

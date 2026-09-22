@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import ThemeToggle from "@/components/ThemeToggle";
+import ThemeSelector from "@/components/ThemeSelector";
 import { login, register, setToken } from "@/lib/auth";
 
 type AuthMode = "signin" | "signup";
@@ -53,7 +53,7 @@ export default function SignInPage() {
         <div className="absolute inset-0 hero-gradient opacity-50" />
         <div className="relative z-10 flex flex-col justify-center px-12">
           <Link href="/" className="flex items-center gap-3 mb-12">
-            <div className="w-12 h-12 rounded-xl bg-accent-stamp flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center">
               <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
@@ -77,7 +77,7 @@ export default function SignInPage() {
               { value: "24/7", label: "Monitoring" },
             ].map((stat) => (
               <div key={stat.label}>
-                <p className="text-2xl font-bold gradient-text">{stat.value}</p>
+                <p className="text-2xl font-bold text-accent-hover">{stat.value}</p>
                 <p className="text-sm text-text-muted">{stat.label}</p>
               </div>
             ))}
@@ -88,7 +88,7 @@ export default function SignInPage() {
       {/* Right Panel - Form */}
       <div className="flex-1 flex flex-col">
         <div className="p-6 flex justify-end">
-          <ThemeToggle />
+          <ThemeSelector />
         </div>
 
         <div className="flex-1 flex items-center justify-center px-6">
@@ -96,7 +96,7 @@ export default function SignInPage() {
             {/* Mobile Logo */}
             <div className="lg:hidden text-center mb-8">
               <Link href="/" className="inline-flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-accent-stamp flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
@@ -189,7 +189,7 @@ export default function SignInPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-3 bg-bg-surface border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-stamp-hover transition-colors"
+                  className="w-full px-4 py-3 bg-bg-surface border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-hover transition-colors"
                   placeholder="you@company.com"
                 />
               </div>
@@ -204,7 +204,7 @@ export default function SignInPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  className="w-full px-4 py-3 bg-bg-surface border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-stamp-hover transition-colors"
+                  className="w-full px-4 py-3 bg-bg-surface border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-hover transition-colors"
                   placeholder="Min 6 characters"
                 />
               </div>
@@ -218,7 +218,7 @@ export default function SignInPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 rounded-lg bg-accent-stamp text-white text-sm font-medium hover:bg-accent-stamp-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading
                   ? "Please wait..."
@@ -235,7 +235,7 @@ export default function SignInPage() {
                   setMode(mode === "signin" ? "signup" : "signin");
                   setError(null);
                 }}
-                className="text-accent-stamp-hover hover:underline font-medium"
+                className="text-accent-hover hover:underline font-medium"
               >
                 {mode === "signin" ? "Sign up" : "Sign in"}
               </button>

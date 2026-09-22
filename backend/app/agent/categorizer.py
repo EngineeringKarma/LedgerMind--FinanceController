@@ -216,8 +216,7 @@ def categorize_all(
                         needs_review=True,
                     )
                 )
-        if progress_callback:
-            progress_callback(idx + 1, total_batches, len(rule_results) + len(llm_results), 0)
+
 
     result_map = {r.transaction_id: r for r in (rule_results + llm_results)}
     final_results = [

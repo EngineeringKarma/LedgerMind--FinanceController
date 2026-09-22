@@ -33,7 +33,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-bg-base">
-        <div className="w-8 h-8 border-2 border-accent-stamp-hover border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-accent-hover border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }

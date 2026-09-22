@@ -35,7 +35,7 @@ async def raise_session_not_found():
 
 @error_app.get("/raise/llm-error")
 async def raise_llm_error():
-    raise LLMServiceError("Groq API down")
+    raise LLMServiceError("LLM API down")
 
 
 @error_app.get("/raise/csv-error")

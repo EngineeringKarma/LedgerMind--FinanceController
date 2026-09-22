@@ -3,7 +3,7 @@ from pydantic import Field
 
 
 class Settings(BaseSettings):
-    llm_api_key: str = Field(default="", description="API key for LLM calls (NVIDIA NIM, Groq, etc.)")
+    llm_api_key: str = Field(default="", description="API key for LLM calls (NVIDIA NIM, etc.)")
     llm_base_url: str = Field(
         default="https://integrate.api.nvidia.com/v1",
         description="LLM API base URL",

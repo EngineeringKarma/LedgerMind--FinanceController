@@ -81,7 +81,7 @@ export default function AuthCard({ onAuthComplete }: AuthCardProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-3 py-2 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-stamp transition-colors"
+                className="w-full px-3 py-2 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-hover transition-colors"
                 placeholder="you@company.com"
               />
             </div>
@@ -96,7 +96,7 @@ export default function AuthCard({ onAuthComplete }: AuthCardProps) {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-3 py-2 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-stamp transition-colors"
+                className="w-full px-3 py-2 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-hover transition-colors"
                 placeholder="Min 6 characters"
               />
             </div>
@@ -110,7 +110,7 @@ export default function AuthCard({ onAuthComplete }: AuthCardProps) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 rounded-lg bg-accent-stamp text-bg-base text-sm font-medium hover:bg-accent-stamp-hover transition-colors disabled:opacity-50"
+              className="w-full py-2.5 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors disabled:opacity-50"
             >
               {loading
                 ? "Please wait..."

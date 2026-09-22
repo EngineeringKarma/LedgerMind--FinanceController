@@ -20,9 +20,9 @@ export default function DashboardError({
           {error.message || "Failed to load the dashboard. Please try again."}
         </p>
         <div className="flex gap-3 justify-center">
-          <button
+<button
             onClick={reset}
-            className="px-4 py-2 rounded-lg bg-accent-stamp text-bg-base text-sm font-medium hover:bg-accent-stamp-hover transition-colors"
+            className="px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
           >
             Try Again
           </button>

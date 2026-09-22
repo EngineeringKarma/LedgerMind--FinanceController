@@ -1,9 +1,16 @@
 import os
 from dotenv import load_dotenv
+from openai import OpenAI
+
 load_dotenv()
-from groq import Groq
-client = Groq()
-models = client.models.list().data
-for m in models:
-    if "llama" in m.id.lower() or "-8192" in m.id.lower() or "versatile" in m.id.lower() or "instant" in m.id.lower():
+
+client = OpenAI(
+    api_key=os.getenv("LLM_API_KEY", ""),
+    base_url=os.getenv("LLM_BASE_URL", "https://integrate.api.nvidia.com/v1"),
+)
+try:
+    models = client.models.list().data
+    for m in models:
         print(m.id)
+except Exception as e:
+    print("Error listing models:", e)

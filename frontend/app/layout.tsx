@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full`}>
       <body suppressHydrationWarning className="min-h-full flex flex-col antialiased">
-        <ThemeProvider defaultTheme="dark">
+        <ThemeProvider defaultTheme="paper">
           {children}
         </ThemeProvider>
       </body>

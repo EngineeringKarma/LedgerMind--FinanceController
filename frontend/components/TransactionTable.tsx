@@ -101,12 +101,12 @@ export default function TransactionTable({ transactions, onExport }: Transaction
           )}
           <div className="flex gap-1">
             {(["all", "verified", "review"] as const).map((f) => (
-              <button
+<button
                 key={f}
                 onClick={() => { setFilter(f); setPage(1); }}
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   filter === f
-                    ? "bg-accent-stamp/15 text-accent-stamp"
+                    ? "bg-accent/15 text-accent"
                     : "text-text-muted hover:text-text-primary hover:bg-bg-surface-hover"
                 }`}
               >

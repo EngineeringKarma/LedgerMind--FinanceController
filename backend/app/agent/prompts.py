@@ -205,7 +205,7 @@ def build_user_message(transactions: list[dict]) -> str:
 
 
 def build_messages(transactions: list[dict]) -> list[dict]:
-    """Build the full message list for the Groq API call."""
+    """Build the full message list for the LLM API call."""
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
 
     # Add few-shot examples

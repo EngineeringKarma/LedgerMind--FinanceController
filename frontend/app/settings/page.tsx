@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
-import ThemeToggle from "@/components/ThemeToggle";
+import ThemeSelector from "@/components/ThemeSelector";
 import { useTheme } from "@/components/ThemeProvider";
 
 export default function SettingsPage() {
-  const { theme, setTheme } = useTheme();
+  const {  } = useTheme();
   const [name, setName] = useState("John Doe");
   const [email, setEmail] = useState("john@example.com");
   const [apiKey, setApiKey] = useState("sk-••••••••••••••••••••••••");
@@ -38,8 +38,8 @@ export default function SettingsPage() {
           <div className="settings-section">
             <h2 className="settings-section-title">Profile</h2>
             <div className="flex items-start gap-6">
-              <div className="w-20 h-20 rounded-full bg-accent-stamp/10 border-2 border-border flex items-center justify-center">
-                <svg className="w-10 h-10 text-accent-stamp-hover" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="w-20 h-20 rounded-full bg-accent/10 border-2 border-border flex items-center justify-center">
+                <svg className="w-10 h-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
               </div>
@@ -52,7 +52,7 @@ export default function SettingsPage() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-stamp-hover transition-colors"
+                    className="w-full px-4 py-2.5 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-hover transition-colors"
                   />
                 </div>
                 <div>
@@ -63,7 +63,7 @@ export default function SettingsPage() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-stamp-hover transition-colors"
+                    className="w-full px-4 py-2.5 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-hover transition-colors"
                   />
                 </div>
               </div>
@@ -77,12 +77,11 @@ export default function SettingsPage() {
               <div>
                 <p className="text-sm font-medium text-text-primary">Theme</p>
                 <p className="text-xs text-text-muted mt-0.5">
-                  Choose between light and dark mode
+                  Choose your desk — six complete visual identities
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm text-text-muted capitalize">{theme}</span>
-                <ThemeToggle />
+                <ThemeSelector />
               </div>
             </div>
           </div>
@@ -157,7 +156,7 @@ export default function SettingsPage() {
             )}
             <button
               onClick={handleSave}
-              className="px-6 py-2.5 rounded-lg bg-accent-stamp text-white text-sm font-medium hover:bg-accent-stamp-hover transition-colors"
+              className="px-6 py-2.5 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
             >
               Save Changes
             </button>

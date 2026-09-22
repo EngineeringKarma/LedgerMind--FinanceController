@@ -7,7 +7,7 @@ An AI agent that ingests Razorpay-style settlement data, categorizes each transa
 ### Prerequisites
 - Python 3.11+
 - Node.js 18+
-- A [Groq API key](https://console.groq.com/) (free tier available)
+- An [NVIDIA NIM API key](https://build.nvidia.com/) (free tier available)
 
 ### Backend Setup
 
@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 # Configure environment
 cp .env.example .env
-# Edit .env and add your GROQ_API_KEY
+# Edit .env and add your NVIDIA_NIM_API_KEY
 
 # Generate sample data
 python -m app.data.synthetic_generator
@@ -48,9 +48,17 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## How It Works
 
 1. **Upload** — Drop a Razorpay-style settlement CSV into the upload card
-2. **Categorize** — The AI agent processes transactions in batches of 15, using Llama 3.3 70B via Groq
+2. **Categorize** — The AI agent processes transactions in batches of 15, using Llama 3.3 70B via NVIDIA NIM
 3. **Review** — Dashboard shows categorized transactions with confidence scores and "needs review" flags
 4. **Analyze** — P&L summary, category breakdown charts, monthly trends, and anomaly detection
+
+## Screenshots
+
+### Landing Page
+![Landing Page](frontend/public/screenshots/landing-page.png)
+
+### Sign In
+![Sign In](frontend/public/screenshots/signin-page.png)
 
 ## API Endpoints
 
@@ -107,7 +115,7 @@ The UI is designed to feel like a real financial ledger being reviewed by an AI 
 ## Architecture
 
 ```
-Frontend (Next.js)  →  Backend (FastAPI)  →  Groq API (Llama 3.3 70B)
+Frontend (Next.js)  →  Backend (FastAPI)  →  NVIDIA NIM API (Llama 3.3 70B)
      :3000                  :8000
 ```
 
@@ -117,11 +125,11 @@ Frontend (Next.js)  →  Backend (FastAPI)  →  Groq API (Llama 3.3 70B)
 - **Batch processing** — 15 transactions per LLM call to balance cost and latency
 - **Deterministic anomaly detection** — rule/statistics-based, not LLM-based, for auditability
 - **Graceful degradation** — if a batch fails, those transactions are marked `needs_review: true` instead of failing the entire job
-- **LLM retry logic** — exponential backoff on Groq API failures via tenacity
+- **LLM retry logic** — exponential backoff on NVIDIA NIM API failures via tenacity
 
 ## Tech Stack
 
-- **Backend:** Python 3.11, FastAPI, Pydantic v2, Groq SDK
+- **Backend:** Python 3.11, FastAPI, Pydantic v2, OpenAI SDK
 - **Frontend:** Next.js 16, React 19, Tailwind CSS 4, Recharts
-- **LLM:** Llama 3.3 70B via Groq API (fast + free tier)
+- **LLM:** Llama 3.3 70B via NVIDIA NIM API (fast + free tier)
 - **Charts:** Recharts (pie/bar for categories, line for trends)

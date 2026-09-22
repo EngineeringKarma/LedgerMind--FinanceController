@@ -100,9 +100,9 @@ class TestWorkerFailure:
         import app.database as db_module
         monkeypatch.setattr(db_module.settings, "database_path", db_module.settings.database_path)
 
-        with patch("app.worker.categorize_all", side_effect=RuntimeError("Groq API timeout")):
+        with patch("app.worker.categorize_all", side_effect=RuntimeError("LLM API timeout")):
             await run_categorization_job(job_id, session_id)
 
         job = await get_job(test_db, job_id)
         assert job["status"] == "failed"
-        assert "Groq API timeout" in job["error_message"]
+        assert "LLM API timeout" in job["error_message"]
