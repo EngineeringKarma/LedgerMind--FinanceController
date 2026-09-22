@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import ThemeSelector from "@/components/ThemeSelector";
 
 const pillars = [
   {
+    number: "01",
     title: "Every source, one ledger",
     description:
       "Import Razorpay, PayU, CCAvenue, Stripe, or custom CSV. One upload, unified schema, zero mapping headaches.",
@@ -15,6 +17,7 @@ const pillars = [
     ),
   },
   {
+    number: "02",
     title: "All at once",
     description:
       "Categorize 10,000 transactions in parallel batches. P&L, trends, anomalies — computed simultaneously, not sequentially.",
@@ -25,6 +28,7 @@ const pillars = [
     ),
   },
   {
+    number: "03",
     title: "Make it yours",
     description:
       "Train custom categories, set anomaly thresholds, define review rules. The agent learns your chart of accounts.",
@@ -36,11 +40,13 @@ const pillars = [
   },
 ];
 
-const socialProof = [
-  { label: "Transactions processed", value: "10,000+" },
-  { label: "Categorization accuracy", value: "99.2%" },
-  { label: "Avg processing time", value: "< 2s" },
-  { label: "Businesses using LedgerMind", value: "50+" },
+const agents = [
+  { name: "Claude Code", status: "ready", icon: "cc" },
+  { name: "Codex", status: "ready", icon: "cx" },
+  { name: "Antigravity", status: "ready", icon: "ag" },
+  { name: "OpenCode", status: "setup", icon: "oc" },
+  { name: "Hermes", status: "setup", icon: "hr" },
+  { name: "Kimi", status: "setup", icon: "km" },
 ];
 
 const previewMetrics = [
@@ -49,7 +55,55 @@ const previewMetrics = [
   { label: "Net Settled", value: "₹12,45,678", trend: "+8.7%", positive: true },
 ];
 
+const socialProof = [
+  { label: "Transactions processed", value: "10,000+" },
+  { label: "Categorization accuracy", value: "99.2%" },
+  { label: "Avg processing time", value: "< 2s" },
+  { label: "Businesses using LedgerMind", value: "50+" },
+];
+
+const downloadOptions = [
+  {
+    platform: "macOS 13+",
+    label: "Apple Silicon",
+    url: "https://github.com/mrdainami/nami/releases/latest/download/Nami-arm64.dmg",
+    icon: "🍎",
+  },
+  {
+    platform: "macOS 13+",
+    label: "Intel",
+    url: "https://github.com/mrdainami/nami/releases/latest/download/Nami-x64.dmg",
+    icon: "🍎",
+  },
+  {
+    platform: "Windows 10+",
+    label: "x64",
+    url: "https://github.com/mrdainami/nami/releases/latest/download/Nami-Setup-x64.exe",
+    icon: "🪟",
+  },
+  {
+    platform: "Windows 10+",
+    label: "Arm64",
+    url: "https://github.com/mrdainami/nami/releases/latest/download/Nami-Setup-arm64.exe",
+    icon: "🪟",
+  },
+];
+
 export default function LandingPage() {
+  const [email, setEmail] = useState("");
+  const [emailStatus, setEmailStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes("@")) {
+      setEmailStatus("error");
+      return;
+    }
+    setEmailStatus("success");
+    setEmail("");
+    setTimeout(() => setEmailStatus("idle"), 3000);
+  };
+
   return (
     <div className="min-h-screen bg-bg-base">
       {/* Navbar */}
@@ -58,23 +112,23 @@ export default function LandingPage() {
           <Link href="/" className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
               <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 002 2z" />
               </svg>
             </div>
-            <span className="text-lg font-semibold tracking-tight">LedgerMind</span>
+            <span className="text-lg font-semibold tracking-tight font-display">LedgerMind</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-8">
             <a href="#features" className="text-sm text-text-muted hover:text-text-primary transition-colors">
               Features
             </a>
             <a href="#how-it-works" className="text-sm text-text-muted hover:text-text-primary transition-colors">
               How it works
             </a>
-            <a href="#desks" className="text-sm text-text-muted hover:text-text-primary transition-colors">
-              Desks
+            <a href="#themes" className="text-sm text-text-muted hover:text-text-primary transition-colors">
+              Themes
             </a>
-            <ThemeSelector />
+            <ThemeSelector variant="pills" />
             <Link
               href="/signin"
               className="px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
@@ -98,14 +152,14 @@ export default function LandingPage() {
                 AI-Powered Finance Controller
               </div>
 
-              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight font-display">
                 Your financial{" "}
-                <span className="gradient-text">desk</span>{" "}
+                <span className="gradient-text">workspace</span>{" "}
                 for the agent era
               </h1>
 
               <p className="text-lg text-text-muted mb-10 max-w-xl">
-                Upload settlements. Watch AI categorize every transaction. Get P&L, trends, and anomalies — all at once. Choose your desk.
+                Upload settlements. Watch AI categorize every transaction. Get P&L, trends, and anomalies — all at once. Choose your theme.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -126,10 +180,7 @@ export default function LandingPage() {
               {/* Keyboard hint */}
               <p className="mt-8 text-xs text-text-dim flex items-center gap-2">
                 <kbd className="px-1.5 py-0.5 text-xs bg-bg-elevated border border-border rounded font-mono">⌘K</kbd>
-                <span>Cycle desks</span>
-                <span className="mx-1">·</span>
-                <kbd className="px-1.5 py-0.5 text-xs bg-bg-elevated border border-border rounded font-mono">← →</kbd>
-                <span>Navigate</span>
+                <span>Toggle theme</span>
               </p>
             </div>
 
@@ -189,7 +240,6 @@ export default function LandingPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
-                    {/* Data points */}
                     {[0, 50, 100, 150, 200, 250, 300].map((x, i) => (
                       <circle
                         key={i}
@@ -205,34 +255,34 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Desk indicator */}
+              {/* Theme indicator */}
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-text-dim">
-                <span>Current desk:</span>
-                <span className="font-mono font-medium text-accent" id="current-desk-display">Paper</span>
-                <span className="text-text-dim">(hover a pill to preview)</span>
+                <span>Current theme:</span>
+                <span className="font-mono font-medium text-accent" id="current-theme-display">Light</span>
+                <span className="text-text-dim">(hover a theme card to preview)</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Three Pillars Section (Nami-style) */}
+      {/* Three Pillars Section */}
       <section id="features" className="py-24 bg-bg-surface">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-3 gap-8">
-            {pillars.map((pillar, idx) => (
+            {pillars.map((pillar) => (
               <article key={pillar.title} className="feature-card card-hover relative overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-px bg-accent/20" />
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center text-accent mb-6">
                   {pillar.icon}
                 </div>
                 <div className="flex items-center gap-2 text-xs font-medium text-text-muted mb-2">
-                  <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent font-mono">
-                    {idx + 1}
+                  <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent font-mono font-bold">
+                    {pillar.number}
                   </span>
                   <span className="uppercase tracking-wide">{pillar.title}</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{"0" + (idx + 1)}</h3>
+                <h3 className="text-xl font-semibold mb-3 font-display">{pillar.number}</h3>
                 <p className="text-text-muted leading-relaxed">{pillar.description}</p>
               </article>
             ))}
@@ -244,7 +294,7 @@ export default function LandingPage() {
       <section id="how-it-works" className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 font-display">
               From upload to insight in four steps
             </h2>
             <p className="text-text-muted max-w-2xl mx-auto">
@@ -264,7 +314,7 @@ export default function LandingPage() {
                   <span className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent font-mono font-bold text-lg">
                     {item.step}
                   </span>
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <h3 className="text-lg font-semibold font-display">{item.title}</h3>
                 </div>
                 <p className="text-text-muted text-sm leading-relaxed">{item.desc}</p>
               </div>
@@ -289,82 +339,253 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Desks Showcase Section */}
-      <section id="desks" className="py-24">
+      {/* Why It Exists - Founder Story */}
+      <section id="why" className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-6 font-display">
+                The finance controller I wish I had.
+              </h2>
+              <p className="text-lg text-text-muted mb-6 leading-relaxed">
+                Just like most people, I was never a finance expert. Then AI agents changed what one person can do.
+                Today they categorize my transactions, draft my reports, flag anomalies, and run my month-end close
+                while I direct. LedgerMind is the workspace I built to work that way. I&apos;m giving it away because
+                more people should get to build like this.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium">Prathamesh</p>
+                  <p className="text-xs text-text-muted">founder, LedgerMind</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="glass-card p-8 rounded-2xl">
+              <h3 className="text-lg font-semibold mb-6">Every source, one place</h3>
+              <div className="space-y-3">
+                {["Razorpay", "PayU", "CCAvenue", "Stripe", "Custom CSV"].map((source) => (
+                  <div key={source} className="flex items-center justify-between p-3 bg-bg-base border border-border rounded-lg">
+                    <span className="font-medium">{source}</span>
+                    <span className="text-xs text-state-verified font-mono">● Ready</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Every Agent, One Place */}
+      <section id="agents" className="py-24 bg-bg-surface">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4">
-              Six desks. One workflow.
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 font-display">
+              Every agent, one place
             </h2>
             <p className="text-text-muted max-w-2xl mx-auto">
-              Each desk is a complete visual identity. Switch instantly — your data, your agents, your preferences stay exactly where they are.
+              Run any of the top agents in one click. No more downloading ten different tools only to switch again next week.
+              A better agent ships next month? Swap it in a click and keep working. Never locked in, never left behind.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { id: "paper", name: "Paper", desc: "Ink & cream — the classic ledger feel", bg: "bg-gradient-to-br from-[var(--color-bg-base)] to-[var(--color-bg-surface)]" },
-              { id: "operator", name: "Operator", desc: "Dark ops — terminal aesthetic for power users", bg: "bg-gradient-to-br from-[var(--color-bg-base)] to-[var(--color-bg-surface)]" },
-              { id: "glass", name: "Glass", desc: "Light & airy — clean transparency", bg: "bg-gradient-to-br from-[var(--color-bg-base)] to-[var(--color-bg-surface)]" },
-              { id: "graphite", name: "Graphite", desc: "Glass at night — charcoal depth", bg: "bg-gradient-to-br from-[var(--color-bg-base)] to-[var(--color-bg-surface)]" },
-              { id: "soft", name: "Soft", desc: "Off-white — warm minimalism", bg: "bg-gradient-to-br from-[var(--color-bg-base)] to-[var(--color-bg-surface)]" },
-              { id: "dusk", name: "Dusk", desc: "Soft dark — lavender twilight", bg: "bg-gradient-to-br from-[var(--color-bg-base)] to-[var(--color-bg-surface)]" },
-            ].map((desk) => (
-              <button
-                key={desk.id}
-                onClick={() => {
-                  // This would need theme context - simplified for showcase
-                }}
-                className={`glass-card p-6 card-hover text-left group ${desk.bg}`}
-                style={{ background: 'var(--color-bg-surface)', borderColor: 'var(--color-border)' }}
+          <div className="agent-grid">
+            {agents.map((agent) => (
+              <div
+                key={agent.name}
+                className={`agent-card ${agent.status === "setup" ? "off" : ""}`}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className={`theme-pill-icon theme-${desk.id}`} style={{ width: 28, height: 28, borderRadius: 6 }} />
-                  <div>
-                    <h3 className="font-semibold">{desk.name}</h3>
-                    <p className="text-xs text-text-muted">{desk.desc}</p>
-                  </div>
+                <div className="agent-icon">
+                  <span className="text-2xl font-bold text-accent">{agent.icon}</span>
                 </div>
-                <div className="preview-dashboard" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-                  {previewMetrics.slice(0, 3).map((metric) => (
-                    <div key={metric.label} className="preview-card" style={{ background: 'var(--color-bg-surface)', borderColor: 'var(--color-border)' }}>
-                      <p className="preview-label" style={{ color: 'var(--color-text-dim)' }}>{metric.label}</p>
-                      <p className="preview-value" style={{ color: 'var(--color-text-primary)', fontFamily: 'var(--font-data)' }}>{metric.value}</p>
-                    </div>
-                  ))}
+                <div className="agent-name">{agent.name}</div>
+                <div className={`agent-status ${agent.status === "setup" ? "off" : ""}`}>
+                  <i />
+                  {agent.status === "ready" ? "Ready" : "One-click setup"}
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-bg-surface">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4">
-            Ready for your agent workspace?
-          </h2>
-          <p className="text-text-muted mb-10">
-            Join thousands of businesses using LedgerMind to streamline their
-            financial operations. Start your free trial today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/signin"
-              className="px-8 py-3 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
-            >
-              Get Started Free
-            </Link>
-            <a
-              href="https://github.com/mrdainami/nami"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-lg border border-border text-text-primary font-medium hover:bg-bg-surface-hover transition-colors"
-            >
-              View on GitHub
-            </a>
+      {/* All At Once - Parallel Panes */}
+      <section id="parallel" className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 font-display">
+              All at once
+            </h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              A morning of work in the time one job used to take. Every job runs in its own pane, all at the same time.
+            </p>
           </div>
+
+          <div className="grid lg:grid-cols-4 gap-4">
+            {[
+              { agent: "Claude Code", goal: "Rewrite onboarding emails", lines: ["Read 8 drafts", "Match house voice", "Save all 8 to drafts"], status: "done" },
+              { agent: "Codex", goal: "Ship pricing page", lines: ["Read approved copy", "Build section", "Push live"], status: "done" },
+              { agent: "Hermes", goal: "Sort invoice folder", lines: ["Find every PDF", "Read 214 totals", "File by date & client"], status: "done" },
+              { agent: "Kimi", goal: "Write October plan", lines: ["Read 14 notes", "Rank by revenue", "Write plan"], status: "done" },
+            ].map((pane, i) => (
+              <div key={i} className="pane">
+                <div className="pane-header">
+                  <span className="pane-title">{pane.agent}</span>
+                  <span className={`pane-status ${pane.status === "done" ? "" : "working"}`}>
+                    <span className="dot" />
+                    {pane.status === "done" ? "Completed" : "Working"}
+                  </span>
+                </div>
+                <div className="pane-content">
+                  <b className="goal text-text-primary block mb-3">{pane.goal}</b>
+                  <div className="pane-lines">
+                    {pane.lines.map((line, li) => (
+                      <div key={li} className="pane-line flex items-center gap-2">
+                        <svg className="w-4 h-4 text-state-verified flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{line}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Make It Yours - Agent Builder */}
+      <section id="customize" className="py-24 bg-bg-surface">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 font-display">
+              Make it yours
+            </h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              Describe an agent. Get an agent. Say what you want in plain words, like &ldquo;read my week of notes and write the Friday client update.&rdquo;
+              Seconds later it&apos;s on your shelf, ready to run.
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <div className="glass-card p-6">
+              <form onSubmit={handleEmailSubmit} className="space-y-4">
+                <label className="block text-sm font-medium text-text-primary mb-2">
+                  Describe your agent
+                </label>
+                <textarea
+                  className="w-full px-4 py-3 bg-bg-base border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent-hover transition-colors font-body"
+                  rows={3}
+                  placeholder="Read my week of notes and write the Friday update, in my voice."
+                />
+                <button
+                  type="submit"
+                  className="w-full px-6 py-3 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+                >
+                  Create Agent
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Themes Showcase Section */}
+      <section id="themes" className="py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 font-display">
+              Two themes. One workflow.
+            </h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              Light for clarity, Dark for focus. Switch instantly — your data, your agents, your preferences stay exactly where they are.
+            </p>
+          </div>
+
+          <ThemeSelector variant="cards" />
+        </div>
+      </section>
+
+      {/* Download Section */}
+      <section id="download" className="py-24 bg-bg-surface">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 font-display">
+              Put it on your desk.
+            </h2>
+            <p className="text-text-muted max-w-2xl mx-auto">
+              One download. Your first job running in sixty seconds.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {downloadOptions.map((opt) => (
+              <a
+                key={opt.label}
+                href={opt.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-card p-6 card-hover text-left group"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">{opt.icon}</span>
+                  <div>
+                    <h3 className="font-semibold">{opt.platform}</h3>
+                    <p className="text-xs text-text-muted">{opt.label}</p>
+                  </div>
+                </div>
+                <div className="text-sm text-text-muted">
+                  <p className="font-medium mb-1">Download for {opt.label}</p>
+                  <p className="text-xs text-text-dim">One click install</p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="mt-12 max-w-2xl mx-auto text-center text-sm text-text-muted space-y-2">
+            <p>Your files never leave your computer</p>
+            <p>Works with the subscriptions you already pay for</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="py-24">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 font-display">
+            Want to hear when LedgerMind gets something new?
+          </h2>
+          <form onSubmit={handleEmailSubmit} className="max-w-md mx-auto">
+            <div className="flex gap-2">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                className="flex-1 px-4 py-3 rounded-lg bg-bg-surface border border-border text-text-primary text-sm focus:outline-none focus:border-accent-hover transition-colors"
+                disabled={emailStatus === "success"}
+              />
+              <button
+                type="submit"
+                className="px-6 py-3 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors whitespace-nowrap"
+                disabled={emailStatus === "success"}
+              >
+                {emailStatus === "success" ? "Subscribed!" : "Keep me posted"}
+              </button>
+            </div>
+            {emailStatus === "success" && (
+              <p className="mt-3 text-sm text-state-verified">Got it. You&apos;re on the list.</p>
+            )}
+            {emailStatus === "error" && (
+              <p className="mt-3 text-sm text-state-anomaly">Please enter a valid email.</p>
+            )}
+          </form>
         </div>
       </section>
 
@@ -375,7 +596,7 @@ export default function LandingPage() {
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
                 <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 002 2z" />
                 </svg>
               </div>
               <span className="text-sm text-text-muted">
@@ -391,6 +612,9 @@ export default function LandingPage() {
               </a>
               <a href="#" className="text-sm text-text-muted hover:text-text-primary transition-colors">
                 Contact
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm text-text-muted hover:text-text-primary transition-colors">
+                GitHub
               </a>
             </div>
           </div>

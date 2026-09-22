@@ -49,6 +49,7 @@ export async function authFetch(
   // If 401, clear token so user gets redirected to login
   if (res.status === 401) {
     clearToken();
+    
     if (typeof window !== "undefined" && window.location.pathname !== "/") {
       window.location.href = "/";
     }
@@ -99,3 +100,4 @@ export async function register(
 
   return res.json();
 }
+

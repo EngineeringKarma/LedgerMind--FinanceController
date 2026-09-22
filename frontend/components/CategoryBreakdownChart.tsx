@@ -14,26 +14,27 @@ interface CategoryBreakdownChartProps {
   data: CategoryBreakdown[];
 }
 
+// Use CSS variables for colors - they'll be resolved at render time
 const COLORS: Record<string, string> = {
-  Revenue: "#4FA88F",
-  Refunds: "#C1553D",
-  "Gateway Fees": "#C98A3E",
+  Revenue: "var(--color-state-verified)",
+  Refunds: "var(--color-state-anomaly)",
+  "Gateway Fees": "var(--color-accent)",
   Payouts: "#6B8DB2",
   "Tax (GST/TDS)": "#8B6FC0",
   Chargebacks: "#D4A843",
   Settlements: "#5A9BD5",
-  "Other/Uncategorized": "#5A6A7D",
+  "Other/Uncategorized": "var(--color-text-dim)",
 };
 
 const DEFAULT_COLORS = [
-  "#C98A3E",
-  "#4FA88F",
+  "var(--color-accent)",
+  "var(--color-state-verified)",
   "#6B8DB2",
-  "#C1553D",
+  "var(--color-state-anomaly)",
   "#8B6FC0",
   "#D4A843",
   "#5A9BD5",
-  "#5A6A7D",
+  "var(--color-text-dim)",
 ];
 
 interface TooltipPayloadItem {

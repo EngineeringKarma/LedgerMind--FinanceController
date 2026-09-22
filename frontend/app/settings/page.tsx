@@ -6,7 +6,7 @@ import ThemeSelector from "@/components/ThemeSelector";
 import { useTheme } from "@/components/ThemeProvider";
 
 export default function SettingsPage() {
-  const {  } = useTheme();
+  const { setTheme } = useTheme();
   const [name, setName] = useState("John Doe");
   const [email, setEmail] = useState("john@example.com");
   const [apiKey, setApiKey] = useState("sk-••••••••••••••••••••••••");
@@ -27,7 +27,7 @@ export default function SettingsPage() {
     <DashboardLayout>
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
+          <h1 className="text-2xl font-semibold tracking-tight font-display">Settings</h1>
           <p className="text-text-muted text-sm mt-1">
             Manage your account preferences and configuration
           </p>
@@ -35,10 +35,10 @@ export default function SettingsPage() {
 
         <div className="space-y-6">
           {/* Profile Section */}
-          <div className="settings-section">
+          <div className="glass-card glass-card-hover p-6">
             <h2 className="settings-section-title">Profile</h2>
             <div className="flex items-start gap-6">
-              <div className="w-20 h-20 rounded-full bg-accent/10 border-2 border-border flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-accent/10 border-2 border-border flex items-center justify-center flex-shrink-0">
                 <svg className="w-10 h-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
@@ -71,23 +71,21 @@ export default function SettingsPage() {
           </div>
 
           {/* Appearance Section */}
-          <div className="settings-section">
+          <div className="glass-card glass-card-hover p-6">
             <h2 className="settings-section-title">Appearance</h2>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-4">
               <div>
                 <p className="text-sm font-medium text-text-primary">Theme</p>
                 <p className="text-xs text-text-muted mt-0.5">
-                  Choose your desk — six complete visual identities
+                  Choose Light or Dark mode
                 </p>
               </div>
-              <div className="flex items-center gap-3">
-                <ThemeSelector />
-              </div>
+              <ThemeSelector variant="cards" />
             </div>
           </div>
 
           {/* API Keys Section */}
-          <div className="settings-section">
+          <div className="glass-card glass-card-hover p-6">
             <h2 className="settings-section-title">API Keys</h2>
             <div className="space-y-4">
               <div>
@@ -116,7 +114,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Notifications Section */}
-          <div className="settings-section">
+          <div className="glass-card glass-card-hover p-6">
             <h2 className="settings-section-title">Notifications</h2>
             <div className="space-y-4">
               <div className="flex items-center justify-between">

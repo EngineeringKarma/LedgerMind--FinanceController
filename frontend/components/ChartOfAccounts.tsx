@@ -23,8 +23,8 @@ export default function ChartOfAccounts({ data }: ChartOfAccountsProps) {
                 <div className="text-text-primary text-sm truncate">{item.category}</div>
                 <div className="relative mt-1 h-1 rounded-full bg-bg-base overflow-hidden">
                   <div
-                    className="absolute inset-y-0 left-0 rounded-full bg-accent/50"
-                    style={{ width: `${pct}%` }}
+                    className="absolute inset-y-0 left-0 rounded-full"
+                    style={{ width: `${pct}%`, backgroundColor: "var(--color-accent)" }}
                   />
                 </div>
               </div>

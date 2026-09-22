@@ -20,7 +20,7 @@ export default function TransactionTable({ transactions, onExport }: Transaction
   const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
-    let result = transactions.filter((t) => {
+    const result = transactions.filter((t) => {
       if (filter === "review") return t.needs_review;
       if (filter === "verified") return !t.needs_review;
       return true;
@@ -238,3 +238,4 @@ export default function TransactionTable({ transactions, onExport }: Transaction
     </div>
   );
 }
+

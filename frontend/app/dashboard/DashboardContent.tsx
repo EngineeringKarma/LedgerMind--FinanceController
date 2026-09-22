@@ -54,16 +54,18 @@ export default function DashboardContent() {
   }, [API_URL]);
 
   useEffect(() => {
-    if (!sessionId) {
-      setLoading(false);
-      fetchSessions();
-      return;
-    }
-
+    let cancelled = false;
+    
     async function loadData() {
+      if (!sessionId) {
+        await fetchSessions();
+        if (!cancelled) setLoading(false);
+        return;
+      }
+
       try {
-        setLoading(true);
-        setError(null);
+        if (!cancelled) setLoading(true);
+        if (!cancelled) setError(null);
 
         // Check if categorization job needs to be started
         let catRes = await authFetch(`${API_URL}/categorize/${sessionId}/results`);
@@ -74,19 +76,21 @@ export default function DashboardContent() {
 
         let catData = null;
         for (let attempt = 0; attempt < 60; attempt++) {
+          if (cancelled) return;
           catRes = await authFetch(`${API_URL}/categorize/${sessionId}/results`);
           if (catRes.ok) {
             catData = await catRes.json();
             break;
           }
           if (catRes.status === 404 && attempt < 59) {
-            setProcessing(true);
+            if (!cancelled) setProcessing(true);
             await new Promise((r) => setTimeout(r, 2000));
             continue;
           }
           throw new Error("Failed to load categorized data");
         }
 
+        if (cancelled) return;
         if (!catData) {
           throw new Error("Categorization is still processing. Please try again in a moment.");
         }
@@ -95,16 +99,19 @@ export default function DashboardContent() {
         setProcessing(false);
 
         const reportData = await generateReport(sessionId!);
-        setReport(reportData);
+        if (!cancelled) setReport(reportData);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load data");
+        if (!cancelled) setError(err instanceof Error ? err.message : "Failed to load data");
       } finally {
-        setLoading(false);
-        setProcessing(false);
+        if (!cancelled) {
+          setLoading(false);
+          setProcessing(false);
+        }
       }
     }
 
     loadData();
+    return () => { cancelled = true; };
   }, [sessionId, API_URL, fetchSessions]);
 
   const handleUploadComplete = useCallback(
@@ -145,7 +152,7 @@ export default function DashboardContent() {
     return (
       <div className="max-w-[1200px] mx-auto py-6">
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold tracking-tight mb-2">Upload Settlement Data</h1>
+          <h1 className="text-3xl font-bold tracking-tight mb-2 font-display">Upload Settlement Data</h1>
           <p className="text-text-muted text-sm max-w-lg mx-auto">
             Upload your Razorpay settlement CSV file to start AI transaction categorization,
             anomaly detection, and P&L financial reporting.
@@ -228,7 +235,7 @@ export default function DashboardContent() {
           </div>
           <h2 className="text-lg font-medium text-text-primary mb-2">Something went wrong</h2>
           <p className="text-text-muted text-sm mb-4">{error}</p>
-<button
+          <button
             onClick={() => router.push("/dashboard")}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
           >
@@ -243,7 +250,7 @@ export default function DashboardContent() {
     <div className="max-w-[1400px] mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Settlement Report</h1>
+          <h1 className="text-2xl font-semibold tracking-tight font-display">Settlement Report</h1>
           <p className="text-text-muted text-sm mt-1">
             Period: {report?.period || "—"} · Session: {sessionId}
           </p>

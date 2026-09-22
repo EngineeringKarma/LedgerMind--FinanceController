@@ -1,20 +1,20 @@
 "use client";
 
+/* eslint-disable react-hooks/set-state-in-effect */
+
 import { createContext, useContext, useEffect, useLayoutEffect, useState, ReactNode, useCallback } from "react";
 
-export type Theme = "paper" | "operator" | "glass" | "graphite" | "soft" | "dusk";
+export type Theme = "light" | "dark";
 
 interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
-  nextTheme: () => void;
-  prevTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const THEMES: Theme[] = ["paper", "operator", "glass", "graphite", "soft", "dusk"];
+const THEMES: Theme[] = ["light", "dark"];
 
 export function useTheme() {
   const context = useContext(ThemeContext);
@@ -32,7 +32,7 @@ interface ThemeProviderProps {
 
 export function ThemeProvider({
   children,
-  defaultTheme = "paper",
+  defaultTheme = "light",
   storageKey = "ledgermind-theme",
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {
@@ -53,8 +53,8 @@ export function ThemeProvider({
     if (!mounted) return;
 
     const root = document.documentElement;
-    THEMES.forEach((t) => root.classList.remove(`theme-${t}`));
-    root.classList.add(`theme-${theme}`);
+    THEMES.forEach((t) => root.classList.remove(`theme-${t}`, t));
+    root.classList.add(theme);
     localStorage.setItem(storageKey, theme);
   }, [theme, mounted, storageKey]);
 
@@ -65,45 +65,38 @@ export function ThemeProvider({
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((prev) => (prev === "paper" ? "operator" : "paper"));
-  }, []);
-
-  const nextTheme = useCallback(() => {
-    setThemeState((prev) => {
-      const idx = THEMES.indexOf(prev);
-      return THEMES[(idx + 1) % THEMES.length];
-    });
-  }, []);
-
-  const prevTheme = useCallback(() => {
-    setThemeState((prev) => {
-      const idx = THEMES.indexOf(prev);
-      return THEMES[(idx - 1 + THEMES.length) % THEMES.length];
-    });
+    setThemeState((prev) => (prev === "light" ? "dark" : "light"));
   }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        nextTheme();
-      }
-      if (e.key === "ArrowRight" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        nextTheme();
-      }
-      if (e.key === "ArrowLeft" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        prevTheme();
+        toggleTheme();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [nextTheme, prevTheme]);
+  }, [toggleTheme]);
+
+  // Render children only after mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <ThemeContext.Provider
+        value={{
+          theme: defaultTheme,
+          setTheme: () => {},
+          toggleTheme: () => {},
+        }}
+      >
+        {children}
+      </ThemeContext.Provider>
+    );
+  }
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme, nextTheme, prevTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

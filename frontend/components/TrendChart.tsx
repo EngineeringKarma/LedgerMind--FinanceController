@@ -10,7 +10,7 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-import { formatINR, type MonthlyTrend, type AnomalySeverity } from "@/lib/api";
+import { formatINR, type MonthlyTrend } from "@/lib/api";
 
 interface TrendChartProps {
   data: MonthlyTrend[];
@@ -47,15 +47,15 @@ export default function TrendChart({ data }: TrendChartProps) {
       <h3 className="text-sm font-medium text-text-primary mb-4">Monthly Trend</h3>
       <ResponsiveContainer width="100%" height={260}>
         <LineChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#1F3248" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border-subtle)" vertical={false} />
           <XAxis
             dataKey="month"
-            tick={{ fill: "#8B98A8", fontSize: 11 }}
+            tick={{ fill: "var(--color-text-dim)", fontSize: 11 }}
             tickLine={false}
-            axisLine={{ stroke: "#2A3F58" }}
+            axisLine={{ stroke: "var(--color-border)" }}
           />
           <YAxis
-            tick={{ fill: "#8B98A8", fontSize: 11 }}
+            tick={{ fill: "var(--color-text-dim)", fontSize: 11 }}
             tickLine={false}
             axisLine={false}
             tickFormatter={(v) => formatINR(v)}
@@ -66,25 +66,25 @@ export default function TrendChart({ data }: TrendChartProps) {
           <Line
             type="monotone"
             dataKey="revenue"
-            stroke="#4FA88F"
+            stroke="var(--color-state-verified)"
             strokeWidth={2}
-            dot={{ fill: "#4FA88F", r: 3 }}
+            dot={{ fill: "var(--color-state-verified)", r: 3 }}
             activeDot={{ r: 5 }}
           />
           <Line
             type="monotone"
             dataKey="fees"
-            stroke="#C98A3E"
+            stroke="var(--color-accent)"
             strokeWidth={2}
-            dot={{ fill: "#C98A3E", r: 3 }}
+            dot={{ fill: "var(--color-accent)", r: 3 }}
             activeDot={{ r: 5 }}
           />
           <Line
             type="monotone"
             dataKey="refunds"
-            stroke="#C1553D"
+            stroke="var(--color-state-anomaly)"
             strokeWidth={2}
-            dot={{ fill: "#C1553D", r: 3 }}
+            dot={{ fill: "var(--color-state-anomaly)", r: 3 }}
             activeDot={{ r: 5 }}
           />
           <Line
@@ -106,10 +106,10 @@ export default function TrendChart({ data }: TrendChartProps) {
           <Line
             type="monotone"
             dataKey="net"
-            stroke="#6B8DB2"
+            stroke="var(--color-text-dim)"
             strokeWidth={2}
             strokeDasharray="5 5"
-            dot={{ fill: "#6B8DB2", r: 3 }}
+            dot={{ fill: "var(--color-text-dim)", r: 3 }}
             activeDot={{ r: 5 }}
           />
         </LineChart>

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function DashboardError({
   error,
   reset,
@@ -20,18 +22,18 @@ export default function DashboardError({
           {error.message || "Failed to load the dashboard. Please try again."}
         </p>
         <div className="flex gap-3 justify-center">
-<button
+          <button
             onClick={reset}
             className="px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors"
           >
             Try Again
           </button>
-          <a
-            href="/"
+          <Link
+            href="/dashboard"
             className="px-4 py-2 rounded-lg border border-border text-text-muted text-sm font-medium hover:text-text-primary hover:bg-bg-surface-hover transition-colors"
           >
             Back to Upload
-          </a>
+          </Link>
         </div>
       </div>
     </main>
