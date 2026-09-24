@@ -836,8 +836,8 @@ def main():
                         help="Fault types to inject (default: none). Use 'all' for all faults.")
     parser.add_argument("--fault-count", type=int, default=1,
                         help="Number of each fault type to inject (default: 1)")
-    parser.add_argument("--out-dir", type=str, default="scripts/synthetic",
-                        help="Output directory (default: scripts/synthetic)")
+    parser.add_argument("--out-dir", type=str, default="backend/data/synthetic",
+                        help="Output directory (default: backend/data/synthetic)")
     args = parser.parse_args()
 
     # Resolve faults

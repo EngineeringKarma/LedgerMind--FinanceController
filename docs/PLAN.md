@@ -406,3 +406,15 @@ backend/
 | 0.6 | Fault injection uses `--fault` CLI flags, not config files | Simple, explicit, CI-friendly |
 | 0.7 | Each fault type gets exactly one injection by default (configurable via `--fault-count`) | Deterministic, easy to assert in tests |
 | 0.8 | Reconciliation reports `"settlement_id/UTR not present"` instead of erroring on old CSVs | Graceful degradation for legacy data |
+
+---
+
+## Provider Notes
+
+### NVIDIA NIM (current LLM backend)
+
+- Client is standard OpenAI SDK pointed at `https://integrate.api.nvidia.com/v1` with `LLM_API_KEY`.
+- JSON-mode must be requested explicitly via `response_format={"type": "json_object"}` in the
+  `chat.completions.create()` call — verified working against `meta/llama-3.3-70b-instruct`.
+- Available models can be enumerated with `client.models.list().data` using the same client config.
+- *(Note: patterns extracted from scratch scripts `test_qwen.py` / `test_models.py` — those files deleted in repo cleanup 2026-09-24.)*
