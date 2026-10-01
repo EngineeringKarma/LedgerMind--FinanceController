@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-background antialiased selection:bg-primary-container selection:text-surface-bright" data-theme="paper" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Finance Controller • Financial Command Center</title>
+<meta content="web_dashboard" name="shell-type"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Refined Editorial Serif, Geist Sans, and JetBrains Mono Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration Token Injection -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#ffdad3",
+            "primary-container": "#1c1c1a",
+            "secondary-fixed-dim": "#a9cfbc",
+            "on-error": "#ffffff",
+            "surface-dim": "#dbdad7",
+            "error-container": "#ffdad6",
+            "surface-bright": "#faf9f6",
+            "on-primary-fixed-variant": "#474744",
+            "inverse-surface": "#2f312f",
+            "surface": "#faf9f6",
+            "outline": "#777771",
+            "on-primary-container": "#858481",
+            "on-surface-variant": "#474741",
+            "surface-tint": "#5f5e5c",
+            "on-primary-fixed": "#1c1c1a",
+            "on-background": "#1a1c1a",
+            "primary-fixed": "#e5e2de",
+            "outline-variant": "#c8c7bf",
+            "on-tertiary-fixed": "#3e0501",
+            "on-primary": "#ffffff",
+            "secondary-fixed": "#c4ebd8",
+            "on-tertiary-fixed-variant": "#783022",
+            "surface-container-low": "#f4f3f0",
+            "surface-container-highest": "#e3e2e0",
+            "primary": "#000000",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-surface": "#1a1c1a",
+            "on-secondary-fixed": "#002116",
+            "tertiary-container": "#3e0501",
+            "tertiary-fixed-dim": "#ffb4a5",
+            "surface-variant": "#e3e2e0",
+            "secondary": "#426656",
+            "primary-fixed-dim": "#c9c6c3",
+            "background": "#faf9f6",
+            "surface-container-high": "#e9e8e5",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#466a5b",
+            "error": "#ba1a1a",
+            "inverse-primary": "#c9c6c3",
+            "surface-container-lowest": "#ffffff",
+            "tertiary": "#000000",
+            "on-secondary-fixed-variant": "#2a4d3f",
+            "on-tertiary-container": "#c46b59",
+            "surface-container": "#efeeeb",
+            "secondary-container": "#c1e8d5",
+            "inverse-on-surface": "#f2f1ee"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xl": "2.5rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "3rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "caption": ["Geist"],
+            "headline-sm": ["Newsreader"],
+            "financial-stat-md": ["JetBrains Mono"],
+            "headline-md": ["Newsreader"],
+            "headline-display": ["Newsreader"],
+            "body-lg": ["Geist"],
+            "headline-lg-mobile": ["Newsreader"],
+            "headline-lg": ["Newsreader"],
+            "financial-stat-lg": ["JetBrains Mono"],
+            "body-md": ["Geist"],
+            "financial-stat-lg-mobile": ["JetBrains Mono"],
+            "body-sm": ["Geist"],
+            "headline-display-mobile": ["Newsreader"],
+            "label-code": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
+            "financial-stat-md": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "financial-stat-lg": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "financial-stat-lg-mobile": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-display-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "label-code": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+<!-- Layer Base CSS Normalization -->
+<style>
+    @layer base {
+      html {
+        overscroll-behavior: none;
+        scroll-behavior: smooth;
+      }
+      body {
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      }
+    }
+    :root, [data-theme="paper"] {
+      --bg-base: #faf9f6;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f4f3f0;
+      --border-subtle: #c8c7bf;
+      --text-main: #1a1c1a;
+      --text-muted: #777771;
+    }
+    [data-theme="graphite"] {
+      --bg-base: #14171d;
+      --bg-surface: #1b2029;
+      --bg-elevated: #242a36;
+      --border-subtle: #343c4d;
+      --text-main: #f0f2f5;
+      --text-muted: #96a0b0;
+    }
+    [data-theme="glass"] {
+      --bg-base: #edf2f7;
+      --bg-surface: rgba(255, 255, 255, 0.75);
+      --bg-elevated: rgba(255, 255, 255, 0.9);
+      --border-subtle: rgba(200, 199, 191, 0.6);
+      --text-main: #141923;
+      --text-muted: #5c667a;
+    }
+    [data-theme="soft-dusk"] {
+      --bg-base: #13151f;
+      --bg-surface: #1a1d2c;
+      --bg-elevated: #23273c;
+      --border-subtle: #3d4468;
+      --text-main: #f1f2fa;
+      --text-muted: #a3a9c7;
+    }
+    [data-theme="operator"] {
+      --bg-base: #050608;
+      --bg-surface: #0c0e12;
+      --bg-elevated: #14171d;
+      --border-subtle: #2d3545;
+      --text-main: #e2e8f0;
+      --text-muted: #818f9f;
+    }
+  </style>
+</head>
+<body class="min-h-full bg-background text-on-background font-body-md antialiased">
+<!-- ================= TOP NAVIGATION BAR (Exact Header Height = 64px / h-16) ================= -->
+<header class="fixed top-0 inset-x-0 z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant/50 transition-colors duration-200">
+<div class="h-16 max-w-[1440px] mx-auto px-margin-desktop flex items-center justify-between gap-space-md">
+<!-- Brand & Date Selector -->
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-xl flex items-center justify-center font-financial-stat-md text-on-primary bg-primary shadow-xs tracking-tighter">
+            ₹C
+          </div>
+<div>
+<div class="flex items-center gap-space-xs cursor-pointer group">
+<span class="font-label-code text-caption font-semibold tracking-wider text-on-surface uppercase">OCT 2024</span>
+<span class="material-symbols-outlined text-[15px] text-outline group-hover:text-on-surface transition-colors">expand_more</span>
+</div>
+<p class="font-caption text-caption text-outline leading-none mt-0.5">Studio Controller</p>
+</div>
+</div>
+<!-- Top Route Navigation (Text-Only, Uniform Baseline, Strict Data-Path & Active Strategy) -->
+<nav class="hidden md:flex items-center gap-space-xs pl-space-md border-l border-outline-variant/60" data-active-classes="bg-surface-container-high text-on-surface font-semibold">
+<a class="px-space-md py-1.5 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="overview" href="#">Overview</a>
+<a class="px-space-md py-1.5 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="analytics" href="#">Analytics</a>
+<a class="px-space-md py-1.5 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="copilot-workspace" href="#">Copilot Workspace</a>
+<a class="px-space-md py-1.5 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="transactions" href="#">Transactions</a>
+<a aria-current="page" class="px-space-md py-1.5 rounded-lg transition-colors bg-surface-container-high text-on-surface font-semibold" data-path="budgets" href="#">Budgets</a>
+</nav>
+</div>
+<!-- Global Search & Command Palette (⌘K) -->
+<div class="hidden lg:flex items-center flex-1 max-w-sm mx-space-md">
+<div class="w-full flex items-center gap-space-sm px-space-md py-1.5 rounded-xl bg-surface-container-low border border-outline-variant/50 focus-within:border-outline transition-colors">
+<span class="material-symbols-outlined text-[17px] text-outline">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-sm text-on-surface placeholder:text-outline focus:ring-0 p-0" placeholder="Search accounts, ledger, or ask Copilot..." type="text"/>
+<kbd class="font-label-code text-caption px-1.5 py-0.5 rounded bg-surface-container-lowest border border-outline-variant text-on-surface-variant">⌘K</kbd>
+</div>
+</div>
+<!-- Theme Switcher Pills, Alert Trigger, Profile -->
+<div class="flex items-center gap-space-sm">
+<!-- Live Theme Switcher Pills -->
+<div class="hidden sm:flex items-center gap-1 p-1 rounded-xl bg-surface-container border border-outline-variant/40">
+<span class="font-label-code text-caption uppercase text-outline px-1.5">THEME:</span>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface border border-outline-variant/80 bg-surface shadow-2xs font-semibold" data-theme-btn="paper" onclick="setTheme('paper')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#1c1c1a]"></span>
+<span>Paper</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent" data-theme-btn="graphite" onclick="setTheme('graphite')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ade80]"></span>
+<span>Graphite</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent" data-theme-btn="glass" onclick="setTheme('glass')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#0284c7]"></span>
+<span>Glass</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent" data-theme-btn="soft-dusk" onclick="setTheme('soft-dusk')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#9d8df1]"></span>
+<span>Soft Dusk</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent" data-theme-btn="operator" onclick="setTheme('operator')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+<span>Opera</span>
+</button>
+</div>
+<!-- Alerts / Notifications -->
+<button class="relative w-8 h-8 rounded-xl flex items-center justify-center bg-surface-container border border-outline-variant/60 text-on-surface hover:bg-surface-container-high transition-colors" title="Notifications">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-error"></span>
+</button>
+<!-- Profile Avatar Badge -->
+<div class="flex items-center gap-space-xs pl-space-xs border-l border-outline-variant/60 cursor-pointer">
+<div class="w-8 h-8 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-code text-caption font-semibold border border-outline-variant/40">
+            AR
+          </div>
+<div class="hidden xl:block text-left">
+<p class="font-body-sm text-caption font-semibold leading-none text-on-surface">Aditya Roy</p>
+<p class="font-label-code text-caption text-outline leading-tight mt-0.5">Private Wealth</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- ================= MAIN LAYOUT WITH STRICT ADAPTIVE BUFFER (pt-16 == h-16) ================= -->
+<main class="pt-16 min-h-screen w-full">
+<div class="max-w-[1440px] mx-auto p-margin md:p-space-lg lg:p-margin-desktop">
+<div class="flex flex-col w-full relative">
+<!-- Softened Background Context: Spatial continuity with underlying Budget Ledger -->
+<div class="w-full grid grid-cols-12 gap-space-lg select-none opacity-40 blur-[2.5px] pointer-events-none transition-all duration-300">
+<div class="col-span-12 flex items-center justify-between py-space-sm">
+<div class="flex items-center gap-space-md">
+<span class="font-headline-md text-headline-md text-on-surface">Operating Ledger</span>
+<span class="font-label-code text-caption px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">FY 2024–25</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-28 bg-surface-container-high rounded"></div>
+<div class="h-8 w-36 bg-surface-container-highest rounded"></div>
+</div>
+</div>
+<!-- Background KPI Summary Cards -->
+<div class="col-span-4 p-space-lg rounded-xl bg-surface-container-low shadow-sm">
+<span class="font-caption text-caption text-outline uppercase tracking-wider">Total Monthly Discretionary</span>
+<p class="font-financial-stat-lg text-financial-stat-lg text-on-surface mt-1">₹1,42,800.00</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-secondary w-3/5 h-full"></div>
+</div>
+</div>
+<div class="col-span-4 p-space-lg rounded-xl bg-surface-container-low shadow-sm">
+<span class="font-caption text-caption text-outline uppercase tracking-wider">Unallocated Operating Float</span>
+<p class="font-financial-stat-lg text-financial-stat-lg text-secondary mt-1">₹78,450.00</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-secondary-fixed-dim w-4/5 h-full"></div>
+</div>
+</div>
+<div class="col-span-4 p-space-lg rounded-xl bg-surface-container-low shadow-sm">
+<span class="font-caption text-caption text-outline uppercase tracking-wider">Emergency Buffer Reserve</span>
+<p class="font-financial-stat-lg text-financial-stat-lg text-on-surface mt-1">₹6,20,000.00</p>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary w-full h-full"></div>
+</div>
+</div>
+<!-- Ghost Data Table Columns -->
+<div class="col-span-12 rounded-xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex justify-between items-center pb-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Active Fiscal Envelopes</span>
+<span class="font-label-code text-caption text-outline">OCTOBER CYCLE</span>
+</div>
+<div class="space-y-3 mt-space-md">
+<div class="h-10 bg-surface-container-low rounded-lg w-full"></div>
+<div class="h-10 bg-surface-container-low rounded-lg w-full"></div>
+<div class="h-10 bg-surface-container-low rounded-lg w-full"></div>
+<div class="h-10 bg-surface-container-low rounded-lg w-full"></div>
+</div>
+</div>
+</div>
+<!-- Focused Modal Overlay Backing -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-margin md:p-space-lg bg-inverse-surface/40 backdrop-blur-md">
+<!-- Central Interactive Modal Container (Widescreen 840px) -->
+<div class="relative w-full max-w-[840px] max-h-[942px] flex flex-col bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+<!-- Modal Header -->
+<div class="p-space-lg bg-surface-container-low/70 flex items-start justify-between gap-space-md">
+<div class="space-y-1">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Create Seasonal Budget • Festive &amp; Diwali 2024</h1>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed text-caption font-label-code font-medium">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span>
+              Smart Allocation Model v2.4
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xl">
+            Synthesizing historical festival spending, gift lists, and liquidity safety limits for optimal festive cash deployment.
+          </p>
+</div>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" title="Close window" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Step Indicator Bar -->
+<div class="px-space-lg py-2.5 bg-surface-container-lowest flex items-center justify-between text-caption font-label-code">
+<div class="flex items-center gap-2 text-secondary">
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-[10px]">✓</span>
+<span class="font-semibold tracking-wide">1. Period &amp; Envelope</span>
+</div>
+<span class="text-outline-variant">———</span>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center font-semibold text-[10px]">2</span>
+<span class="font-semibold tracking-wide">2. Category Breakdown &amp; AI Limits</span>
+</div>
+<span class="text-outline-variant">———</span>
+<div class="flex items-center gap-2 text-outline">
+<span class="w-5 h-5 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-semibold text-[10px]">3</span>
+<span class="tracking-wide">3. Guardrails &amp; Alerts</span>
+</div>
+</div>
+<!-- Scrollable Modal Body Workspace -->
+<div class="flex-1 overflow-y-auto px-space-lg py-space-md space-y-space-lg">
+<!-- SECTION 1: Total Festive Target Envelope -->
+<section class="p-space-lg rounded-xl bg-surface-container-low/50 space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
+<div>
+<span class="font-label-code text-caption uppercase text-outline tracking-wider block">Total Festive Cap Allocation</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-display text-headline-display text-on-surface font-light tracking-tight leading-none">₹</span>
+<input class="font-headline-display text-headline-display text-on-surface font-light bg-transparent border-none p-0 focus:ring-0 max-w-[340px] tracking-tight" id="totalEnvelopeInput" type="text" value="65,000.00"/>
+</div>
+</div>
+<!-- AI Feasibility Score Tag -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-secondary-fixed/50 text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span class="font-label-code text-caption font-semibold">98% Safe • Zero impact on 6-month Emergency Fund</span>
+</div>
+</div>
+<!-- Funding Source Selector -->
+<div class="pt-space-xs space-y-1.5">
+<span class="font-caption text-caption text-on-surface-variant font-medium">Designated Funding Vault</span>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<label class="relative flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-lowest shadow-xs cursor-pointer group hover:bg-surface-container-high/40 transition-colors">
+<input checked="" class="text-primary focus:ring-0 w-3.5 h-3.5" name="funding_source" type="radio"/>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm font-semibold text-on-surface leading-snug">Liquid Savings</p>
+<p class="font-label-code text-caption text-outline">₹4.82L Available</p>
+</div>
+</label>
+<label class="relative flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-lowest shadow-xs cursor-pointer group hover:bg-surface-container-high/40 transition-colors">
+<input class="text-primary focus:ring-0 w-3.5 h-3.5" name="funding_source" type="radio"/>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm font-semibold text-on-surface leading-snug">Festive Sinking Fund</p>
+<p class="font-label-code text-caption text-outline">₹50,000 Pledged</p>
+</div>
+</label>
+<label class="relative flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-lowest shadow-xs cursor-pointer group hover:bg-surface-container-high/40 transition-colors">
+<input class="text-primary focus:ring-0 w-3.5 h-3.5" name="funding_source" type="radio"/>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm font-semibold text-on-surface leading-snug">Credit Card Grace</p>
+<p class="font-label-code text-caption text-outline">30-day Float Cycle</p>
+</div>
+</label>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Sub-Category Envelopes & Sliders -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Sub-Category Envelopes &amp; AI Ratios</h2>
+<span class="font-label-code text-caption text-outline">100% OF ENVELOPE CONSUMED</span>
+</div>
+<!-- Category Stack -->
+<div class="space-y-3">
+<!-- Category 1: Gifts & Sweets -->
+<div class="p-space-md rounded-xl bg-surface-container-low transition-all duration-150 hover:bg-surface-container">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Gifts &amp; Mithai</span>
+<span class="font-label-code text-caption px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface-variant">8 recipients linked</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-caption text-caption text-error font-medium">₹3,200 higher than 2023</span>
+<span class="font-financial-stat-md text-financial-stat-md text-on-surface">₹25,000.00 <span class="font-caption text-outline text-body-sm font-normal">(38%)</span></span>
+</div>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer" max="65000" min="0" type="range" value="25000"/>
+</div>
+<!-- Category 2: Festive Apparel & Jewelry -->
+<div class="p-space-md rounded-xl bg-surface-container-low transition-all duration-150 hover:bg-surface-container">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#9d8df1]"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Festive Apparel &amp; Jewelry</span>
+<span class="font-label-code text-caption px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface-variant">2 planned purchases</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-caption text-caption text-outline">Historical parity match</span>
+<span class="font-financial-stat-md text-financial-stat-md text-on-surface">₹18,000.00 <span class="font-caption text-outline text-body-sm font-normal">(28%)</span></span>
+</div>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer" max="65000" min="0" type="range" value="18000"/>
+</div>
+<!-- Category 3: Home Decor & Pooja -->
+<div class="p-space-md rounded-xl bg-surface-container-low transition-all duration-150 hover:bg-surface-container">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Home Decor &amp; Pooja</span>
+<span class="font-label-code text-caption px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface-variant">Lightings, diyas &amp; silver</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-financial-stat-md text-financial-stat-md text-on-surface">₹12,000.00 <span class="font-caption text-outline text-body-sm font-normal">(18%)</span></span>
+</div>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer" max="65000" min="0" type="range" value="12000"/>
+</div>
+<!-- Category 4: Celebrations & Dining -->
+<div class="p-space-md rounded-xl bg-surface-container-low transition-all duration-150 hover:bg-surface-container">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#06b6d4]"></span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Celebrations &amp; Dining</span>
+<span class="font-label-code text-caption px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface-variant">Gatherings &amp; catering</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-financial-stat-md text-financial-stat-md text-on-surface">₹10,000.00 <span class="font-caption text-outline text-body-sm font-normal">(16%)</span></span>
+</div>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer" max="65000" min="0" type="range" value="10000"/>
+</div>
+</div>
+</section>
+<!-- SECTION 3: AI Copilot Guardrails & Smart Rules -->
+<section class="p-space-lg rounded-xl bg-surface-container-high/40 space-y-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-on-surface">shield</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Autonomous Guardrails &amp; Safety Polling</h3>
+</div>
+<div class="space-y-3">
+<!-- Toggle 1 -->
+<label class="flex items-start justify-between gap-space-md p-space-sm rounded-lg bg-surface-container-lowest/80 cursor-pointer hover:bg-surface-container-lowest">
+<div class="space-y-0.5">
+<p class="font-body-sm text-body-sm font-semibold text-on-surface">Auto-freeze non-essential UPI velocity</p>
+<p class="font-caption text-caption text-on-surface-variant">Temporarily throttles entertainment and off-list discretionary swipes once 90% cap is breached.</p>
+</div>
+<input checked="" class="mt-1 h-4 w-4 rounded text-primary focus:ring-0" type="checkbox"/>
+</label>
+<!-- Toggle 2 -->
+<label class="flex items-start justify-between gap-space-md p-space-sm rounded-lg bg-surface-container-lowest/80 cursor-pointer hover:bg-surface-container-lowest">
+<div class="space-y-0.5">
+<p class="font-body-sm text-body-sm font-semibold text-on-surface">Real-time Merchant Reward Arbitrage</p>
+<p class="font-caption text-caption text-on-surface-variant">Automatically suggests optimal credit card or gift card route (e.g. Infinia 5X rewards on Tanishq vouchers).</p>
+</div>
+<input checked="" class="mt-1 h-4 w-4 rounded text-primary focus:ring-0" type="checkbox"/>
+</label>
+<!-- Toggle 3 -->
+<label class="flex items-start justify-between gap-space-md p-space-sm rounded-lg bg-surface-container-lowest/80 cursor-pointer hover:bg-surface-container-lowest">
+<div class="space-y-0.5">
+<p class="font-body-sm text-body-sm font-semibold text-on-surface">Daily Festive Velocity Alert</p>
+<p class="font-caption text-caption text-on-surface-variant">Dispatches discrete WhatsApp and SMS notification if single-day aggregate festive burn exceeds ₹5,000.</p>
+</div>
+<input checked="" class="mt-1 h-4 w-4 rounded text-primary focus:ring-0" type="checkbox"/>
+</label>
+</div>
+</section>
+</div>
+<!-- Modal Footer Action Bar -->
+<div class="p-space-lg bg-surface-container-low flex flex-col-reverse sm:flex-row items-center justify-between gap-space-md">
+<button class="w-full sm:w-auto px-space-md py-2 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors text-center" type="button">
+          Discard &amp; Exit
+        </button>
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial px-space-md py-2 rounded-lg font-body-sm font-medium text-on-surface bg-surface-container hover:bg-surface-container-high transition-colors" type="button">
+            Simulate Cash Impact
+          </button>
+<button class="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-space-lg py-2 rounded-lg font-body-sm font-semibold text-on-primary bg-primary hover:opacity-90 shadow-md transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>Deploy Festive Budget</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Theme Controller Script -->
+<script>
+    function setTheme(themeKey) {
+      document.documentElement.setAttribute('data-theme', themeKey);
+      document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+        if (btn.getAttribute('data-theme-btn') === themeKey) {
+          btn.className = 'flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface border border-outline-variant/80 bg-surface shadow-2xs font-semibold';
+        } else {
+          btn.className = 'flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent';
+        }
+      });
+    }
+  </script>
+</body></html>

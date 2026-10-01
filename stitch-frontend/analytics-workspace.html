@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-background antialiased selection:bg-primary-container selection:text-surface-bright" data-theme="paper" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Finance Controller • Financial Command Center</title>
+<meta content="web_dashboard" name="shell-type"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Refined Editorial Serif, Geist Sans, and JetBrains Mono Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration Token Injection -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#ffdad3",
+            "primary-container": "#1c1c1a",
+            "secondary-fixed-dim": "#a9cfbc",
+            "on-error": "#ffffff",
+            "surface-dim": "#dbdad7",
+            "error-container": "#ffdad6",
+            "surface-bright": "#faf9f6",
+            "on-primary-fixed-variant": "#474744",
+            "inverse-surface": "#2f312f",
+            "surface": "#faf9f6",
+            "outline": "#777771",
+            "on-primary-container": "#858481",
+            "on-surface-variant": "#474741",
+            "surface-tint": "#5f5e5c",
+            "on-primary-fixed": "#1c1c1a",
+            "on-background": "#1a1c1a",
+            "primary-fixed": "#e5e2de",
+            "outline-variant": "#c8c7bf",
+            "on-tertiary-fixed": "#3e0501",
+            "on-primary": "#ffffff",
+            "secondary-fixed": "#c4ebd8",
+            "on-tertiary-fixed-variant": "#783022",
+            "surface-container-low": "#f4f3f0",
+            "surface-container-highest": "#e3e2e0",
+            "primary": "#000000",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-surface": "#1a1c1a",
+            "on-secondary-fixed": "#002116",
+            "tertiary-container": "#3e0501",
+            "tertiary-fixed-dim": "#ffb4a5",
+            "surface-variant": "#e3e2e0",
+            "secondary": "#426656",
+            "primary-fixed-dim": "#c9c6c3",
+            "background": "#faf9f6",
+            "surface-container-high": "#e9e8e5",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#466a5b",
+            "error": "#ba1a1a",
+            "inverse-primary": "#c9c6c3",
+            "surface-container-lowest": "#ffffff",
+            "tertiary": "#000000",
+            "on-secondary-fixed-variant": "#2a4d3f",
+            "on-tertiary-container": "#c46b59",
+            "surface-container": "#efeeeb",
+            "secondary-container": "#c1e8d5",
+            "inverse-on-surface": "#f2f1ee"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xl": "2.5rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "3rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "caption": ["Geist"],
+            "headline-sm": ["Newsreader"],
+            "financial-stat-md": ["JetBrains Mono"],
+            "headline-md": ["Newsreader"],
+            "headline-display": ["Newsreader"],
+            "body-lg": ["Geist"],
+            "headline-lg-mobile": ["Newsreader"],
+            "headline-lg": ["Newsreader"],
+            "financial-stat-lg": ["JetBrains Mono"],
+            "body-md": ["Geist"],
+            "financial-stat-lg-mobile": ["JetBrains Mono"],
+            "body-sm": ["Geist"],
+            "headline-display-mobile": ["Newsreader"],
+            "label-code": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
+            "financial-stat-md": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "financial-stat-lg": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.03em", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "financial-stat-lg-mobile": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-display-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "label-code": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+<!-- Layer Base CSS Normalization -->
+<style>
+    @layer base {
+      html {
+        overscroll-behavior: none;
+        scroll-behavior: smooth;
+      }
+      body {
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      }
+    }
+    :root, [data-theme="paper"] {
+      --bg-base: #faf9f6;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f4f3f0;
+      --border-subtle: #c8c7bf;
+      --text-main: #1a1c1a;
+      --text-muted: #777771;
+    }
+    [data-theme="graphite"] {
+      --bg-base: #14171d;
+      --bg-surface: #1b2029;
+      --bg-elevated: #242a36;
+      --border-subtle: #343c4d;
+      --text-main: #f0f2f5;
+      --text-muted: #96a0b0;
+    }
+    [data-theme="glass"] {
+      --bg-base: #edf2f7;
+      --bg-surface: rgba(255, 255, 255, 0.75);
+      --bg-elevated: rgba(255, 255, 255, 0.9);
+      --border-subtle: rgba(200, 199, 191, 0.6);
+      --text-main: #141923;
+      --text-muted: #5c667a;
+    }
+    [data-theme="soft-dusk"] {
+      --bg-base: #13151f;
+      --bg-surface: #1a1d2c;
+      --bg-elevated: #23273c;
+      --border-subtle: #3d4468;
+      --text-main: #f1f2fa;
+      --text-muted: #a3a9c7;
+    }
+    [data-theme="operator"] {
+      --bg-base: #050608;
+      --bg-surface: #0c0e12;
+      --bg-elevated: #14171d;
+      --border-subtle: #2d3545;
+      --text-main: #e2e8f0;
+      --text-muted: #818f9f;
+    }
+  </style>
+</head>
+<body class="min-h-full bg-background text-on-background font-body-md antialiased">
+<!-- ================= TOP NAVIGATION BAR (Exact Header Height = 64px / h-16) ================= -->
+<header class="fixed top-0 inset-x-0 z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant/50 transition-colors duration-200">
+<div class="h-16 max-w-[1440px] mx-auto px-margin-desktop flex items-center justify-between gap-space-md">
+<!-- Brand & Date Selector -->
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-xl flex items-center justify-center font-financial-stat-md text-on-primary bg-primary shadow-xs tracking-tighter">
+            ₹C
+          </div>
+<div>
+<div class="flex items-center gap-space-xs cursor-pointer group">
+<span class="font-label-code text-caption font-semibold tracking-wider text-on-surface uppercase">OCT 2024</span>
+<span class="material-symbols-outlined text-[15px] text-outline group-hover:text-on-surface transition-colors">expand_more</span>
+</div>
+<p class="font-caption text-caption text-outline leading-none mt-0.5">Studio Controller</p>
+</div>
+</div>
+<!-- Top Route Navigation (Text-Only, Uniform Baseline, Strict Data-Path & Active Strategy) -->
+<nav class="hidden md:flex items-center gap-space-xs pl-space-md border-l border-outline-variant/60" data-active-classes="bg-surface-container-high text-on-surface font-semibold">
+<a class="px-space-md py-1.5 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="overview" href="#">Overview</a>
+<a class="px-space-md py-1.5 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="analytics" href="#">Analytics</a>
+<a aria-current="page" class="px-space-md py-1.5 rounded-lg transition-colors bg-surface-container-high text-on-surface font-semibold" data-path="copilot-workspace" href="#">Copilot Workspace</a>
+<a class="px-space-md py-1.5 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="transactions" href="#">Transactions</a>
+<a class="px-space-md py-1.5 rounded-lg font-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="budgets" href="#">Budgets</a>
+</nav>
+</div>
+<!-- Global Search & Command Palette (⌘K) -->
+<div class="hidden lg:flex items-center flex-1 max-w-sm mx-space-md">
+<div class="w-full flex items-center gap-space-sm px-space-md py-1.5 rounded-xl bg-surface-container-low border border-outline-variant/50 focus-within:border-outline transition-colors">
+<span class="material-symbols-outlined text-[17px] text-outline">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-sm text-on-surface placeholder:text-outline focus:ring-0 p-0" placeholder="Search accounts, ledger, or ask Copilot..." type="text"/>
+<kbd class="font-label-code text-caption px-1.5 py-0.5 rounded bg-surface-container-lowest border border-outline-variant text-on-surface-variant">⌘K</kbd>
+</div>
+</div>
+<!-- Theme Switcher Pills, Alert Trigger, Profile -->
+<div class="flex items-center gap-space-sm">
+<!-- Live Theme Switcher Pills -->
+<div class="hidden sm:flex items-center gap-1 p-1 rounded-xl bg-surface-container border border-outline-variant/40">
+<span class="font-label-code text-caption uppercase text-outline px-1.5">THEME:</span>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface border border-outline-variant/80 bg-surface shadow-2xs font-semibold" data-theme-btn="paper" onclick="setTheme('paper')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#1c1c1a]"></span>
+<span>Paper</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent" data-theme-btn="graphite" onclick="setTheme('graphite')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ade80]"></span>
+<span>Graphite</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent" data-theme-btn="glass" onclick="setTheme('glass')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#0284c7]"></span>
+<span>Glass</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent" data-theme-btn="soft-dusk" onclick="setTheme('soft-dusk')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#9d8df1]"></span>
+<span>Soft Dusk</span>
+</button>
+<button class="flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent" data-theme-btn="operator" onclick="setTheme('operator')">
+<span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+<span>Opera</span>
+</button>
+</div>
+<!-- Alerts / Notifications -->
+<button class="relative w-8 h-8 rounded-xl flex items-center justify-center bg-surface-container border border-outline-variant/60 text-on-surface hover:bg-surface-container-high transition-colors" title="Notifications">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-error"></span>
+</button>
+<!-- Profile Avatar Badge -->
+<div class="flex items-center gap-space-xs pl-space-xs border-l border-outline-variant/60 cursor-pointer">
+<div class="w-8 h-8 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-code text-caption font-semibold border border-outline-variant/40">
+            AR
+          </div>
+<div class="hidden xl:block text-left">
+<p class="font-body-sm text-caption font-semibold leading-none text-on-surface">Aditya Roy</p>
+<p class="font-label-code text-caption text-outline leading-tight mt-0.5">Private Wealth</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- ================= MAIN LAYOUT WITH STRICT ADAPTIVE BUFFER (pt-16 == h-16) ================= -->
+<main class="pt-16 min-h-screen w-full">
+<div class="max-w-[1440px] mx-auto p-margin md:p-space-lg lg:p-margin-desktop">
+<div class="flex flex-col w-full">
+<!-- Top Context Toolbar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-lg mb-space-lg">
+<!-- Breadcrumb & Mode Info -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs font-label-code text-caption text-outline">
+<span class="hover:text-on-surface transition-colors cursor-pointer">Workspace</span>
+<span>/</span>
+<span class="text-on-surface font-medium">Deep Financial Diagnostics</span>
+<span class="ml-2 px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed-variant font-caption text-caption">LIVE RECONCILED</span>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Diagnostics &amp; Copilot Synthesis</h1>
+<span class="font-caption text-caption text-outline font-normal">October Cycle • ₹1,89,000 Inflow Recorded</span>
+</div>
+</div>
+<!-- Quick Operations & Scenarios -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Time Horizon Toggle -->
+<div class="flex items-center p-0.5 rounded-xl bg-surface-container-low shadow-sm">
+<button class="px-space-md py-1.5 rounded-lg bg-surface font-body-sm text-body-sm font-medium text-on-surface shadow-xs transition-all" onclick="setTimePeriod(this, 'Month-to-Date')">Month-to-Date</button>
+<button class="px-space-md py-1.5 rounded-lg font-body-sm text-body-sm text-outline hover:text-on-surface transition-all" onclick="setTimePeriod(this, 'Q3 Review')">Q3 Review</button>
+<button class="px-space-md py-1.5 rounded-lg font-body-sm text-body-sm text-outline hover:text-on-surface transition-all" onclick="setTimePeriod(this, 'Yearly Trajectory')">Trajectory</button>
+</div>
+<!-- Scenario Selector -->
+<div class="flex items-center gap-space-xs px-space-md py-1.5 rounded-xl bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">schema</span>
+<span class="font-label-code text-caption text-outline">SCENARIO:</span>
+<select class="bg-transparent font-label-code text-caption font-semibold text-on-surface focus:outline-none cursor-pointer pr-1" id="scenarioSelector" onchange="updateScenario(this.value)">
+<option value="baseline">Baseline Runway</option>
+<option value="optimistic">Optimistic (+15% Consulting)</option>
+<option selected="" value="festive">Diwali Festive Surge (Current)</option>
+</select>
+</div>
+<!-- Primary Action -->
+<button class="flex items-center gap-space-xs px-space-lg py-2 rounded-xl bg-primary text-on-primary font-body-sm text-body-sm font-medium shadow-md hover:bg-neutral-800 active:scale-95 transition-all" onclick="triggerSimulation()">
+<span class="material-symbols-outlined text-[18px]">neurology</span>
+<span>Run Copilot Simulation</span>
+</button>
+</div>
+</div>
+<!-- Main 50 / 50 Desktop Split -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- ================= LEFT COLUMN: Deep Analytics Engine (6 cols / 50%) ================= -->
+<div class="xl:col-span-6 flex flex-col gap-space-lg">
+<!-- Card 1: Interactive Sankey Flow Representation -->
+<div class="p-space-lg rounded-2xl bg-surface shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-code text-caption uppercase text-outline">Capital Velocity Map</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">October Inflow &amp; Allocation Pipeline</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-financial-stat-md text-financial-stat-md text-on-surface">₹1,89,000</span>
+<span class="font-label-code text-caption px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-semibold">100% Allocated</span>
+</div>
+</div>
+<!-- High Fidelity Visual Flow (SVG Sankey Stream Representation) -->
+<div class="relative w-full rounded-xl bg-surface-container-low p-space-md overflow-hidden">
+<svg class="w-full h-auto text-on-surface" preserveaspectratio="xMidYMid meet" viewbox="0 0 600 240">
+<defs>
+<lineargradient id="flowInflowSalary" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#426656" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#1c1c1a" stop-opacity="0.4"></stop>
+</lineargradient>
+<lineargradient id="flowInflowConsult" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#a9cfbc" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#1c1c1a" stop-opacity="0.4"></stop>
+</lineargradient>
+<lineargradient id="flowOutSip" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#1c1c1a" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#426656" stop-opacity="0.9"></stop>
+</lineargradient>
+<lineargradient id="flowOutFestive" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#1c1c1a" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#ba1a1a" stop-opacity="0.7"></stop>
+</lineargradient>
+</defs>
+<!-- Left Source Blocks -->
+<!-- TechCorp Salary -->
+<rect class="shadow-sm" fill="#f4f3f0" height="90" rx="6" width="110" x="10" y="20"></rect>
+<text fill="#777771" font-family="Geist" font-size="11" font-weight="500" x="20" y="45">TECHCORP SALARY</text>
+<text fill="#1a1c1a" font-family="JetBrains Mono" font-size="16" font-weight="600" x="20" y="72">₹1,65,000</text>
+<text fill="#426656" font-family="Geist" font-size="10" x="20" y="92">Direct Deposit (01 Oct)</text>
+<!-- Consulting -->
+<rect fill="#f4f3f0" height="85" rx="6" width="110" x="10" y="130"></rect>
+<text fill="#777771" font-family="Geist" font-size="11" font-weight="500" x="20" y="155">CONSULTING</text>
+<text fill="#1a1c1a" font-family="JetBrains Mono" font-size="16" font-weight="600" x="20" y="180">₹24,000</text>
+<text fill="#777771" font-family="Geist" font-size="10" x="20" y="198">2 Retainers Wire</text>
+<!-- Intermediate Hub (Oct Net Pool) -->
+<rect fill="#1c1c1a" height="150" rx="8" width="105" x="235" y="45"></rect>
+<text fill="#c9c6c3" font-family="Geist" font-size="10" letter-spacing="1" x="247" y="75">ALLOCATION HUB</text>
+<text fill="#ffffff" font-family="Newsreader" font-size="17" font-weight="500" x="247" y="105">Net Liquidity</text>
+<text fill="#ffffff" font-family="JetBrains Mono" font-size="15" x="247" y="130">₹1,89,000</text>
+<text fill="#a9cfbc" font-family="Geist" font-size="10" x="247" y="165">Zero Unaccounted</text>
+<!-- Flows Inflow -> Hub -->
+<path d="M 120 65 C 170 65, 180 90, 235 90" fill="none" opacity="0.6" stroke="url(#flowInflowSalary)" stroke-linecap="round" stroke-width="26"></path>
+<path d="M 120 170 C 170 170, 180 150, 235 150" fill="none" opacity="0.6" stroke="url(#flowInflowConsult)" stroke-linecap="round" stroke-width="12"></path>
+<!-- Right Destination Blocks & Curves -->
+<!-- 1. SIP Investments (42.7%) -->
+<path d="M 340 75 C 390 75, 410 40, 460 40" fill="none" opacity="0.7" stroke="url(#flowOutSip)" stroke-width="20"></path>
+<rect fill="#f4f3f0" height="46" rx="4" width="130" x="460" y="15"></rect>
+<text fill="#426656" font-family="Geist" font-size="10" font-weight="600" x="470" y="32">INVESTMENTS (SIPs)</text>
+<text fill="#1a1c1a" font-family="JetBrains Mono" font-size="13" x="470" y="48">₹80,800</text>
+<!-- 2. Fixed EMIs & Rent -->
+<path d="M 340 105 C 390 105, 410 85, 460 85" fill="none" opacity="0.9" stroke="#dbdad7" stroke-width="15"></path>
+<rect fill="#f4f3f0" height="42" rx="4" width="130" x="460" y="68"></rect>
+<text fill="#777771" font-family="Geist" font-size="10" font-weight="600" x="470" y="85">FIXED EMIs &amp; RENT</text>
+<text fill="#1a1c1a" font-family="JetBrains Mono" font-size="13" x="470" y="100">₹45,000</text>
+<!-- 3. Festive & Gifting (Anomalous) -->
+<path d="M 340 135 C 390 135, 410 140, 460 140" fill="none" opacity="0.75" stroke="url(#flowOutFestive)" stroke-width="14"></path>
+<rect fill="#ffdad6" height="46" rx="4" width="130" x="460" y="120"></rect>
+<text fill="#93000a" font-family="Geist" font-size="10" font-weight="700" x="470" y="138">FESTIVE &amp; GIFTS ✦</text>
+<text fill="#93000a" font-family="JetBrains Mono" font-size="13" x="470" y="153">₹32,000</text>
+<!-- 4. Dining & Discretionary -->
+<path d="M 340 165 C 390 165, 410 195, 460 195" fill="none" opacity="0.8" stroke="#c8c7bf" stroke-width="10"></path>
+<rect fill="#f4f3f0" height="44" rx="4" width="130" x="460" y="176"></rect>
+<text fill="#777771" font-family="Geist" font-size="10" font-weight="600" x="470" y="193">DINING &amp; LEISURE</text>
+<text fill="#1a1c1a" font-family="JetBrains Mono" font-size="13" x="470" y="209">₹18,400</text>
+<!-- Reserve buffer balance -->
+<circle cx="340" cy="180" fill="#426656" r="3"></circle>
+<text fill="#426656" font-family="JetBrains Mono" font-size="9" x="350" y="184">₹12.8k Reserve</text>
+</svg>
+</div>
+<!-- Metric Badges Row -->
+<div class="grid grid-cols-3 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Savings Rate</span>
+<span class="font-financial-stat-md text-financial-stat-md text-secondary mt-0.5">42.7%</span>
+<span class="font-caption text-caption text-outline leading-tight mt-1">+3.2% vs target</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Festive Weight</span>
+<span class="font-financial-stat-md text-financial-stat-md text-error mt-0.5">16.9%</span>
+<span class="font-caption text-caption text-error leading-tight mt-1">High variance node</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col">
+<span class="font-caption text-caption text-outline">Fixed Outgo</span>
+<span class="font-financial-stat-md text-financial-stat-md text-on-surface mt-0.5">₹45,000</span>
+<span class="font-caption text-caption text-outline leading-tight mt-1">23.8% of income</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Category Variance Radar & Spend Anomalies -->
+<div class="p-space-lg rounded-2xl bg-surface shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-code text-caption uppercase text-outline">Historical Baseline Comparison</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Variance Spectrum &amp; Anomaly Signals</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-code text-caption font-semibold">1 Critical Surge</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<!-- Geometric Visual Radar Representation -->
+<div class="md:col-span-5 flex flex-col items-center justify-center p-space-sm bg-surface-container-low rounded-xl">
+<svg class="w-40 h-40" viewbox="0 0 180 180">
+<!-- Concentric guideline pentagons -->
+<polygon fill="none" points="90,15 161,67 134,151 46,151 19,67" stroke="#c8c7bf" stroke-dasharray="2 2" stroke-width="0.75"></polygon>
+<polygon fill="none" points="90,45 137,80 119,136 61,136 43,80" stroke="#c8c7bf" stroke-width="0.75"></polygon>
+<polygon fill="none" points="90,65 114,83 105,111 75,111 66,83" stroke="#dbdad7" stroke-width="0.5"></polygon>
+<!-- Historical Polygon (Calm Gray) -->
+<polygon fill="#e9e8e5" fill-opacity="0.5" points="90,52 130,82 110,126 68,130 50,78" stroke="#777771" stroke-width="1.5"></polygon>
+<!-- Current October Polygon (Spike on Festive Top) -->
+<polygon fill="#ffdad3" fill-opacity="0.45" points="90,20 126,85 102,120 72,138 46,74" stroke="#ba1a1a" stroke-width="2"></polygon>
+<!-- Data Node points -->
+<circle cx="90" cy="20" fill="#ba1a1a" r="3.5"></circle>
+<circle cx="126" cy="85" fill="#1a1c1a" r="2.5"></circle>
+<circle cx="102" cy="120" fill="#426656" r="2.5"></circle>
+<circle cx="72" cy="138" fill="#1a1c1a" r="2.5"></circle>
+<circle cx="46" cy="74" fill="#1a1c1a" r="2.5"></circle>
+<!-- Axis Labels -->
+<text fill="#ba1a1a" font-family="Geist" font-size="8" font-weight="600" text-anchor="middle" x="90" y="12">Festive (+34%)</text>
+<text fill="#777771" font-family="Geist" font-size="8" x="165" y="70">Dining</text>
+<text fill="#777771" font-family="Geist" font-size="8" x="135" y="162">SIPs</text>
+<text fill="#777771" font-family="Geist" font-size="8" x="45" y="162">Bills</text>
+<text fill="#777771" font-family="Geist" font-size="8" x="10" y="70">Gadgets</text>
+</svg>
+<span class="font-caption text-caption text-outline mt-1 text-center">Radial Dev. vs 6-Month Mean</span>
+</div>
+<!-- Variance Details Column -->
+<div class="md:col-span-7 flex flex-col gap-2">
+<!-- Item 1: Festive Spike -->
+<div class="p-2.5 rounded-xl bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-error">celebration</span>
+<div>
+<p class="font-body-sm text-body-sm font-medium text-on-surface">Festive Gifting &amp; Sweets</p>
+<p class="font-caption text-caption text-outline">Budget: ₹12,000 • Actual: ₹32,000</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-financial-stat-md text-caption text-error font-semibold">+34.8%</span>
+<p class="font-caption text-caption text-error">Critical</p>
+</div>
+</div>
+<!-- Item 2: Dining & Delivery -->
+<div class="p-2.5 rounded-xl bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">restaurant</span>
+<div>
+<p class="font-body-sm text-body-sm font-medium text-on-surface">Dining &amp; Social</p>
+<p class="font-caption text-caption text-outline">Budget: ₹16,000 • Actual: ₹18,400</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-financial-stat-md text-caption text-on-surface font-semibold">+15.0%</span>
+<p class="font-caption text-caption text-outline">Elevated</p>
+</div>
+</div>
+<!-- Item 3: SIP Investments -->
+<div class="p-2.5 rounded-xl bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">trending_up</span>
+<div>
+<p class="font-body-sm text-body-sm font-medium text-on-surface">Systematic Investments</p>
+<p class="font-caption text-caption text-outline">Index &amp; Debt Parity Confirmed</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-financial-stat-md text-caption text-secondary font-semibold">ON PAR</span>
+<p class="font-caption text-caption text-secondary">100% Executed</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Liquidity Runway & Burn Rate Projection -->
+<div class="p-space-lg rounded-2xl bg-surface shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-code text-caption uppercase text-outline">Resilience Stress-Test</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">14.2 Months Solvency Runway</h2>
+</div>
+<div class="text-right">
+<span class="font-caption text-caption text-outline">Current Net Burn Rate</span>
+<p class="font-financial-stat-md text-financial-stat-md text-on-surface">₹63,400<span class="text-caption font-caption text-outline">/mo</span></p>
+</div>
+</div>
+<!-- Projection Trajectory Canvas / Sparkline Curve -->
+<div class="relative w-full h-28 bg-surface-container-low rounded-xl p-3 flex flex-col justify-between">
+<div class="flex items-center justify-between font-label-code text-caption text-outline">
+<span>OCT 2024 (₹8,92,000 Liquid)</span>
+<span>+6 MONTHS</span>
+<span>DEC 2025 (Runway Threshold)</span>
+</div>
+<svg class="w-full h-12 overflow-visible" viewbox="0 0 500 60">
+<!-- Safe threshold corridor -->
+<rect fill="#f4f3f0" height="20" opacity="0.6" width="500" x="0" y="40"></rect>
+<line stroke="#ba1a1a" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="500" y1="40" y2="40"></line>
+<text fill="#ba1a1a" font-family="JetBrains Mono" font-size="8" x="4" y="36">CRITICAL 6-MONTH FLOOR (₹3,80,000)</text>
+<!-- Projected Curve: Baseline Path -->
+<path d="M 0 10 C 120 12, 250 22, 380 30, 440 34, 500 42" fill="none" stroke="#1c1c1a" stroke-width="2.5"></path>
+<!-- Projected Curve: Optimistic Post-Diwali Recovery Path -->
+<path d="M 0 10 C 120 8, 250 14, 380 16, 440 18, 500 20" fill="none" stroke="#426656" stroke-dasharray="4 2" stroke-width="1.75"></path>
+<!-- Current position pin -->
+<circle cx="8" cy="10" fill="#1c1c1a" r="4"></circle>
+</svg>
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Status Quo (14.2 mo)
+            </span>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> With Copilot November Rebalance (17.8 mo)
+            </span>
+<span class="text-secondary font-medium">Safe Margin +3.6 mo</span>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= RIGHT COLUMN: AI Copilot Interactive Console (6 cols / 50%) ================= -->
+<div class="xl:col-span-6 flex flex-col rounded-2xl bg-surface shadow-md border-none overflow-hidden">
+<!-- Copilot Studio Header -->
+<div class="p-space-lg bg-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[20px]">neurology</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Finance Copilot L2</h2>
+<span class="px-2 py-0.2 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-code text-caption font-semibold">High Reasoning</span>
+</div>
+<p class="font-caption text-caption text-outline flex items-center gap-1.5 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              Live Context Synced • 42 Ledger Rows Parsed
+            </p>
+</div>
+</div>
+<!-- Session Tools -->
+<div class="flex items-center gap-space-xs">
+<button class="p-2 rounded-xl bg-surface hover:bg-surface-container text-on-surface-variant transition-colors shadow-2xs" onclick="resetChat()" title="Reset Context">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+<button class="p-2 rounded-xl bg-surface hover:bg-surface-container text-on-surface-variant transition-colors shadow-2xs" title="Download Diagnostics Memo">
+<span class="material-symbols-outlined text-[18px]">ios_share</span>
+</button>
+</div>
+</div>
+<!-- Dialogue Thread Stream -->
+<div class="p-space-lg flex flex-col gap-space-lg overflow-y-auto max-h-[750px] bg-surface" id="chatStream">
+<!-- User Inquiry Message Bubble -->
+<div class="flex items-start justify-end gap-space-sm">
+<div class="max-w-[85%] p-space-md rounded-2xl rounded-tr-xs bg-primary text-on-primary shadow-xs">
+<p class="font-body-md text-body-md leading-relaxed text-on-primary">
+              "How will my Diwali gifts (₹32,000) and upcoming December vacation impact my M3 Pro Workstation goal deadline?"
+            </p>
+<div class="flex items-center justify-end gap-2 mt-2 pt-2 text-outline font-label-code text-caption">
+<span>Today, 11:42 AM</span>
+<span>•</span>
+<span>Aditya Roy</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-code text-caption font-semibold">
+            AR
+          </div>
+</div>
+<!-- AI Diagnostic Response Stream -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-[16px]">neurology</span>
+</div>
+<div class="flex flex-col gap-space-md max-w-[90%]">
+<!-- Narrative Editorial Synthesis -->
+<div class="p-space-lg rounded-2xl rounded-tl-xs bg-surface-container-low shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1 border-b-0">
+<span class="font-label-code text-caption text-secondary font-medium tracking-wide">AUTONOMOUS AUDIT DISCOVERY</span>
+<span class="font-label-code text-caption text-outline">Confidence: 98.4%</span>
+</div>
+<p class="font-headline-sm text-body-lg text-on-surface font-normal leading-relaxed italic">
+                Spending ₹32,000 on festive gifting triggers a temporary liquidity drag, but it will <strong class="not-italic font-semibold text-on-surface">only delay your M3 Pro Workstation by 12 calendar days</strong> (moving delivery from Nov 18 to Nov 30), provided discretionary dining is reined in by ₹4,000 next month.
+              </p>
+<div class="font-body-sm text-body-sm text-on-surface-variant leading-normal flex flex-col gap-2 pt-1">
+<p>
+                  Your baseline goal of accumulating <strong>₹2,40,000</strong> in the Workstation Vault currently stands at <strong>₹1,88,000 (78.3%)</strong>. The ₹24,000 consulting retainer received on October 12 successfully cushioned 75% of your Diwali outgo.
+                </p>
+</div>
+</div>
+<!-- Comparison Scenario Tiles: Status Quo vs AI Optimized -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- Tile 1: Status Quo -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-code text-caption uppercase text-outline">Path A: Unadjusted</span>
+<span class="material-symbols-outlined text-[16px] text-outline">timelapse</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Status Quo</h3>
+<p class="font-caption text-caption text-outline mt-1">Maintain current ₹18.4k dining burn</p>
+</div>
+<div class="pt-space-xs flex flex-col gap-1">
+<div class="flex justify-between font-label-code text-caption">
+<span class="text-outline">Completion Date:</span>
+<span class="font-medium text-error">Dec 14, 2024</span>
+</div>
+<div class="flex justify-between font-label-code text-caption">
+<span class="text-outline">Holiday Buffer:</span>
+<span class="font-medium text-on-surface">₹14,500</span>
+</div>
+<div class="flex justify-between font-label-code text-caption">
+<span class="text-outline">Goal Slippage:</span>
+<span class="font-medium text-error">+26 Days</span>
+</div>
+</div>
+</div>
+<!-- Tile 2: AI Rebalanced Plan -->
+<div class="p-space-md rounded-xl bg-secondary-fixed/40 flex flex-col justify-between gap-space-sm shadow-xs">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-code text-caption uppercase text-secondary font-semibold">Path B: Recommended</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Copilot Rebalance</h3>
+<p class="font-caption text-caption text-on-secondary-fixed-variant mt-1">Offset via Festive Sweep + Dining Cap</p>
+</div>
+<div class="pt-space-xs flex flex-col gap-1">
+<div class="flex justify-between font-label-code text-caption">
+<span class="text-on-secondary-fixed-variant">Completion Date:</span>
+<span class="font-semibold text-secondary">Nov 30, 2024</span>
+</div>
+<div class="flex justify-between font-label-code text-caption">
+<span class="text-on-secondary-fixed-variant">Holiday Buffer:</span>
+<span class="font-semibold text-on-surface">₹26,500</span>
+</div>
+<div class="flex justify-between font-label-code text-caption">
+<span class="text-on-secondary-fixed-variant">Net Slippage:</span>
+<span class="font-semibold text-secondary">+12 Days only</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Structured Actionable Recommendation Card -->
+<div class="p-space-md rounded-xl bg-surface-container-high shadow-xs flex flex-col gap-space-sm transition-all duration-300" id="reconciliationActionCard">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-secondary mt-0.5">swap_calls</span>
+<div>
+<h4 class="font-body-sm text-body-sm font-semibold text-on-surface">Immediate Autonomous Optimization</h4>
+<p class="font-caption text-caption text-outline mt-0.5">
+                      Auto-sweep unutilized consulting residual (₹12,000) into 'Workstation Vault' &amp; apply ₹14,000 soft cap on November Dining.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Action Bar inside Recommendation -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-2">
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-1.5 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-body-sm text-caption font-semibold shadow-xs hover:bg-neutral-800 active:scale-95 transition-all" id="btnExecuteAllocation" onclick="executeAllocationAction()">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+<span>Execute Allocation (₹12,000)</span>
+</button>
+<button class="px-space-md py-1.5 rounded-lg bg-surface text-on-surface font-body-sm text-caption font-medium hover:bg-surface-container transition-all" onclick="toggleRationaleModal()">
+                    Inspect Rationale
+                  </button>
+</div>
+<span class="font-label-code text-caption text-outline">Undo window: 24h</span>
+</div>
+</div>
+<!-- Optional Rationale Drawer Modal (Hidden by default) -->
+<div class="hidden p-space-md rounded-xl bg-surface shadow-md flex flex-col gap-2" id="rationaleDrawer">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-caption uppercase text-on-surface font-semibold">Mathematical Proof &amp; Cash Flow Rationale</span>
+<button class="text-outline hover:text-on-surface" onclick="toggleRationaleModal()">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">
+                Consulting inflow of ₹24,000 exceeded your Q3 conservative benchmark (₹15,000) by ₹9,000. Transferring ₹12,000 preserves a ₹3,000 residual buffer while insulating your Apple Store procurement date against festive shipping price premiums.
+              </p>
+</div>
+</div>
+</div>
+<!-- Dynamic Injected Chat Output Area -->
+<div class="flex flex-col gap-space-md" id="dynamicAiChatSlot"></div>
+</div>
+<!-- Bottom Interactive Prompt Bar & Suggestions -->
+<div class="p-space-lg bg-surface-container-low flex flex-col gap-space-sm">
+<!-- Quick Preset Prompt Chips -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 text-nowrap no-scrollbar">
+<span class="font-label-code text-caption text-outline">TRY:</span>
+<button class="px-2.5 py-1 rounded-lg bg-surface hover:bg-surface-container text-on-surface-variant font-body-sm text-caption transition-all shadow-2xs" onclick="applyPresetPrompt('Simulate 20% festive performance bonus payout')">
+            ✦ Simulate 20% bonus
+          </button>
+<button class="px-2.5 py-1 rounded-lg bg-surface hover:bg-surface-container text-on-surface-variant font-body-sm text-caption transition-all shadow-2xs" onclick="applyPresetPrompt('Audit recurring subscription overlaps in October')">
+            ✦ Audit subscriptions
+          </button>
+<button class="px-2.5 py-1 rounded-lg bg-surface hover:bg-surface-container text-on-surface-variant font-body-sm text-caption transition-all shadow-2xs" onclick="applyPresetPrompt('Optimize tax-harvesting before Q3 equity SIP execution')">
+            ✦ Tax harvesting check
+          </button>
+</div>
+<!-- Text Input & Voice Console -->
+<div class="flex items-center gap-space-xs p-1.5 rounded-xl bg-surface shadow-xs">
+<button class="p-2 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-all" id="voiceBtn" onclick="toggleVoiceDictation()" title="Voice Dictation">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+<input class="flex-1 bg-transparent border-none outline-none font-body-sm text-on-surface placeholder:text-outline p-1.5 focus:ring-0" id="copilotQueryInput" onkeydown="if(event.key === 'Enter') handleSendUserQuery()" placeholder="Direct query to Controller L2 (e.g. 'Project runway if consulting ceases')..." type="text"/>
+<button class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center hover:bg-neutral-800 active:scale-95 transition-all shadow-xs" onclick="handleSendUserQuery()">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+<!-- Footer Security Attestation -->
+<div class="flex items-center justify-between font-caption text-caption text-outline px-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary">lock</span>
+            Encrypted End-to-End • SOC2 Certified Controller Core
+          </span>
+<span class="font-label-code text-caption">Tokens: 642 / 4096</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic Scenario Switcher Logic
+  function updateScenario(scenario) {
+    const chatStream = document.getElementById('chatStream');
+    let message = '';
+    
+    if (scenario === 'optimistic') {
+      message = 'Optimistic scenario loaded: Factoring in +15% consulting expansion. Runway expanded to 19.4 months. Workstation target achievable by Nov 12.';
+    } else if (scenario === 'baseline') {
+      message = 'Baseline model restored: Neutral spending trajectory without seasonal adjustments.';
+    } else {
+      message = 'Festive Surge active: Tracking October holiday gifting and high discretionary velocity.';
+    }
+
+    appendSystemNotification(message);
+  }
+
+  // Time Period Toggle
+  function setTimePeriod(btn, label) {
+    const parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(b => {
+      b.className = 'px-space-md py-1.5 rounded-lg font-body-sm text-body-sm text-outline hover:text-on-surface transition-all';
+    });
+    btn.className = 'px-space-md py-1.5 rounded-lg bg-surface font-body-sm text-body-sm font-medium text-on-surface shadow-xs transition-all';
+    appendSystemNotification(`Diagnostic timeframe switched to: ${label}. Data re-aggregated.`);
+  }
+
+  // Preset Prompt Injection
+  function applyPresetPrompt(text) {
+    const input = document.getElementById('copilotQueryInput');
+    input.value = text;
+    input.focus();
+  }
+
+  // Trigger Primary Simulation
+  function triggerSimulation() {
+    appendSystemNotification('Re-running full monte-carlo cash-flow simulation with October live values...');
+    setTimeout(() => {
+      const dynamicSlot = document.getElementById('dynamicAiChatSlot');
+      const responseCard = document.createElement('div');
+      responseCard.className = 'flex items-start gap-space-sm animate-fadeIn';
+      responseCard.innerHTML = `
+        <div class="w-8 h-8 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0 mt-1">
+          <span class="material-symbols-outlined text-[16px]">neurology</span>
+        </div>
+        <div class="p-space-md rounded-2xl rounded-tl-xs bg-surface-container-low shadow-sm flex flex-col gap-2 max-w-[90%]">
+          <div class="flex items-center justify-between">
+            <span class="font-label-code text-caption text-secondary font-semibold">SIMULATION COMPLETE (500 ITERATIONS)</span>
+            <span class="font-label-code text-caption text-outline">Just now</span>
+          </div>
+          <p class="font-body-md text-on-surface">
+            Simulation confirms 94.2% probability of achieving complete fiscal health score of 91/100 by December 31st. Liquidity cushion remains resilient against any unbudgeted shock under ₹48,000.
+          </p>
+        </div>
+      `;
+      dynamicSlot.appendChild(responseCard);
+      document.getElementById('chatStream').scrollTop = document.getElementById('chatStream').scrollHeight;
+    }, 600);
+  }
+
+  // Send User Query
+  function handleSendUserQuery() {
+    const input = document.getElementById('copilotQueryInput');
+    const query = input.value.trim();
+    if (!query) return;
+
+    const dynamicSlot = document.getElementById('dynamicAiChatSlot');
+
+    // Append User Bubble
+    const userBubble = document.createElement('div');
+    userBubble.className = 'flex items-start justify-end gap-space-sm';
+    userBubble.innerHTML = `
+      <div class="max-w-[85%] p-space-md rounded-2xl rounded-tr-xs bg-primary text-on-primary shadow-xs">
+        <p class="font-body-md text-body-md leading-relaxed text-on-primary">${escapeHtml(query)}</p>
+        <div class="flex items-center justify-end gap-2 mt-2 pt-2 text-outline font-label-code text-caption">
+          <span>Just now</span> • <span>Aditya Roy</span>
+        </div>
+      </div>
+      <div class="w-8 h-8 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-code text-caption font-semibold">
+        AR
+      </div>
+    `;
+    dynamicSlot.appendChild(userBubble);
+    input.value = '';
+
+    // Scroll to bottom
+    const stream = document.getElementById('chatStream');
+    stream.scrollTop = stream.scrollHeight;
+
+    // Simulate AI Copilot Response
+    setTimeout(() => {
+      const aiReply = document.createElement('div');
+      aiReply.className = 'flex items-start gap-space-sm';
+      aiReply.innerHTML = `
+        <div class="w-8 h-8 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0 mt-1">
+          <span class="material-symbols-outlined text-[16px]">neurology</span>
+        </div>
+        <div class="p-space-md rounded-2xl rounded-tl-xs bg-surface-container-low shadow-sm flex flex-col gap-2 max-w-[90%]">
+          <div class="flex items-center justify-between">
+            <span class="font-label-code text-caption text-secondary font-semibold">REASONING COMPLETE</span>
+            <span class="font-label-code text-caption text-outline">Calm Model</span>
+          </div>
+          <p class="font-body-md text-on-surface">
+            Acknowledged. For <strong class="text-on-surface font-medium">"${escapeHtml(query)}"</strong>, the automated ledger models suggest anchoring your liquid emergency reserves at ₹1,50,000 before initiating secondary transfers. All SIP mandates remain locked and protected.
+          </p>
+        </div>
+      `;
+      dynamicSlot.appendChild(aiReply);
+      stream.scrollTop = stream.scrollHeight;
+    }, 800);
+  }
+
+  // Execute Allocation Microaction
+  function executeAllocationAction() {
+    const card = document.getElementById('reconciliationActionCard');
+    const btn = document.getElementById('btnExecuteAllocation');
+    btn.innerHTML = `<span class="material-symbols-outlined text-[15px] animate-spin">sync</span> Transferring ₹12,000...`;
+    btn.disabled = true;
+
+    setTimeout(() => {
+      card.className = 'p-space-md rounded-xl bg-secondary-fixed/40 shadow-xs flex flex-col gap-space-sm';
+      card.innerHTML = `
+        <div class="flex items-center gap-space-xs text-secondary font-semibold font-body-sm">
+          <span class="material-symbols-outlined text-[20px]">task_alt</span>
+          <span>Allocation Successfully Executed!</span>
+        </div>
+        <p class="font-caption text-caption text-on-secondary-fixed-variant">
+          ₹12,000 transferred from Liquid Retainer to 'M3 Pro Workstation Vault'. Goal completion target recalculated: <strong>November 30, 2024</strong>.
+        </p>
+      `;
+    }, 900);
+  }
+
+  // Toggle Rationale Detail Drawer
+  function toggleRationaleModal() {
+    const drawer = document.getElementById('rationaleDrawer');
+    if (drawer.classList.contains('hidden')) {
+      drawer.classList.remove('hidden');
+    } else {
+      drawer.classList.add('hidden');
+    }
+  }
+
+  // Voice Dictation Toggle Simulation
+  function toggleVoiceDictation() {
+    const voiceBtn = document.getElementById('voiceBtn');
+    const input = document.getElementById('copilotQueryInput');
+    voiceBtn.classList.toggle('text-error');
+    if (voiceBtn.classList.contains('text-error')) {
+      input.placeholder = "Listening for financial query...";
+    } else {
+      input.placeholder = "Direct query to Controller L2 (e.g. 'Project runway if consulting ceases')...";
+    }
+  }
+
+  // Reset Chat stream
+  function resetChat() {
+    const dynamicSlot = document.getElementById('dynamicAiChatSlot');
+    dynamicSlot.innerHTML = '';
+    appendSystemNotification('Copilot workspace memory flushed. Re-synced with fresh ledger state.');
+  }
+
+  // Helper notification in chat
+  function appendSystemNotification(text) {
+    const dynamicSlot = document.getElementById('dynamicAiChatSlot');
+    const notif = document.createElement('div');
+    notif.className = 'flex justify-center my-1';
+    notif.innerHTML = `
+      <span class="px-3 py-1 rounded-full bg-surface-container font-label-code text-caption text-outline">
+        ${escapeHtml(text)}
+      </span>
+    `;
+    dynamicSlot.appendChild(notif);
+    const stream = document.getElementById('chatStream');
+    stream.scrollTop = stream.scrollHeight;
+  }
+
+  function escapeHtml(string) {
+    return String(string).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+</script>
+</div>
+</main>
+<!-- Theme Controller Script -->
+<script>
+    function setTheme(themeKey) {
+      document.documentElement.setAttribute('data-theme', themeKey);
+      document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+        if (btn.getAttribute('data-theme-btn') === themeKey) {
+          btn.className = 'flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface border border-outline-variant/80 bg-surface shadow-2xs font-semibold';
+        } else {
+          btn.className = 'flex items-center gap-1 px-2 py-0.5 rounded-lg font-caption text-caption text-on-surface-variant hover:text-on-surface border border-transparent';
+        }
+      });
+    }
+  </script>
+</body></html>
