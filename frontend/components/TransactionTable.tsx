@@ -86,15 +86,15 @@ export default function TransactionTable({ transactions, onExport }: Transaction
   return (
     <div className="glass-card overflow-hidden">
       {/* Header with filters and export */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-border">
-        <h3 className="text-sm font-medium text-text-primary">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-[var(--color-border)]">
+        <h3 className="text-sm font-medium text-[var(--color-text-primary)]">
           Transactions ({transactions.length})
         </h3>
         <div className="flex items-center gap-2">
           {onExport && (
             <button
               onClick={onExport}
-              className="px-3 py-1 text-xs font-medium rounded transition-colors text-text-muted hover:text-text-primary hover:bg-bg-surface-hover border border-border"
+              className="px-3 py-1 text-xs font-medium rounded transition-colors text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-surface-hover)] border border-[var(--color-border)]"
             >
               Export CSV
             </button>
@@ -106,8 +106,8 @@ export default function TransactionTable({ transactions, onExport }: Transaction
                 onClick={() => { setFilter(f); setPage(1); }}
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   filter === f
-                    ? "bg-accent/15 text-accent"
-                    : "text-text-muted hover:text-text-primary hover:bg-bg-surface-hover"
+                    ? "bg-[var(--color-accent-dim)] text-[var(--color-accent)]"
+                    : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-surface-hover)]"
                 }`}
               >
                 {f === "all" && "All"}
@@ -126,31 +126,31 @@ export default function TransactionTable({ transactions, onExport }: Transaction
             <tr>
               <th>Transaction ID</th>
               <th
-                className="cursor-pointer hover:text-text-primary transition-colors"
+                className="cursor-pointer hover:text-[var(--color-text-primary)] transition-colors"
                 onClick={() => handleSort("date")}
               >
                 Date{sortIndicator("date")}
               </th>
               <th
-                className="cursor-pointer hover:text-text-primary transition-colors"
+                className="cursor-pointer hover:text-[var(--color-text-primary)] transition-colors"
                 onClick={() => handleSort("counterparty")}
               >
                 Counterparty{sortIndicator("counterparty")}
               </th>
               <th
-                className="text-right cursor-pointer hover:text-text-primary transition-colors"
+                className="text-right cursor-pointer hover:text-[var(--color-text-primary)] transition-colors"
                 onClick={() => handleSort("amount")}
               >
                 Amount{sortIndicator("amount")}
               </th>
               <th
-                className="cursor-pointer hover:text-text-primary transition-colors"
+                className="cursor-pointer hover:text-[var(--color-text-primary)] transition-colors"
                 onClick={() => handleSort("category")}
               >
                 Category{sortIndicator("category")}
               </th>
               <th
-                className="text-right cursor-pointer hover:text-text-primary transition-colors"
+                className="text-right cursor-pointer hover:text-[var(--color-text-primary)] transition-colors"
                 onClick={() => handleSort("confidence")}
               >
                 Confidence{sortIndicator("confidence")}
@@ -161,24 +161,24 @@ export default function TransactionTable({ transactions, onExport }: Transaction
           <tbody>
             {paginated.map((txn, i) => (
               <tr key={txn.transaction_id}>
-                <td className="mono text-text-muted text-xs">
+                <td className="mono text-[var(--color-text-muted)] text-xs">
                   {txn.transaction_id.slice(0, 12)}
                 </td>
-                <td className="text-text-muted text-sm">{txn.date || "—"}</td>
-                <td className="text-text-primary max-w-[200px] truncate text-sm">
+                <td className="text-[var(--color-text-muted)] text-sm">{txn.date || "—"}</td>
+                <td className="text-[var(--color-text-primary)] max-w-[200px] truncate text-sm">
                   {txn.counterparty || "—"}
                 </td>
-                <td className="mono text-right text-text-primary text-sm">
+                <td className="mono text-right text-[var(--color-text-primary)] text-sm">
                   {txn.amount != null ? formatINR(txn.amount) : "—"}
                 </td>
                 <td>
-                  <span className="text-text-primary text-sm">{txn.category}</span>
-                  <span className="block text-text-dim text-xs">{txn.subcategory}</span>
+                  <span className="text-[var(--color-text-primary)] text-sm">{txn.category}</span>
+                  <span className="block text-[var(--color-text-dim)] text-xs">{txn.subcategory}</span>
                 </td>
                 <td className="mono text-right">
                   <span
                     className={
-                      txn.confidence >= 0.7 ? "text-state-verified" : "text-state-anomaly"
+                      txn.confidence >= 0.7 ? "text-[var(--color-verified)]" : "text-[var(--color-anomaly)]"
                     }
                   >
                     {formatPercent(txn.confidence)}
@@ -203,32 +203,32 @@ export default function TransactionTable({ transactions, onExport }: Transaction
       </div>
 
       {filtered.length === 0 && (
-        <div className="py-12 text-center text-text-muted text-sm">
+        <div className="py-12 text-center text-[var(--color-text-muted)] text-sm">
           No transactions match the current filter.
         </div>
       )}
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between px-5 py-3 border-t border-border">
-          <span className="text-xs text-text-muted">
+        <div className="flex items-center justify-between px-5 py-3 border-t border-[var(--color-border)]">
+          <span className="text-xs text-[var(--color-text-muted)]">
             Showing {(page - 1) * ROWS_PER_PAGE + 1}–{Math.min(page * ROWS_PER_PAGE, filtered.length)} of {filtered.length}
           </span>
           <div className="flex gap-1">
             <button
               onClick={() => setPage(p => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="px-2 py-1 text-xs rounded border border-border text-text-muted hover:text-text-primary hover:bg-bg-surface-hover disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="px-2 py-1 text-xs rounded border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-surface-hover)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               Prev
             </button>
-            <span className="px-2 py-1 text-xs text-text-muted">
+            <span className="px-2 py-1 text-xs text-[var(--color-text-muted)]">
               {page}/{totalPages}
             </span>
             <button
               onClick={() => setPage(p => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="px-2 py-1 text-xs rounded border border-border text-text-muted hover:text-text-primary hover:bg-bg-surface-hover disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="px-2 py-1 text-xs rounded border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-surface-hover)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               Next
             </button>

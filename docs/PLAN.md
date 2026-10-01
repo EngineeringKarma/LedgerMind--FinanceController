@@ -418,3 +418,15 @@ backend/
   `chat.completions.create()` call — verified working against `meta/llama-3.3-70b-instruct`.
 - Available models can be enumerated with `client.models.list().data` using the same client config.
 - *(Note: patterns extracted from scratch scripts `test_qwen.py` / `test_models.py` — those files deleted in repo cleanup 2026-09-24.)*
+
+---
+
+## Phase N (Deferred Features)
+
+### Background Textures per Theme (Deferred)
+- **Ledger** (Light/Airy): Ruled accounting paper subtle background texture.
+- **Audit** (Light/Dense): Clean paper white (no texture / high print contrast).
+- **Vault** (Dark/Dense): Subtle micro dot-grid background pattern.
+- **Midnight** (Dark/Airy): Deep slate grain / clean dark background (no heavy texture).
+*(Note: Background textures are deferred to Phase N per design system spec. Implementation will use CSS background-image SVG patterns.)*
+

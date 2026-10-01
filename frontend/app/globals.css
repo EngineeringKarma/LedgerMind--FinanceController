@@ -1,359 +1,466 @@
 @import "tailwindcss";
 
+/* ─── Font Families (mapped from next/font CSS variables) ─────────────────── */
 @theme inline {
-  /* ─── Font Families ─── */
   --font-display: var(--font-space-grotesk);
   --font-body: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
 }
 
-/* ─── The Audited Ledger — Light/Dark Token System ─── */
+/* ─── Tailwind theme keys (defaults = Vault; per-[data-theme] blocks below
+   override these at runtime, so utilities like bg-bg-base stay dynamic) ───── */
+@theme {
+  --color-bg-base: #0c1825;
+  --color-bg-surface: #0f1b2d;
+  --color-bg-surface-hover: #14263d;
+  --color-bg-elevated: #1a2e45;
+  --color-bg-well: #0a1520;
+  --color-text-primary: #edeef0;
+  --color-text-muted: #8b98a8;
+  --color-text-dim: #5a6a7d;
+  --color-text-inverse: #0c1825;
+  --color-accent: #c98a3e;
+  --color-accent-hover: #d9a050;
+  --color-accent-deep: #a5712e;
+  --color-verified: #4fa88f;
+  --color-anomaly: #c1553d;
+  --color-pending: #c98a3e;
+  --color-border: #243549;
+  --color-border-subtle: #1b2c3f;
+  --color-hairline: #243549;
+  /* legacy state-* aliases used across dashboard components */
+  --color-state-verified: #4fa88f;
+  --color-state-anomaly: #c1553d;
+  --color-state-pending: #c98a3e;
+}
 
-/* Light Mode (default) */
-:root {
-  /* Base */
-  --color-bg-base: #0F1B2D;
-  --color-bg-surface: #15253D;
-  --color-bg-surface-hover: #1A2D4A;
-  --color-bg-elevated: #1E3350;
-  --color-bg-well: #15253D;
+/* ════════════════════════════════════════════════════════════════════════════
+   THE AUDITED LEDGER — 4-Theme, 2×2 Design System
+   
+   Axis 1: Light / Dark  (color palette)
+   Axis 2: Airy / Dense  (structural / spacing profile)
+   
+   Themes:
+     vault    — dark  + dense  (default; LedgerMind primary identity)
+     midnight — dark  + airy   (spacious dark mode)
+     ledger   — light + airy   (everyday bookkeeping, default light option)
+     audit    — light + dense  (high-contrast, print/export-adjacent)
+   
+   Two structural profiles:
+     --sp-* tokens (dense): Vault + Audit   — tighter, more data per screen
+     --sp-* tokens (airy):  Midnight + Ledger — breathable, less claustrophobic
+   
+   All color tokens are set per [data-theme]; structural tokens are set per
+   profile and then referenced inside the theme blocks. This means adding a
+   5th theme only requires a new color block — the structure comes for free.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Structural Profile: DENSE (Vault + Audit) ─────────────────────────────
+   Dense spacing here — finance-controller tools show more data per viewport.
+   Tighter radius keeps it serious and document-adjacent, not rounded-card SaaS.
+   ─────────────────────────────────────────────────────────────────────────── */
+[data-theme="vault"],
+[data-theme="audit"] {
+  /* Spacing — tight, information-dense */
+  --sp-xs:    4px;
+  --sp-sm:    8px;
+  --sp-md:    14px;   /* Dense: matches tight finance-adjacent layout rhythm */
+  --sp-lg:    20px;
+  --sp-xl:    28px;
+  --sp-2xl:   40px;
+
+  /* Component heights */
+  --h-topbar:     44px;   /* Dense: compact topbar saves vertical space for data */
+  --h-row:        40px;   /* Dense: ledger table rows sit tight like printed entries */
+
+  /* Sidebar */
+  --w-sidebar:    200px;  /* Dense: narrower sidebar → more horizontal space for content */
+
+  /* Radius — close to square; documents don't have pill corners */
+  --radius-xs:  2px;
+  --radius-sm:  3px;
+  --radius-md:  5px;
+  --radius-lg:  7px;
+  --radius-pill: 999px;
+
+  /* Border weight — hairline in dense mode; every pixel counts */
+  --border-weight: 1px;
+}
+
+/* ─── Structural Profile: AIRY (Midnight + Ledger) ──────────────────────────
+   Airy spacing here — same features, more breathing room between elements.
+   Larger radius reads as deliberate, modern; still not pill-everything.
+   ─────────────────────────────────────────────────────────────────────────── */
+[data-theme="midnight"],
+[data-theme="ledger"] {
+  /* Spacing — generous, each element has room to read */
+  --sp-xs:    6px;
+  --sp-sm:    12px;
+  --sp-md:    20px;   /* Airy: noticeably more whitespace than dense variant */
+  --sp-lg:    28px;
+  --sp-xl:    40px;
+  --sp-2xl:   56px;
+
+  /* Component heights */
+  --h-topbar:     52px;   /* Airy: topbar has room to breathe */
+  --h-row:        48px;   /* Airy: ledger rows feel like cards, not a spreadsheet */
+
+  /* Sidebar */
+  --w-sidebar:    240px;  /* Airy: wider sidebar; labels are fully readable */
+
+  /* Radius — softer corners match the less dense, more approachable feel */
+  --radius-xs:  3px;
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-pill: 999px;
+
+  /* Border weight */
+  --border-weight: 1px;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   THEME: VAULT  (dark + dense) — LedgerMind primary brand identity
+   Deep ink navy + brass accent. The default. Every other theme measures
+   itself against this one's credibility as a finance tool.
+   ════════════════════════════════════════════════════════════════════════════ */
+[data-theme="vault"] {
+  color-scheme: dark;
+
+  /* Background layers — three depths; elevated is for modals/popovers */
+  --color-bg-base:          #0C1825;   /* Page canvas: deepest ink navy */
+  --color-bg-surface:       #0F1B2D;   /* Cards, sidebar: the reference navy */
+  --color-bg-surface-hover: #14263D;   /* Row/item hover */
+  --color-bg-elevated:      #1A2E45;   /* Modals, dropdowns, popovers */
+  --color-bg-well:          #0A1520;   /* Inset wells, code blocks */
 
   /* Text */
-  --color-text-primary: #F0F4F8;
-  --color-text-muted: #8B98A8;
-  --color-text-dim: #5A6A7D;
-  --color-text-inverse: #0F1B2D;
+  --color-text-primary:     #EDEEF0;   /* Headers, primary content */
+  --color-text-muted:       #8B98A8;   /* Secondary text, captions */
+  --color-text-dim:         #5A6A7D;   /* Placeholder, disabled */
+  --color-text-inverse:     #0C1825;   /* On bright accent backgrounds */
 
-  /* Accent — Brass/Amber */
-  --color-accent: #C98A3E;
-  --color-accent-deep: #A67230;
-  --color-accent-dim: rgba(201, 138, 62, 0.12);
-  --color-accent-hover: #D4A04E;
-  --color-accent-glow: rgba(201, 138, 62, 0.25);
+  /* Accent — Brass/Ink-amber. Primary action, active state, the "stamp" color */
+  --color-accent:           #C98A3E;
+  --color-accent-hover:     #D9A050;
+  --color-accent-deep:      #A5712E;   /* Pressed state, text-on-accent */
+  --color-accent-dim:       rgba(201, 138, 62, 0.12);   /* Subtle tint backgrounds */
+  --color-accent-glow:      rgba(201, 138, 62, 0.22);   /* Focus rings, glow effects */
 
-  /* State */
-  --color-state-verified: #4FA88F;
-  --color-state-verified-bg: rgba(79, 168, 143, 0.14);
-  --color-state-anomaly: #C1553D;
-  --color-state-anomaly-bg: rgba(193, 85, 61, 0.12);
-  --color-state-pending: #C98A3E;
-  --color-state-pending-bg: rgba(201, 138, 62, 0.12);
+  /* State colors */
+  --color-verified:         #4FA88F;   /* Reconciled, high-confidence */
+  --color-verified-bg:      rgba(79, 168, 143, 0.13);
+  --color-verified-border:  rgba(79, 168, 143, 0.28);
+  --color-anomaly:          #C1553D;   /* Anomaly flags — used sparingly */
+  --color-anomaly-bg:       rgba(193, 85, 61, 0.12);
+  --color-anomaly-border:   rgba(193, 85, 61, 0.28);
+  --color-pending:          #C98A3E;   /* Needs review — same family as accent */
+  --color-pending-bg:       rgba(201, 138, 62, 0.11);
+  --color-pending-border:   rgba(201, 138, 62, 0.30);
+
+  /* Borders — layered from invisible to clear */
+  --color-border:           #243549;   /* Standard card/table border */
+  --color-border-subtle:    #1B2C3F;   /* Within-card dividers */
+  --color-hairline:         rgba(139, 152, 168, 0.09); /* Row separators in tables */
+
+  /* Shadows — dark theme shadows are deeper */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.25);
+  --shadow-md:  0 4px 14px rgba(0,0,0,0.32);
+  --shadow-lg:  0 20px 44px rgba(0,0,0,0.44);
+  --shadow-accent: 0 0 0 3px var(--color-accent-glow);
+
+  /* Scrollbar */
+  --color-scrollbar:        #243549;
+  --color-scrollbar-thumb:  #3A526B;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   THEME: MIDNIGHT  (dark + airy)
+   Slightly lighter dark background than Vault + more whitespace between 
+   elements. Same financial gravitas, less claustrophobic when working late.
+   ════════════════════════════════════════════════════════════════════════════ */
+[data-theme="midnight"] {
+  color-scheme: dark;
+
+  /* Background — cooler, slightly lifted from pure navy */
+  --color-bg-base:          #111827;   /* Cooler dark; not navy-branded */
+  --color-bg-surface:       #1A2738;   /* Cards — noticeably lighter than vault's base */
+  --color-bg-surface-hover: #1F3148;
+  --color-bg-elevated:      #253A52;
+  --color-bg-well:          #0E1C2F;
+
+  /* Text — slightly softer than Vault to match the airier feel */
+  --color-text-primary:     #DDE3EC;
+  --color-text-muted:       #7D8FA3;
+  --color-text-dim:         #4F6278;
+  --color-text-inverse:     #111827;
+
+  /* Accent — warmer, muted brass for the less-dense dark theme */
+  --color-accent:           #B88A3A;   /* Slightly cooler brass than Vault */
+  --color-accent-hover:     #CC9C48;
+  --color-accent-deep:      #97702E;
+  --color-accent-dim:       rgba(184, 138, 58, 0.13);
+  --color-accent-glow:      rgba(184, 138, 58, 0.22);
+
+  /* State colors — slightly cooler than Vault */
+  --color-verified:         #4EA388;
+  --color-verified-bg:      rgba(78, 163, 136, 0.13);
+  --color-verified-border:  rgba(78, 163, 136, 0.26);
+  --color-anomaly:          #BC5040;
+  --color-anomaly-bg:       rgba(188, 80, 64, 0.12);
+  --color-anomaly-border:   rgba(188, 80, 64, 0.26);
+  --color-pending:          #B88A3A;
+  --color-pending-bg:       rgba(184, 138, 58, 0.11);
+  --color-pending-border:   rgba(184, 138, 58, 0.28);
 
   /* Borders */
-  --color-border: #2A3F58;
-  --color-border-subtle: #1F3248;
-  --color-hairline: rgba(139, 152, 168, 0.1);
+  --color-border:           #283D57;
+  --color-border-subtle:    #1E3048;
+  --color-hairline:         rgba(125, 143, 163, 0.09);
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.15);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.22);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.28);
+  --shadow-lg:  0 20px 48px rgba(0,0,0,0.38);
+  --shadow-accent: 0 0 0 3px var(--color-accent-glow);
 
-  /* Fonts */
-  --font-display: var(--font-space-grotesk);
-  --font-body: var(--font-space-grotesk);
-  --font-data: var(--font-jetbrains-mono);
-
-  /* Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-pill: 999px;
+  --color-scrollbar:        #283D57;
+  --color-scrollbar-thumb:  #3D5672;
 }
 
-/* Dark Mode - slightly deeper */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-base: #0A1422;
-    --color-bg-surface: #0F1B2D;
-    --color-bg-surface-hover: #15253D;
-    --color-bg-elevated: #1A2D4A;
-    --color-bg-well: #0F1B2D;
+/* ════════════════════════════════════════════════════════════════════════════
+   THEME: LEDGER  (light + airy)
+   Warm off-white. Everyday bookkeeping mode. Feels like a well-lit accounting
+   office, not a banking terminal. The "friendly" face of LedgerMind.
+   ════════════════════════════════════════════════════════════════════════════ */
+[data-theme="ledger"] {
+  color-scheme: light;
 
-    --color-text-primary: #F0F4F8;
-    --color-text-muted: #8B98A8;
-    --color-text-dim: #5A6A7D;
-    --color-text-inverse: #0A1422;
+  /* Background — warm paper white, not clinical */
+  --color-bg-base:          #F4F6F8;   /* Warm light gray, prevents pure-white harshness */
+  --color-bg-surface:       #FFFFFF;   /* Cards, sidebar */
+  --color-bg-surface-hover: #F0F3F6;
+  --color-bg-elevated:      #FFFFFF;
+  --color-bg-well:          #EDF0F3;   /* Inset areas, code wells */
 
-    --color-accent: #D4A04E;
-    --color-accent-deep: #B88D3A;
-    --color-accent-dim: rgba(212, 160, 78, 0.12);
-    --color-accent-hover: #E0B05E;
-    --color-accent-glow: rgba(212, 160, 78, 0.3);
+  /* Text — dark navy on light, not pure black (softer contrast) */
+  --color-text-primary:     #1A2C41;   /* Primary content — same family as Vault bg */
+  --color-text-muted:       #5A6A7D;   /* Secondary text */
+  --color-text-dim:         #8B98A8;   /* Placeholder, disabled */
+  --color-text-inverse:     #FFFFFF;   /* On dark accent backgrounds */
 
-    --color-state-verified: #5FB89F;
-    --color-state-verified-bg: rgba(95, 184, 159, 0.14);
-    --color-state-anomaly: #D1654D;
-    --color-state-anomaly-bg: rgba(209, 101, 77, 0.12);
-    --color-state-pending: #D4A04E;
-    --color-state-pending-bg: rgba(212, 160, 78, 0.12);
+  /* Accent — medium brass, readable on white */
+  --color-accent:           #A07030;   /* Darker brass ensures contrast on white */
+  --color-accent-hover:     #B8843A;
+  --color-accent-deep:      #7A5220;
+  --color-accent-dim:       rgba(160, 112, 48, 0.10);
+  --color-accent-glow:      rgba(160, 112, 48, 0.20);
 
-    --color-border: #1F3248;
-    --color-border-subtle: #182A3F;
-    --color-hairline: rgba(139, 152, 168, 0.08);
+  /* State */
+  --color-verified:         #2E8B6E;   /* Darker for contrast on white */
+  --color-verified-bg:      rgba(46, 139, 110, 0.10);
+  --color-verified-border:  rgba(46, 139, 110, 0.24);
+  --color-anomaly:          #B04030;
+  --color-anomaly-bg:       rgba(176, 64, 48, 0.09);
+  --color-anomaly-border:   rgba(176, 64, 48, 0.22);
+  --color-pending:          #A07030;
+  --color-pending-bg:       rgba(160, 112, 48, 0.09);
+  --color-pending-border:   rgba(160, 112, 48, 0.26);
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
-    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
-  }
+  /* Borders — light mode uses slightly more visible borders */
+  --color-border:           #D8E0E8;
+  --color-border-subtle:    #E8EDF2;
+  --color-hairline:         rgba(90, 106, 125, 0.12);
+
+  /* Shadows — light mode; subtle elevation only */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 14px rgba(0,0,0,0.10);
+  --shadow-lg:  0 20px 44px rgba(0,0,0,0.12);
+  --shadow-accent: 0 0 0 3px var(--color-accent-glow);
+
+  --color-scrollbar:        #E0E8F0;
+  --color-scrollbar-thumb:  #B8C8D8;
 }
 
-/* Explicit dark mode class for manual toggle */
-.dark {
-  --color-bg-base: #0A1422;
-  --color-bg-surface: #0F1B2D;
-  --color-bg-surface-hover: #15253D;
-  --color-bg-elevated: #1A2D4A;
-  --color-bg-well: #0F1B2D;
+/* ════════════════════════════════════════════════════════════════════════════
+   THEME: AUDIT  (light + dense)
+   Crisp white + maximum contrast. Print/export-adjacent: imagine printing a
+   P&L report and this is what it would look like on screen. Very business.
+   ════════════════════════════════════════════════════════════════════════════ */
+[data-theme="audit"] {
+  color-scheme: light;
 
-  --color-text-primary: #F0F4F8;
-  --color-text-muted: #8B98A8;
-  --color-text-dim: #5A6A7D;
-  --color-text-inverse: #0A1422;
+  /* Background — clean white; this theme looks like a printed document */
+  --color-bg-base:          #F0F2F5;   /* Page lightly off-white to distinguish from surface */
+  --color-bg-surface:       #FFFFFF;
+  --color-bg-surface-hover: #F5F7FA;
+  --color-bg-elevated:      #FFFFFF;
+  --color-bg-well:          #EAF0F4;
 
-  --color-accent: #D4A04E;
-  --color-accent-deep: #B88D3A;
-  --color-accent-dim: rgba(212, 160, 78, 0.12);
-  --color-accent-hover: #E0B05E;
-  --color-accent-glow: rgba(212, 160, 78, 0.3);
+  /* Text — highest contrast; near-black on white */
+  --color-text-primary:     #111820;   /* Near-black; auditors need this readable at a glance */
+  --color-text-muted:       #4A5668;
+  --color-text-dim:         #7A8A9C;
+  --color-text-inverse:     #FFFFFF;
 
-  --color-state-verified: #5FB89F;
-  --color-state-verified-bg: rgba(95, 184, 159, 0.14);
-  --color-state-anomaly: #D1654D;
-  --color-state-anomaly-bg: rgba(209, 101, 77, 0.12);
-  --color-state-pending: #D4A04E;
-  --color-state-pending-bg: rgba(212, 160, 78, 0.12);
+  /* Accent — deepest brass; darkest for max contrast on white at dense scale */
+  --color-accent:           #8B5E20;   /* Deep amber; contrast ratio > 4.5:1 on white */
+  --color-accent-hover:     #A07030;
+  --color-accent-deep:      #6A4418;
+  --color-accent-dim:       rgba(139, 94, 32, 0.09);
+  --color-accent-glow:      rgba(139, 94, 32, 0.18);
 
-  --color-border: #1F3248;
-  --color-border-subtle: #182A3F;
-  --color-hairline: rgba(139, 152, 168, 0.08);
+  /* State — high-contrast versions for dense printed feel */
+  --color-verified:         #1E7A5A;
+  --color-verified-bg:      rgba(30, 122, 90, 0.09);
+  --color-verified-border:  rgba(30, 122, 90, 0.22);
+  --color-anomaly:          #A83020;
+  --color-anomaly-bg:       rgba(168, 48, 32, 0.08);
+  --color-anomaly-border:   rgba(168, 48, 32, 0.20);
+  --color-pending:          #8B5E20;
+  --color-pending-bg:       rgba(139, 94, 32, 0.08);
+  --color-pending-border:   rgba(139, 94, 32, 0.24);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
+  /* Borders — slightly stronger than Ledger, matching the dense layout */
+  --color-border:           #C8D2DC;
+  --color-border-subtle:    #DDE5EC;
+  --color-hairline:         rgba(74, 86, 104, 0.14);
+
+  /* Shadows — very subtle; dense layout doesn't need depth cues */
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.07);
+  --shadow-md:  0 3px 10px rgba(0,0,0,0.09);
+  --shadow-lg:  0 16px 36px rgba(0,0,0,0.10);
+  --shadow-accent: 0 0 0 3px var(--color-accent-glow);
+
+  --color-scrollbar:        #DCE4EC;
+  --color-scrollbar-thumb:  #B0BEC8;
 }
 
-/* ─── Theme Icon Preview (for ThemeSelector) ─── */
-.theme-light .theme-icon {
-  background: linear-gradient(135deg, #F0F4F8 0%, #D0D8E0 100%);
-  border: 1px solid #D0D8E0;
-}
-.theme-dark .theme-icon {
-  background: linear-gradient(135deg, #0A1422 0%, #1F3248 100%);
-  border: 1px solid #1F3248;
-}
+/* ════════════════════════════════════════════════════════════════════════════
+   GLOBAL BASE STYLES
+   Using CSS variables throughout so every property responds instantly
+   when data-theme changes — no JavaScript class manipulation on children.
+   ════════════════════════════════════════════════════════════════════════════ */
 
-/* ─── Global Base Styles ─── */
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border) transparent;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar);
 }
 
+/* Smooth transition on theme switch — only color/border, not layout */
 html {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    transition: none;
-  }
+  html { transition: none; }
 }
 
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-primary);
-  font-family: var(--font-body);
+  font-family: var(--font-body, var(--font-space-grotesk, sans-serif));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
 }
 
-/* ─── Tabular Figures for Ledger Alignment ─── */
-.tabular-nums {
+/* Focus — brass glow; consistent across all 4 themes via CSS vars */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent-dim);
+  color: var(--color-accent-deep);
+}
+
+/* ─── Typography Utilities ──────────────────────────────────────────────────
+   data-value: JetBrains Mono for amounts, IDs, timestamps
+   Everything else defaults to Space Grotesk via body
+   ─────────────────────────────────────────────────────────────────────────── */
+.font-data {
+  font-family: var(--font-mono, var(--font-jetbrains-mono, monospace));
+}
+
+/* Tabular figures — mandatory for all ledger columns */
+.tabular {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
 
-/* ─── Stamp Reveal Animation ─── */
-@keyframes stamp-reveal {
-  0% {
-    opacity: 0;
-    transform: scale(1.4) rotate(-8deg);
-  }
-  60% {
-    opacity: 1;
-    transform: scale(0.95) rotate(2deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
+/* ─── Scrollbar hide utility ─────────────────────────────────────────────── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
 
-.stamp-reveal {
-  animation: stamp-reveal 0.35s ease-out forwards;
-}
+/* ════════════════════════════════════════════════════════════════════════════
+   LAYOUT PRIMITIVES
+   All sizing uses --sp-* and --h-* tokens so dense vs airy themes
+   automatically produce different spatial rhythms from the same markup.
+   ════════════════════════════════════════════════════════════════════════════ */
 
-/* ─── Stamp Badge Styles ─── */
-.stamp-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.25rem 0.625rem;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-data);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-.stamp-verified {
-  background-color: var(--color-state-verified-bg);
-  color: var(--color-state-verified);
-  border: 1px solid color-mix(in srgb, var(--color-state-verified) 30%, transparent);
-}
-
-.stamp-review {
-  background-color: color-mix(in srgb, var(--color-state-pending) 12%, transparent);
-  color: var(--color-state-pending);
-  border: 1px dashed color-mix(in srgb, var(--color-state-pending) 40%, transparent);
-}
-
-.stamp-anomaly {
-  background-color: var(--color-state-anomaly-bg);
-  color: var(--color-state-anomaly);
-  border: 1px solid color-mix(in srgb, var(--color-state-anomaly) 30%, transparent);
-}
-
-/* ─── Table Styles ─── */
-.ledger-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.ledger-table th {
-  font-family: var(--font-body);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.ledger-table td {
-  padding: 0.875rem 1rem;
-  border-bottom: 1px solid var(--color-border-subtle);
-  font-size: 0.875rem;
-  line-height: 1.5;
-  transition: background-color 0.15s ease;
-}
-
-.ledger-table tr:hover td {
-  background-color: var(--color-bg-surface-hover);
-}
-
-.ledger-table .text-right {
-  text-align: right;
-}
-
-.ledger-table .mono {
-  font-family: var(--font-data);
-  font-variant-numeric: tabular-nums;
-}
-
-/* ─── Unified Card System ─── */
-.glass-card {
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-}
-
-.glass-card-hover {
-  transition: all 0.2s ease;
-}
-
-.glass-card-hover:hover {
-  transform: translateY(-2px);
-  border-color: var(--color-accent);
-  box-shadow: var(--shadow-lg);
-}
-
-.glass-card-padded {
-  padding: 1.25rem;
-}
-
-@media (min-width: 768px) {
-  .glass-card-padded {
-    padding: 1.5rem;
-  }
-}
-
-/* ─── Upload Zone ─── */
-.upload-zone {
-  border: 2px dashed var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: all 0.2s ease;
-}
-
-.upload-zone:hover,
-.upload-zone.drag-active {
-  border-color: var(--color-accent);
-  background-color: var(--color-accent-dim);
-}
-
-/* ─── Chart of Accounts Sidebar ─── */
-.chart-of-accounts {
-  font-family: var(--font-data);
-  font-size: 0.8125rem;
-}
-
-.chart-of-accounts .account-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-md);
-  transition: background-color 0.15s ease;
-}
-
-.chart-of-accounts .account-row:hover {
-  background-color: var(--color-bg-surface-hover);
-}
-
-/* ─── Sidebar Styles ─── */
+/* ─── Sidebar ────────────────────────────────────────────────────────────── */
 .sidebar {
-  width: var(--sidebar-width, 240px);
-  min-height: 100vh;
+  width: var(--w-sidebar);
+  min-height: 100dvh;
   background-color: var(--color-bg-surface);
-  border-right: 1px solid var(--color-border);
+  border-right: var(--border-weight) solid var(--color-border);
   display: flex;
   flex-direction: column;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 0; top: 0;
   z-index: 40;
   transition: width 0.2s ease;
+  overflow: hidden;
 }
 
-.sidebar.collapsed {
-  --sidebar-width: 64px;
+.sidebar.collapsed { --w-sidebar: 56px; }
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-md);
+  min-height: var(--h-topbar);
+  border-bottom: var(--border-weight) solid var(--color-border-subtle);
+}
+
+.sidebar-section {
+  padding: var(--sp-sm) var(--sp-sm) 0;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  margin-top: var(--sp-md);
 }
 
 .sidebar-nav-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.625rem 1rem;
+  gap: var(--sp-sm);
+  padding: var(--sp-sm) var(--sp-md);
+  margin: 2px var(--sp-xs);
   border-radius: var(--radius-md);
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text-muted);
-  transition: all 0.15s ease;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+  text-decoration: none;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .sidebar-nav-item:hover {
@@ -364,359 +471,67 @@ body {
 .sidebar-nav-item.active {
   background-color: var(--color-accent-dim);
   color: var(--color-accent);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+  border: var(--border-weight) solid color-mix(in srgb, var(--color-accent) 28%, transparent);
 }
 
-.sidebar.collapsed .sidebar-nav-item {
-  justify-content: center;
-  padding: 0.625rem;
-}
+/* Icon-only collapsed state */
+.sidebar.collapsed .sidebar-nav-item { justify-content: center; padding: var(--sp-sm); }
+.sidebar.collapsed .sidebar-nav-item .nav-label { display: none; }
+.sidebar.collapsed .sidebar-logo .logo-label { display: none; }
+.sidebar.collapsed .sidebar-section { display: none; }
 
-.sidebar.collapsed .sidebar-nav-item span {
-  display: none;
-}
-
-.sidebar.collapsed .sidebar-logo span {
-  display: none;
-}
-
-/* ─── OAuth Button Styles ─── */
-.oauth-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-md);
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.15s ease;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-bg-surface);
-  color: var(--color-text-primary);
-}
-
-.oauth-btn:hover {
-  background-color: var(--color-bg-surface-hover);
-}
-
-/* ─── Gradient Text ─── */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ─── Feature Card (landing page) ─── */
-.feature-card {
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  transition: all 0.2s ease;
-}
-
-.feature-card:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 4px 15px -3px color-mix(in srgb, var(--color-accent) 10%, transparent);
-}
-
-/* ─── KPI Card ─── */
-.kpi-card {
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem;
-  transition: all 0.15s ease;
-}
-
-.kpi-card:hover {
-  border-color: var(--color-accent);
-}
-
-/* ─── Settings Section ─── */
-.settings-section {
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-}
-
-.settings-section-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 1rem;
-}
-
-/* ─── Toggle Switch ─── */
-.toggle-switch {
-  position: relative;
-  width: 44px;
-  height: 24px;
-  background-color: var(--color-bg-elevated);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  border: 1px solid var(--color-border);
-}
-
-.toggle-switch.active {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-.toggle-switch::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  background-color: var(--color-text-primary);
-  border-radius: 50%;
-  transition: transform 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.toggle-switch.active::after {
-  transform: translateX(20px);
-}
-
-/* ─── Navbar ─── */
-.navbar {
-  background-color: var(--color-bg-surface);
-  border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(8px);
+/* ─── Topbar ─────────────────────────────────────────────────────────────── */
+.topbar {
+  height: var(--h-topbar);
   background-color: color-mix(in srgb, var(--color-bg-surface) 90%, transparent);
+  border-bottom: var(--border-weight) solid var(--color-border);
+  backdrop-filter: blur(8px);
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: center;
+  padding: 0 var(--sp-md);
+  gap: var(--sp-sm);
 }
 
-/* ─── Hero Section ─── */
-.hero-gradient {
-  background: linear-gradient(135deg, var(--color-bg-surface) 0%, var(--color-bg-base) 100%);
-}
-
-/* ─── Theme Selector (Pill Strip) ─── */
-.theme-selector {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.25rem;
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
-}
-
-.theme-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  transition: all 0.15s ease;
-  border: 1px solid transparent;
-  white-space: nowrap;
-}
-
-.theme-pill:hover {
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-surface-hover);
-}
-
-.theme-pill.active {
-  color: var(--color-accent);
-  background-color: var(--color-accent-dim);
-  border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
-}
-
-.theme-pill:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-.theme-icon {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  flex-shrink: 0;
-}
-
-/* ─── Theme Selector Cards (Landing Page) ─── */
-.theme-selector-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.theme-card {
-  position: relative;
+/* ─── Main content area ──────────────────────────────────────────────────── */
+.main-content {
+  margin-left: var(--w-sidebar);
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.25rem;
+}
+
+.page-content {
+  flex: 1;
+  padding: var(--sp-lg);
+  max-width: 1400px;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   COMPONENT PRIMITIVES
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Cards ──────────────────────────────────────────────────────────────── */
+.card {
   background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
+  border: var(--border-weight) solid var(--color-border);
   border-radius: var(--radius-lg);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 180px;
-  flex: 1;
-  max-width: 220px;
 }
 
-.theme-card:hover {
+.card-padded { padding: var(--sp-md); }
+
+.card-hover {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.card-hover:hover {
   border-color: var(--color-accent);
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
-.theme-card.active {
-  border-color: var(--color-accent);
-  background-color: var(--color-accent-dim);
-  box-shadow: var(--shadow-md);
-}
-
-.theme-card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.theme-card-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-md);
-  flex-shrink: 0;
-}
-
-.theme-card-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.theme-card-name {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.theme-card-desc {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.theme-card-preview {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--color-border-subtle);
-}
-
-.theme-card-preview-item {
-  background-color: var(--color-bg-base);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
-  padding: 0.75rem;
-  text-align: center;
-}
-
-.theme-card-preview-label {
-  font-size: 0.5625rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-dim);
-  margin-bottom: 0.25rem;
-}
-
-.theme-card-preview-value {
-  font-family: var(--font-data);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-/* ─── Live Preview Mini Dashboard ─── */
-.preview-dashboard {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-}
-
-.preview-card {
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 1rem;
-  transition: all 0.2s ease;
-}
-
-.preview-card:hover {
-  border-color: var(--color-accent);
-}
-
-.preview-card .preview-label {
-  font-size: 0.625rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-dim);
-  margin-bottom: 0.375rem;
-}
-
-.preview-card .preview-value {
-  font-family: var(--font-data);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.preview-card .preview-trend {
-  font-size: 0.625rem;
-  font-weight: 500;
-  margin-top: 0.375rem;
-}
-
-.preview-card .preview-trend.positive {
-  color: var(--color-state-verified);
-}
-
-.preview-card .preview-trend.negative {
-  color: var(--color-state-anomaly);
-}
-
-/* ─── Theme Band (Theme selector strip in dashboard) ─── */
-.themeband {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.25rem;
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
-}
-
-/* ─── Pane Styles (Dashboard) ─── */
+/* ─── Pane (info/status card with header stripe) ────────────────────────── */
 .pane {
   background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
+  border: var(--border-weight) solid var(--color-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -725,122 +540,732 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-bg-base);
+  padding: var(--sp-sm) var(--sp-md);
+  border-bottom: var(--border-weight) solid var(--color-border);
+  background-color: var(--color-bg-well);
+  min-height: 40px;
 }
 
 .pane-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+}
+
+.pane-content { padding: var(--sp-md); }
+
+/* ─── Status dot ─────────────────────────────────────────────────────────── */
+.status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot.running {
+  background-color: var(--color-accent);
+  animation: pulse-dot 1.6s ease infinite;
+}
+.status-dot.verified { background-color: var(--color-verified); }
+.status-dot.anomaly  { background-color: var(--color-anomaly); }
+.status-dot.pending  { background-color: var(--color-pending); }
+.status-dot.idle     { background-color: var(--color-text-dim); }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-xs);
+  padding: var(--sp-sm) var(--sp-md);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
   font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease,
+              box-shadow 0.12s ease, transform 0.1s ease;
+  border: var(--border-weight) solid transparent;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+
+/* Primary (brass) */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+  border-color: var(--color-accent-deep);
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:focus-visible { box-shadow: var(--shadow-accent); }
+
+/* Secondary — outlined */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+.btn-secondary:hover {
+  background-color: var(--color-bg-surface-hover);
+  border-color: var(--color-accent);
+}
+
+/* Ghost — no border, no background */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-muted);
+  border-color: transparent;
+}
+.btn-ghost:hover {
+  background-color: var(--color-bg-surface-hover);
   color: var(--color-text-primary);
 }
 
-.pane-status {
+/* Danger */
+.btn-danger {
+  background-color: var(--color-anomaly-bg);
+  color: var(--color-anomaly);
+  border-color: var(--color-anomaly-border);
+}
+.btn-danger:hover {
+  background-color: color-mix(in srgb, var(--color-anomaly) 18%, transparent);
+}
+
+/* Size variants */
+.btn-sm { padding: var(--sp-xs) var(--sp-sm); font-size: 0.8125rem; }
+.btn-lg { padding: var(--sp-md) var(--sp-lg); font-size: 1rem; }
+
+/* ─── Badges / Stamps ────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.2em 0.55em;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono, var(--font-jetbrains-mono, monospace));
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: var(--border-weight) solid transparent;
+}
+
+.badge-verified {
+  background-color: var(--color-verified-bg);
+  color: var(--color-verified);
+  border-color: var(--color-verified-border);
+}
+
+/* Needs review — dashed border signals "not final" */
+.badge-review {
+  background-color: var(--color-pending-bg);
+  color: var(--color-pending);
+  border: 1px dashed var(--color-pending-border);
+}
+
+.badge-anomaly {
+  background-color: var(--color-anomaly-bg);
+  color: var(--color-anomaly);
+  border-color: var(--color-anomaly-border);
+}
+
+.badge-accent {
+  background-color: var(--color-accent-dim);
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 28%, transparent);
+}
+
+/* ─── Stamp Reveal Animation —————────————————————————————————————————————
+   Applied when a categorization result "stamps" into the table row.
+   Only the stamp moment is animated; everything else is static.
+   ───────────────────────────────────────────────────────────────────────── */
+@keyframes stamp-reveal {
+  0%   { opacity: 0; transform: scale(1.4) rotate(-8deg); }
+  60%  { opacity: 1; transform: scale(0.97) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.stamp-reveal {
+  animation: stamp-reveal 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── Ledger Table ───────────────────────────────────────────────────────── */
+.ledger-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.ledger-table th {
+  font-family: inherit;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-dim);
+  padding: var(--sp-sm) var(--sp-md);
+  text-align: left;
+  border-bottom: var(--border-weight) solid var(--color-border);
+  white-space: nowrap;
+}
+
+/* Amount column always right-aligned and monospaced */
+.ledger-table th.col-amount,
+.ledger-table td.col-amount {
+  text-align: right;
+  font-family: var(--font-mono, monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+.ledger-table td {
+  height: var(--h-row);
+  padding: 0 var(--sp-md);
+  border-bottom: var(--border-weight) solid var(--color-hairline);
+  font-size: 0.875rem;
+  vertical-align: middle;
+  transition: background-color 0.1s ease;
+}
+
+.ledger-table tbody tr:hover td {
+  background-color: var(--color-bg-surface-hover);
+}
+
+.ledger-table td.col-id {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* ─── Upload Zone ────────────────────────────────────────────────────────── */
+.upload-zone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-2xl) var(--sp-xl);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-active {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-dim);
+}
+
+/* ─── Input / Form ───────────────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  background-color: var(--color-bg-well);
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-sm) var(--sp-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  outline: none;
+}
+
+.input::placeholder { color: var(--color-text-dim); }
+
+.input:focus {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-accent);
+}
+
+/* ─── Live Task Pane ─────────────────────────────────────────────────────── */
+.task-pane {
+  background-color: var(--color-bg-surface);
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.task-pane-header {
   display: flex;
   align-items: center;
-  gap: 0.375rem;
+  gap: var(--sp-sm);
+  padding: var(--sp-sm) var(--sp-md);
+  border-bottom: var(--border-weight) solid var(--color-border);
+  background-color: var(--color-bg-well);
+}
+
+.task-pane-steps { padding: var(--sp-sm) 0; }
+
+.task-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-sm);
+  padding: var(--sp-xs) var(--sp-md);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  transition: background-color 0.1s ease;
+}
+
+.task-step.done {
+  color: var(--color-verified);
+}
+
+.task-step.active {
+  color: var(--color-text-primary);
+  background-color: var(--color-accent-dim);
+}
+
+.task-step-icon {
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ─── Command Palette ────────────────────────────────────────────────────── */
+.command-palette-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  animation: fade-in 0.12s ease;
+}
+
+.command-palette {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(560px, 90vw);
+  background-color: var(--color-bg-elevated);
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 101;
+  overflow: hidden;
+  animation: slide-in-palette 0.14s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes slide-in-palette {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.command-palette-input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: var(--border-weight) solid var(--color-border);
+  padding: var(--sp-md);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.command-palette-input::placeholder { color: var(--color-text-dim); }
+
+.command-palette-list {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: var(--sp-xs) 0;
+}
+
+.command-palette-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-sm);
+  padding: var(--sp-sm) var(--sp-md);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color 0.08s ease, color 0.08s ease;
+}
+
+.command-palette-item:hover,
+.command-palette-item.selected {
+  background-color: var(--color-accent-dim);
+  color: var(--color-text-primary);
+}
+
+.command-palette-item-hint {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6875rem;
+  color: var(--color-text-dim);
+  background-color: var(--color-bg-well);
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-xs);
+  padding: 1px 5px;
+  flex-shrink: 0;
+}
+
+/* ─── Theme Switcher ─────────────────────────────────────────────────────── */
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  background-color: var(--color-bg-well);
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.theme-switcher-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
   font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+  border: var(--border-weight) solid transparent;
+  white-space: nowrap;
+  background: none;
+  font-family: inherit;
+}
+
+.theme-switcher-btn:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-surface-hover);
+}
+
+.theme-switcher-btn.active {
+  background-color: var(--color-accent-dim);
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 28%, transparent);
+}
+
+.theme-swatch {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Swatches per theme (inline in component via style prop) */
+
+/* ─── Divider / Hairline ─────────────────────────────────────────────────── */
+.divider { border: none; border-top: var(--border-weight) solid var(--color-border); margin: 0; }
+.divider-subtle { border-top-color: var(--color-border-subtle); }
+
+/* ─── KPI Card ─────────────────────────────────────────────────────────── */
+.kpi-card {
+  background-color: var(--color-bg-surface);
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-md);
+  transition: border-color 0.15s ease;
+}
+.kpi-card:hover { border-color: var(--color-accent); }
+
+.kpi-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-dim);
+  margin-bottom: var(--sp-xs);
+}
+
+.kpi-value {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-trend {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: var(--sp-xs);
+}
+.kpi-trend.up   { color: var(--color-verified); }
+.kpi-trend.down { color: var(--color-anomaly); }
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.25s ease-out forwards; }
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up 0.3s ease-out forwards; }
+
+/* ─── Responsive: collapse sidebar below 1024px ──────────────────────────── */
+@media (max-width: 1024px) {
+  .sidebar { --w-sidebar: 56px; }
+  .sidebar .nav-label { display: none; }
+  .sidebar .logo-label { display: none; }
+  .sidebar .sidebar-section { display: none; }
+  .sidebar-nav-item { justify-content: center; padding: var(--sp-sm); }
+  .main-content { margin-left: 56px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   LANDING + AUTH ALIASES
+   The landing, signin and dashboard reference a small set of shared
+   primitives. They all resolve to the per-theme CSS vars above, so the
+   Nami-style "click a desk, whole page changes" theme switch keeps working.
+   No new hues are introduced here — only ink, paper, brass, verified, anomaly.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* Card with a faint lifted surface (alias over .card, keeps dashboard working) */
+.glass-card {
+  background-color: var(--color-bg-surface);
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Hero wash — ink-to-brass, never a generic blue/purple gradient */
+.hero-gradient {
+  background:
+    radial-gradient(1200px 400px at 15% -10%, var(--color-accent-dim), transparent 60%),
+    linear-gradient(to bottom, transparent, var(--color-bg-base));
+}
+
+/* Ledger sheet — the hero demo surface. Ruled, not carded. */
+.ledger-sheet {
+  background-color: var(--color-bg-surface);
+  border: var(--border-weight) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.ledger-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-sm);
+  padding: var(--sp-sm) var(--sp-md);
+  border-bottom: 2px solid var(--color-accent);
+  background-color: var(--color-bg-well);
+}
+
+/* Rubber-stamp category mark. Rotated, double-bordered, раств only here. */
+.stamp-badge,
+.stamp-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.28em 0.6em;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid currentColor;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 25%, transparent);
+  transform: rotate(-2deg);
+}
+
+.stamp-verified {
+  color: var(--color-verified);
+  background-color: var(--color-verified-bg);
+}
+
+.stamp-review {
+  color: var(--color-pending);
+  background-color: var(--color-pending-bg);
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.stamp-anomaly {
+  color: var(--color-anomaly);
+  background-color: var(--color-anomaly-bg);
+}
+
+/* Section divider — thick ledger rule opens a section, hairline closes it */
+.folio-rule {
+  border: none;
+  border-top: 2px solid var(--color-accent);
+  margin: 0;
+}
+
+.folio-label {
+  font-size: 0.8125rem;
   font-weight: 500;
   color: var(--color-text-muted);
 }
 
-.pane-status .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--color-state-verified);
-}
-
-.pane-content {
-  padding: 1rem;
-}
-
-.pane-lines {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.pane-line {
-  font-size: 0.875rem;
+/* Desk (theme) picker row inside the hero sheet — mirrors Nami's desk strip */
+.desk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--color-text-muted);
+  background: transparent;
+  border: var(--border-weight) solid var(--color-border);
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
 }
 
-/* ─── Responsive ─── */
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 64px;
-  }
-
-  .sidebar-nav-item span {
-    display: none;
-  }
-
-  .sidebar-nav-item {
-    justify-content: center;
-    padding: 0.625rem;
-  }
-
-  .sidebar .sidebar-logo span {
-    display: none;
-  }
+.desk-btn:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-accent);
 }
 
-@media (max-width: 768px) {
-  .theme-selector-cards {
-    flex-direction: column;
-  }
-
-  .theme-card {
-    max-width: none;
-  }
-
-  .preview-dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .theme-card-preview {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ─── Animations ─── */
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.3s ease-out forwards;
-}
-
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-slide-up {
-  animation: slide-up 0.4s ease-out forwards;
-}
-
-/* ─── Focus Styles ─── */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* ─── Selection ─── */
-::selection {
+.desk-btn[aria-pressed="true"] {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
   background-color: var(--color-accent-dim);
-  color: var(--color-accent-deep);
 }
 
-/* ─── Scrollbar Hide Utility ─── */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* OAuth / secondary provider buttons */
+.oauth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: var(--border-weight) solid var(--color-border);
+  transition: background-color 0.12s ease, border-color 0.12s ease;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+.oauth-btn:hover {
+  background-color: var(--color-bg-surface-hover);
+  border-color: var(--color-accent);
+}
+
+/* Mono data helper used by older components (.mono alias) */
+.mono {
+  font-family: var(--font-mono, monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-reveal { animation: none; }
+  .status-dot.running { animation: none; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   NAMI VISUAL LANGUAGE — reference-only styling pass
+   Applies Nami's material feel (slab highlights, pill actions, spring
+   motion, tight type) to LedgerMind's own tokens, themes and content.
+   No structure, logic, branding or copy changes in this block.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --pop: cubic-bezier(0.22, 1.28, 0.36, 1); /* Nami's spring for hover lifts */
+}
+
+/* Nami type feel: tight display tracking; balance only on short headlines */
+h1 { letter-spacing: -0.03em; line-height: 1.05; text-wrap: balance; }
+h2 { letter-spacing: -0.03em; line-height: 1.1; }
+h3 { letter-spacing: -0.02em; line-height: 1.25; }
+
+/* Nami focus: accent ring with room to breathe */
+:focus-visible { outline-offset: 3px; }
+
+/* Nami actions: pill shape, spring lift, brass-gradient CTA with glow */
+.btn {
+  border-radius: var(--radius-pill);
+  transition: transform 0.2s var(--pop), box-shadow 0.25s var(--pop),
+    background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--color-accent-hover) 0%, var(--color-accent) 45%, var(--color-accent-deep) 100%);
+  box-shadow: 0 10px 24px var(--color-accent-glow);
+}
+.btn-primary:hover {
+  background: linear-gradient(180deg, var(--color-accent-hover) 0%, var(--color-accent-hover) 45%, var(--color-accent) 100%);
+  box-shadow: 0 16px 34px var(--color-accent-glow);
+}
+
+/* Light desks: solid brass CTA — the gradient reads heavy beside stamps on paper */
+[data-theme="ledger"] .btn-primary,
+[data-theme="audit"] .btn-primary {
+  background: var(--color-accent);
+}
+[data-theme="ledger"] .btn-primary:hover,
+[data-theme="audit"] .btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Nami slabs: inset top highlight over the theme's own depth */
+.card,
+.glass-card,
+.ledger-sheet,
+.pane,
+.kpi-card,
+.task-pane {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), var(--shadow-md);
+}
+
+.card-hover {
+  transition: transform 0.2s var(--pop), box-shadow 0.25s var(--pop), border-color 0.2s ease;
+}
+.card-hover:hover {
+  border-color: var(--color-accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Nami bar: deeper blur so content glides beneath it */
+.topbar {
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+
+/* Nami chips: spring on the desk/theme pickers */
+.theme-switcher-btn,
+.desk-btn {
+  transition: transform 0.2s var(--pop), background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease;
+}
+
+/* Nami pills: tracked micro-labels; stamp rotation stays untouched */
+.badge { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* Nami fields: sunk well at rest, glow added on focus */
+.input { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12); }
+.input:focus { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12), var(--shadow-accent); }
+
+/* Nami drag: tactile spring when a file hovers the dropzone */
+.upload-zone { transition: transform 0.2s var(--pop), border-color 0.15s ease, background-color 0.15s ease; }
+.upload-zone.drag-active { transform: scale(1.01); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .card-hover,
+  .theme-switcher-btn,
+  .desk-btn,
+  .upload-zone { transition: none; }
+  .btn:hover,
+  .card-hover:hover,
+  .upload-zone.drag-active { transform: none; }
 }
